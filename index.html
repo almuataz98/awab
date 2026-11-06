@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Awab · Every return, on time</title>
+<meta name="description" content="Awab (أوّاب), Muscat: Fawtara e-invoicing readiness for VAT-registered businesses in Oman, and income-tax paperwork for employers from 2028. In Arabic and English. General information, not tax advice.">
+<meta property="og:title" content="Awab · Every return, on time">
+<meta property="og:description" content="Fawtara e-invoicing readiness and income-tax paperwork for businesses in Oman. Free readiness conversations now.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="ar_OM">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Ccircle cx='15' cy='15' r='12.4' fill='%23FFFFFF' stroke='%2314212A' stroke-width='1.6'/%3E%3Cpath d='M21.5 15A6.5 6.5 0 1 1 15 8.5' fill='none' stroke='%230C6A55' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M13.03 7.12L15 8.5L13.03 9.88' fill='none' stroke='%23C9463D' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&display=swap">
+<style>
+/* Layout: a ledger sheet with a return-arrow mark. Figures sit on ruled paper with a double red margin line, computations
+   use green-bar banding, and totals carry the accountant's rules: a single rule above a subtotal, a double rule under the total. */
+:root{
+  --paper:#F2F5F2; --sheet:#FFFFFF; --band:#E9F1EC; --ink:#14212A; --ink-2:#46565E; --ink-3:#6B7B82;
+  --rule:#D5DFD9; --rule-strong:#A8B8AF;
+  --green:#0C6A55; --green-ink:#FFFFFF; --green-soft:#DDEFE7;
+  --margin:#C9463D;
+  --amber:#8F5300; --amber-soft:#FBEED6; --red:#B0372E; --red-soft:#F9E2DF; --blue:#1E5785; --blue-soft:#E0EBF5;
+  --shadow:0 1px 0 rgba(20,33,42,.04),0 12px 30px -20px rgba(20,33,42,.30);
+  --f-display:"Reem Kufi","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI","Noto Sans Arabic",system-ui,-apple-system,sans-serif;
+  --f-fig:"IBM Plex Mono","IBM Plex Sans Arabic",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:4px; --m:46px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0C1311; --sheet:#121A17; --band:#16231E; --ink:#E3EBE7; --ink-2:#A2B3AB; --ink-3:#80918A;
+  --rule:#24322D; --rule-strong:#3B4D46; --green:#47C19C; --green-ink:#04231A; --green-soft:#12302A;
+  --margin:#DD6A60; --amber:#E7A947; --amber-soft:#2D2310; --red:#EC7B71; --red-soft:#33191A; --blue:#80B5E4; --blue-soft:#13243A;
+  --shadow:0 1px 0 rgba(0,0,0,.35),0 12px 30px -16px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0C1311; --sheet:#121A17; --band:#16231E; --ink:#E3EBE7; --ink-2:#A2B3AB; --ink-3:#80918A;
+  --rule:#24322D; --rule-strong:#3B4D46; --green:#47C19C; --green-ink:#04231A; --green-soft:#12302A;
+  --margin:#DD6A60; --amber:#E7A947; --amber-soft:#2D2310; --red:#EC7B71; --red-soft:#33191A; --blue:#80B5E4; --blue-soft:#13243A;
+  --shadow:0 1px 0 rgba(0,0,0,.35),0 12px 30px -16px rgba(0,0,0,.7); color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html[lang="ar"] body{line-height:1.85}
+a{color:var(--green)}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:600;line-height:1.2;margin:0;text-wrap:balance;color:var(--ink)}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4{line-height:1.55}
+p{margin:0}
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.fig{font-family:var(--f-fig);font-variant-numeric:tabular-nums}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.eyebrow{font-family:var(--f-fig);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:500}
+html[lang="ar"] .eyebrow{font-family:var(--f-body);letter-spacing:0;font-size:14px;text-transform:none;font-weight:600}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.skip{position:absolute;inset-inline-start:12px;top:-80px;background:var(--ink);color:var(--paper);padding:8px 12px;border-radius:var(--r);z-index:50;text-decoration:none}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--rule)}
+.top-in{display:flex;align-items:center;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-inline-end:auto}
+.mark{width:30px;height:30px;flex:none}
+.mark .m-bg{fill:var(--sheet);stroke:var(--ink)}
+.mark .m-ring{fill:none;stroke:var(--margin)}
+.mark .m-ln{stroke:var(--green)}
+.brand-ar{font-family:var(--f-display);font-size:23px;font-weight:700;line-height:1}
+.brand-en{font-family:var(--f-display);font-size:19px;font-weight:600;line-height:1;color:var(--ink-2)}
+.brand-sep{width:1px;height:18px;background:var(--rule-strong)}
+.nav{display:flex;gap:2px}
+.nav a{color:var(--ink-2);text-decoration:none;font-size:15px;padding:8px 10px;border-radius:var(--r)}
+.nav a:hover{color:var(--ink);background:var(--band)}
+.lang{font:600 14px/1 var(--f-body);color:var(--ink);background:var(--sheet);border:1px solid var(--rule-strong);border-radius:var(--r);padding:9px 13px;cursor:pointer}
+.lang:hover{border-color:var(--ink)}
+@media (max-width:860px){.nav{display:none}}
+
+/* Buttons */
+[hidden]{display:none!important}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1.25 var(--f-body);padding:12px 18px;border-radius:var(--r);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,filter .15s}
+.btn-primary{background:var(--green);color:var(--green-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-text{background:none;border:0;color:var(--green);font:500 14px/1.3 var(--f-body);cursor:pointer;padding:6px 2px;text-decoration:underline;text-underline-offset:3px}
+
+/* Sheets: paper with a double red margin line */
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);box-shadow:var(--shadow)}
+.paper{position:relative}
+.paper::after{content:"";position:absolute;inset-block:0;inset-inline-start:calc(var(--m) - 5px);width:5px;border-inline:1px solid var(--margin);opacity:.75;pointer-events:none}
+@media (max-width:560px){:root{--m:24px}}
+
+/* Hero */
+.hero{padding-block:clamp(40px,7vw,88px) clamp(52px,7vw,96px)}
+.hero-in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+@media (max-width:920px){.hero-in{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(36px,5.4vw,64px);margin-block:14px 18px;letter-spacing:-.015em;line-height:1.08}
+html[lang="ar"] .hero h1{letter-spacing:0;font-size:clamp(34px,5vw,58px);line-height:1.4}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--ink-2);max-width:58ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.countdown{margin-top:28px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;color:var(--ink-2)}
+.countdown .fig{font-size:30px;font-weight:600;color:var(--ink);line-height:1}
+.regs{margin-top:10px;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-3)}
+.regs .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);flex:none}
+.ledger-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 20px 12px calc(var(--m) + 16px);border-bottom:1.5px solid var(--rule-strong);font-size:13.5px;color:var(--ink-2)}
+[dir="rtl"] .ledger-head{padding:16px calc(var(--m) + 16px) 12px 20px}
+.ledger-head .ref{font-family:var(--f-fig);font-size:12px;color:var(--ink-3);white-space:nowrap}
+html[lang="ar"] .ledger-head .ref{font-family:var(--f-body)}
+.figs{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:18px}
+.figs>div{grid-column:1/-1;display:grid;grid-template-columns:9rem minmax(0,1fr);grid-template-columns:subgrid;align-items:center;gap:6px 18px;padding-block:18px;padding-inline:calc(var(--m) + 16px) 20px;border-bottom:1px solid var(--rule)}
+.figs>div:last-child{border-bottom:0}
+.figs>div:nth-child(odd){background:var(--band)}
+.figs dt{font-family:var(--f-fig);font-size:clamp(28px,3vw,36px);font-weight:600;line-height:1;color:var(--ink);white-space:nowrap}
+.figs dt small{display:block;font-size:.42em;font-weight:500;margin-top:6px;color:var(--ink-2)}
+html[lang="ar"] .figs dt{font-family:var(--f-body);font-weight:700}
+.figs dd{margin:0;color:var(--ink-2);font-size:15px;line-height:1.45}
+@media (max-width:480px){.figs{grid-template-columns:minmax(0,1fr)}.figs>div{grid-template-columns:minmax(0,1fr)}}
+
+/* Sections */
+.sec{padding-block:clamp(56px,8vw,104px);border-top:1px solid var(--rule)}
+.sec-head{max-width:780px}
+.sec-head h2{font-size:clamp(27px,3.3vw,40px);margin-block:10px 14px}
+.sec-lead{color:var(--ink-2);font-size:17px;max-width:64ch}
+
+/* Tools */
+.tool{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start;margin-top:32px}
+@media (max-width:980px){.tool{grid-template-columns:1fr}}
+.form{padding:20px clamp(16px,3vw,28px) 0;display:flex;flex-direction:column;gap:24px}
+.form-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.ex-note{font-size:14px;color:var(--amber);display:flex;align-items:center;gap:8px}
+.ex-note::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--amber);flex:none}
+.form-actions{display:flex;gap:14px;margin-inline-start:auto}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-family:var(--f-display);font-size:18px;font-weight:600;padding:0;margin-bottom:4px;color:var(--ink)}
+.q{display:flex;flex-direction:column;gap:8px;padding-block:10px}
+.q-label{font-size:15px;color:var(--ink-2)}
+.seg{display:flex;flex-wrap:wrap;gap:8px;position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.seg label{padding:8px 14px;border:1px solid var(--rule-strong);border-radius:var(--r);cursor:pointer;font-size:15px;background:var(--sheet);color:var(--ink);transition:background .15s,border-color .15s,color .15s;user-select:none}
+.seg label:hover{border-color:var(--ink)}
+.seg input:checked+label{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.seg input:focus-visible+label{outline:2px solid var(--green);outline-offset:2px}
+.line{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,11.5rem);align-items:end;gap:6px 16px;padding-block:11px;border-bottom:1px solid var(--rule)}
+.line label{font-size:15px;line-height:1.45;color:var(--ink)}
+.amt{display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--rule-strong);transition:border-color .15s}
+.amt:focus-within{border-color:var(--green)}
+.cur{font-family:var(--f-fig);font-size:12px;color:var(--ink-3);flex:none}
+html[lang="ar"] .cur{font-family:var(--f-body);font-size:13px}
+.amt input{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--ink);font:500 17px/1.3 var(--f-fig);font-variant-numeric:tabular-nums;text-align:end;padding:6px 0;outline:none}
+.amt input::placeholder{color:var(--ink-3);opacity:.55}
+@media (max-width:520px){.line{grid-template-columns:1fr}}
+.hint{font-size:13.5px;color:var(--ink-3);margin-top:10px;line-height:1.55}
+.checks{display:flex;flex-direction:column}
+.check{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding-block:11px;border-bottom:1px solid var(--rule);cursor:pointer;font-size:15px;line-height:1.45}
+.check input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--green);cursor:pointer}
+.mini{position:sticky;bottom:0;margin-inline:calc(-1 * clamp(16px,3vw,28px));padding:12px clamp(16px,3vw,28px) calc(12px + env(safe-area-inset-bottom,0px));background:var(--sheet);border-top:1.5px solid var(--rule-strong);display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;border-radius:0 0 var(--r) var(--r);z-index:2}
+.mini-label{font-size:13.5px;color:var(--ink-2)}
+.mini-val{font-family:var(--f-fig);font-weight:600;font-size:17px;color:var(--ink)}
+html[lang="ar"] .mini-val.txt{font-family:var(--f-body)}
+.mini a{margin-inline-start:auto;font-size:14px}
+
+/* Results */
+.result{padding:20px clamp(16px,3vw,28px) 24px calc(var(--m) + 18px)}
+[dir="rtl"] .result{padding:20px calc(var(--m) + 18px) 24px clamp(16px,3vw,28px)}
+.res-head{display:flex;align-items:center;justify-content:space-between;gap:10px 12px;flex-wrap:wrap}
+.res-head h3{font-size:20px}
+.pill{display:inline-flex;align-items:center;font:600 13px/1.2 var(--f-body);padding:6px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.st-out{color:var(--ink-2)}
+.st-near{color:var(--amber);background:var(--amber-soft)}
+.st-file{color:var(--blue);background:var(--blue-soft)}
+.st-due{color:var(--red);background:var(--red-soft)}
+.res-detail{margin-top:10px;font-size:15.5px}
+.res-res{margin-top:6px;font-size:14px;color:var(--ink-2)}
+.big{margin-top:16px;padding-block:14px;border-block:1px solid var(--rule)}
+.big-label{font-size:13.5px;color:var(--ink-2)}
+.big-num{display:block;font-family:var(--f-fig);font-size:clamp(28px,3.4vw,38px);font-weight:600;line-height:1.2;color:var(--ink);margin-top:2px;font-variant-numeric:tabular-nums}
+html[lang="ar"] .big-num.txt{font-family:var(--f-display)}
+.big-eff{font-size:13.5px;color:var(--ink-3);margin-top:4px}
+.tscroll{overflow-x:auto;margin-top:12px}
+.sched{width:100%;border-collapse:collapse;font-size:14.5px}
+.sched th{font:500 12px/1.2 var(--f-fig);color:var(--ink-3);text-align:start;padding:0 8px 6px}
+html[lang="ar"] .sched th{font-family:var(--f-body)}
+.sched th.v{text-align:end}
+.sched td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.sched tbody tr:nth-child(odd) td{background:var(--band)}
+.sched td.v{text-align:end;font-family:var(--f-fig);font-variant-numeric:tabular-nums;white-space:nowrap;padding-inline-start:14px}
+.sched tr.sub td{border-top:1.5px solid var(--ink);font-weight:600}
+.sched tr.total td{font-weight:700;border-bottom:4px double var(--ink)}
+.notes{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-3);line-height:1.5}
+.notes li{position:relative;padding-inline-start:16px}
+.notes li::before{content:"*";position:absolute;inset-inline-start:2px;top:0;color:var(--margin);font-family:var(--f-fig)}
+.todo-h{margin-top:22px;font-size:17px}
+.todo{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column}
+.todo li{position:relative;padding-block:9px;padding-inline-start:28px;border-bottom:1px dashed var(--rule);font-size:14.5px;line-height:1.55}
+.todo li::before{content:"";position:absolute;inset-inline-start:2px;top:14px;width:13px;height:13px;border:1.5px solid var(--green);border-radius:2px}
+html[lang="ar"] .todo li::before{top:16px}
+.cta-box{margin-top:22px;padding:18px;background:var(--green-soft);border-radius:var(--r);display:flex;flex-direction:column;gap:10px}
+.cta-box h4{font-size:18px}
+.cta-box p{font-size:14.5px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:10px}
+.sum-label{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.summary{width:100%;font:13px/1.55 var(--f-fig);color:var(--ink-2);background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:10px;resize:vertical;min-height:132px}
+html[lang="ar"] .summary{font-family:var(--f-body)}
+.copy-msg{font-size:13px;color:var(--green);min-height:1.3em}
+.disclaimer{margin-top:14px;font-size:12.5px;color:var(--ink-3);line-height:1.55}
+.date-block{margin-top:14px;padding-block:14px;border-block:1px solid var(--rule)}
+.date-block.muted .big-num{color:var(--ink-3)}
+.wave{font-size:14px;color:var(--ink-2);margin-top:2px}
+.days{display:inline-block;margin-top:10px;font:600 13px/1.2 var(--f-body);color:var(--green);background:var(--green-soft);padding:6px 10px;border-radius:999px}
+.fs{margin-top:12px;font-size:15px}
+.meter{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin-top:18px}
+.meter i{height:10px;border-radius:2px;background:var(--rule)}
+.meter i.on{background:var(--green)}
+.meter-txt{margin-top:8px;font-size:14px;color:var(--ink-2)}
+
+/* Services */
+.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
+@media (max-width:620px){.svc{grid-template-columns:1fr}}
+.card{padding:22px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:20px}
+.card p{font-size:15px;color:var(--ink-2);flex:1}
+.who{font-size:13px;font-weight:600;color:var(--green)}
+.who.partner{color:var(--blue)}
+.price{padding-top:12px;border-top:1px solid var(--rule);font:500 14px/1.45 var(--f-fig);color:var(--ink);min-height:calc(2.9em + 13px)}
+@media (max-width:620px){.price{min-height:0}}
+html[lang="ar"] .price{font-family:var(--f-body);font-weight:600}
+.limits{margin-top:16px;padding:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;box-shadow:none;background:transparent;border-style:dashed;border-color:var(--rule-strong)}
+.limits h3{grid-column:1/-1;font-size:18px}
+.limits p{font-size:14.5px;color:var(--ink-2)}
+@media (max-width:860px){.limits{grid-template-columns:1fr}}
+
+/* Key dates */
+.tl{list-style:none;padding:0;margin:32px 0 0;position:relative;max-width:900px}
+.tl::before{content:"";position:absolute;inset-block:14px;inset-inline-start:calc(10rem + 25px);width:1px;background:var(--rule-strong)}
+.ev{display:grid;grid-template-columns:10rem 14px minmax(0,1fr);gap:0 18px;align-items:baseline;padding-block:11px}
+.ev-date{font-family:var(--f-fig);font-size:14px;color:var(--ink);text-align:end;white-space:nowrap}
+html[lang="ar"] .ev-date{font-family:var(--f-body);font-size:15px}
+.ev-dot{width:12px;height:12px;border-radius:50%;background:var(--sheet);border:2px solid var(--green);justify-self:center;position:relative;top:1px;z-index:1}
+.ev.past .ev-dot{border-color:var(--rule-strong);background:var(--rule-strong)}
+.ev.overdue .ev-dot{border-color:var(--red);background:var(--red)}
+.ev-body{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;min-width:0}
+.ev-body p{font-size:15.5px}
+.ev.past .ev-body p{color:var(--ink-2)}
+.chip{font:600 12px/1.2 var(--f-body);padding:5px 8px;border-radius:999px;white-space:nowrap}
+.chip.past{color:var(--ink-3);background:var(--band)}
+.chip.overdue{color:var(--red);background:var(--red-soft)}
+.chip.soon{color:var(--green);background:var(--green-soft)}
+@media (max-width:620px){
+  .tl::before{inset-inline-start:6px}
+  .ev{grid-template-columns:14px minmax(0,1fr);gap:2px 14px}
+  .ev-dot{grid-column:1;grid-row:1}
+  .ev-date{grid-column:2;grid-row:1;text-align:start}
+  .ev-body{grid-column:2;grid-row:2}
+}
+.pen{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 20px;max-width:1000px}
+.pen h3{grid-column:1/-1;font-size:19px}
+.pen p{font-size:14.5px;color:var(--ink-2);padding-top:12px;border-top:1px solid var(--rule)}
+@media (max-width:860px){.pen{grid-template-columns:1fr}}
+details.src{margin-top:36px;border-top:1px solid var(--rule);padding-top:16px;max-width:1000px}
+details.src summary{cursor:pointer;font-weight:600;font-size:15px}
+details.src ul{margin:12px 0 0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+details.src a{word-break:break-word}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:start}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+.contact-h{font-size:clamp(27px,3.3vw,40px);margin-block:10px 14px}
+.c-rows{padding:6px 22px}
+.c-row{display:grid;grid-template-columns:7.5rem minmax(0,1fr) auto;align-items:center;gap:12px;padding-block:14px;border-bottom:1px solid var(--rule)}
+.c-row:last-child{border-bottom:0}
+.c-label{font-size:14px;color:var(--ink-2)}
+.c-val{font-family:var(--f-fig);font-size:16px;overflow-wrap:anywhere}
+.c-val.pending{font-family:var(--f-body);color:var(--ink-3);font-style:italic}
+.proto{margin-top:18px;font-size:13.5px;color:var(--amber);display:flex;gap:8px;align-items:baseline}
+.proto::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--amber);flex:none;position:relative;top:-1px}
+@media (max-width:480px){.c-row{grid-template-columns:minmax(0,1fr) auto}.c-label{grid-column:1/-1}}
+
+.foot{padding-block:28px 44px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3)}
+.foot p{max-width:90ch}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#check" data-i18n="skip"></a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 30 30" aria-hidden="true">
+        <circle class="m-bg" cx="15" cy="15" r="12.4" stroke-width="1.6"/>
+        <path class="m-ln" d="M21.5 15A6.5 6.5 0 1 1 15 8.5" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="m-ring" d="M13.03 7.12L15 8.5L13.03 9.88" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-ar" lang="ar">أوّاب</span><span class="brand-sep" aria-hidden="true"></span><span class="brand-en" lang="en">Awab</span>
+    </a>
+    <nav class="nav" data-i18n-aria="nav_label">
+      <a href="#check" data-i18n="nav_check"></a>
+      <a href="#services" data-i18n="nav_services"></a>
+      <a href="#fawtara" data-i18n="nav_fawtara"></a>
+      <a href="#dates" data-i18n="nav_dates"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+    </nav>
+    <button type="button" class="lang" id="langBtn"></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <p class="eyebrow" data-i18n="hero_eyebrow"></p>
+        <h1 data-i18n="hero_h1"></h1>
+        <p class="lead" data-i18n="hero_lead"></p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#fawtara" data-i18n="hero_cta1"></a>
+          <a class="btn btn-ghost" href="#check" data-i18n="hero_cta2"></a>
+        </div>
+        <p class="countdown"><span class="fig" id="cdNum"></span><span id="cdText"></span></p>
+        <p class="regs"><span class="dot" aria-hidden="true"></span><span data-i18n="hero_regs"></span></p>
+      </div>
+      <aside class="sheet paper" data-i18n-aria="sheet_title">
+        <div class="ledger-head"><span data-i18n="sheet_title"></span><span class="ref" data-i18n="ref_dates"></span></div>
+        <dl class="figs">
+          <div><dt><span data-i18n="fig1_d"></span><small>2027</small></dt><dd data-i18n="fig1"></dd></div>
+          <div><dt><span data-i18n="fig2_d"></span><small>2027</small></dt><dd data-i18n="fig2"></dd></div>
+          <div><dt><span data-i18n="fig3_d"></span><small>2028</small></dt><dd data-i18n="fig3"></dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" id="check">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-i18n="chk_eyebrow"></p>
+        <h2 data-i18n="chk_h2"></h2>
+        <p class="sec-lead" data-i18n="chk_intro"></p>
+      </header>
+      <div class="tool">
+        <form class="sheet form" id="pitForm" novalidate>
+          <div class="form-bar">
+            <p class="ex-note" id="pitExNote" data-i18n="chk_example"></p>
+            <div class="form-actions">
+              <button type="button" class="btn-text" id="pitClear" data-i18n="btn_clear"></button>
+              <button type="button" class="btn-text" id="pitLoad" data-i18n="btn_example"></button>
+            </div>
+          </div>
+          <fieldset>
+            <legend data-i18n="grp_you"></legend>
+            <div class="q">
+              <span class="q-label" id="natL" data-i18n="q_nat"></span>
+              <div class="seg" role="radiogroup" aria-labelledby="natL">
+                <input type="radio" name="nat" id="natOm" value="om" checked><label for="natOm" data-i18n="nat_om"></label>
+                <input type="radio" name="nat" id="natEx" value="ex"><label for="natEx" data-i18n="nat_ex"></label>
+              </div>
+            </div>
+            <div class="q">
+              <span class="q-label" id="daysL" data-i18n="q_days"></span>
+              <div class="seg" role="radiogroup" aria-labelledby="daysL">
+                <input type="radio" name="days" id="dOver" value="over" checked><label for="dOver" data-i18n="days_over"></label>
+                <input type="radio" name="days" id="dUnder" value="under"><label for="dUnder" data-i18n="days_under"></label>
+                <input type="radio" name="days" id="dUnsure" value="unsure"><label for="dUnsure" data-i18n="days_unsure"></label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="grp_income"></legend>
+            <div class="line"><label for="salOm" data-i18n="in_salOm"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="salOm" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="salAbroad" data-i18n="in_salAbroad"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="salAbroad" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="rental" data-i18n="in_rental"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="rental" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="invest" data-i18n="in_invest"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="invest" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="biz" data-i18n="in_biz"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="biz" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="other" data-i18n="in_other"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="other" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="foreign" data-i18n="in_foreign"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="foreign" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <p class="hint" data-i18n="hint_income"></p>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="grp_exempt"></legend>
+            <div class="line"><label for="don" data-i18n="ex_don"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="don" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="edu" data-i18n="ex_edu"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="edu" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="health" data-i18n="ex_health"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="health" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="pension" data-i18n="ex_pension"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="pension" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="home" data-i18n="ex_home"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="home" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+            <div class="line"><label for="ftax" data-i18n="ex_ftax"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="ftax" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+          </fieldset>
+          <div class="mini">
+            <span class="mini-label" data-i18n="res_tax_label"></span>
+            <span class="mini-val" id="pitMiniTax"></span>
+            <span class="pill" id="pitMiniStatus"></span>
+            <a href="#pitResult" data-i18n="see_breakdown"></a>
+          </div>
+        </form>
+
+        <div class="sheet paper result" id="pitResult">
+          <div class="res-head">
+            <h3 data-i18n="res_title"></h3>
+            <span class="pill" id="pitStatus" role="status"></span>
+          </div>
+          <p class="res-detail" id="pitDetail"></p>
+          <p class="res-res" id="pitRes"></p>
+          <div class="big">
+            <span class="big-label" data-i18n="res_tax_label"></span>
+            <span class="big-num" id="pitTax"></span>
+            <p class="big-eff" id="pitEff"></p>
+          </div>
+          <div class="tscroll">
+            <table class="sched">
+              <thead><tr><th scope="col"><span class="vh" data-i18n="col_item"></span></th><th scope="col" class="v" id="schedCur"></th></tr></thead>
+              <tbody id="pitSched"></tbody>
+            </table>
+          </div>
+          <ul class="notes" id="pitNotes"></ul>
+          <h4 class="todo-h" data-i18n="todo_title"></h4>
+          <ul class="todo" id="pitTodo"></ul>
+          <div class="cta-box">
+            <h4 data-i18n="cta_review_h"></h4>
+            <p data-i18n="cta_review_p"></p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="https://www.linkedin.com/company/awab1" target="_blank" rel="noopener" data-i18n="btn_li"></a>
+              <a class="btn btn-ghost" id="pitWa" hidden data-i18n="btn_wa"></a>
+              <a class="btn btn-ghost" id="pitWait" hidden data-i18n="btn_wait"></a>
+              <a class="btn btn-ghost" id="pitTool" hidden target="_blank" rel="noopener" data-i18n="btn_tool"></a>
+              <button type="button" class="btn btn-ghost" id="pitCopy" data-i18n="btn_copy"></button>
+            </div>
+            <label class="sum-label" for="pitSummary" data-i18n="summary_label"></label>
+            <textarea id="pitSummary" class="summary" readonly rows="8"></textarea>
+            <p class="copy-msg" id="pitMsg" role="status"></p>
+          </div>
+          <p class="disclaimer" data-i18n="disclaimer"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-i18n="svc_eyebrow"></p>
+        <h2 data-i18n="svc_h2"></h2>
+        <p class="sec-lead" data-i18n="svc_lead"></p>
+      </header>
+      <div class="svc">
+        <article class="sheet card"><h3 data-i18n="svc1_h"></h3><p data-i18n="svc1_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc1_price"></div></article>
+        <article class="sheet card"><h3 data-i18n="svc2_h"></h3><p data-i18n="svc2_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc2_price"></div></article>
+        <article class="sheet card"><h3 data-i18n="svc3_h"></h3><p data-i18n="svc3_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc3_price"></div></article>
+        <article class="sheet card"><h3 data-i18n="svc5_h"></h3><p data-i18n="svc5_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc5_price"></div></article>
+      </div>
+      <div class="sheet limits">
+        <h3 data-i18n="limits_h"></h3>
+        <p data-i18n="lim1"></p>
+        <p data-i18n="lim2"></p>
+        <p data-i18n="lim3"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="fawtara">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-i18n="faw_eyebrow"></p>
+        <h2 data-i18n="faw_h2"></h2>
+        <p class="sec-lead" data-i18n="faw_intro"></p>
+      </header>
+      <div class="tool">
+        <form class="sheet form" id="fawForm" novalidate>
+          <div class="form-bar">
+            <p class="ex-note" id="fawExNote" data-i18n="chk_example"></p>
+            <div class="form-actions">
+              <button type="button" class="btn-text" id="fawClear" data-i18n="btn_clear"></button>
+              <button type="button" class="btn-text" id="fawLoad" data-i18n="btn_example"></button>
+            </div>
+          </div>
+          <fieldset>
+            <legend data-i18n="grp_business"></legend>
+            <div class="q">
+              <span class="q-label" id="vatL" data-i18n="q_vat"></span>
+              <div class="seg" role="radiogroup" aria-labelledby="vatL">
+                <input type="radio" name="vat" id="vatY" value="yes" checked><label for="vatY" data-i18n="vat_yes"></label>
+                <input type="radio" name="vat" id="vatN" value="no"><label for="vatN" data-i18n="vat_no"></label>
+              </div>
+            </div>
+            <div class="line"><label for="supplies" data-i18n="in_supplies"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="supplies" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="grp_ready"></legend>
+            <div class="checks">
+              <label class="check"><input type="checkbox" id="rd1"><span data-i18n="rd1"></span></label>
+              <label class="check"><input type="checkbox" id="rd2"><span data-i18n="rd2"></span></label>
+              <label class="check"><input type="checkbox" id="rd3"><span data-i18n="rd3"></span></label>
+              <label class="check"><input type="checkbox" id="rd4"><span data-i18n="rd4"></span></label>
+              <label class="check"><input type="checkbox" id="rd5"><span data-i18n="rd5"></span></label>
+              <label class="check"><input type="checkbox" id="rd6"><span data-i18n="rd6"></span></label>
+            </div>
+          </fieldset>
+          <div class="mini">
+            <span class="mini-label" data-i18n="mini_golive"></span>
+            <span class="mini-val txt" id="fawMiniDate"></span>
+            <span class="pill st-out" id="fawMiniReady"></span>
+            <a href="#fawResult" data-i18n="see_breakdown"></a>
+          </div>
+        </form>
+
+        <div class="sheet paper result" id="fawResult">
+          <div class="res-head">
+            <h3 data-i18n="faw_res_title"></h3>
+            <span class="pill" id="fawPill" role="status"></span>
+          </div>
+          <div class="date-block" id="fawDateBlock">
+            <span class="big-num txt" id="fawDate"></span>
+            <p class="wave" id="fawWave"></p>
+            <span class="days" id="fawDays"></span>
+          </div>
+          <p class="fs" id="fawState"></p>
+          <div class="meter" id="fawMeter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="meter-txt" id="fawReady"></p>
+          <h4 class="todo-h" data-i18n="gaps_title"></h4>
+          <ul class="todo" id="fawGaps"></ul>
+          <div class="cta-box">
+            <h4 data-i18n="cta_faw_h"></h4>
+            <p data-i18n="cta_faw_p"></p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="https://www.linkedin.com/company/awab1" target="_blank" rel="noopener" data-i18n="btn_li"></a>
+              <a class="btn btn-ghost" id="fawWa" hidden data-i18n="btn_wa"></a>
+              <button type="button" class="btn btn-ghost" id="fawCopy" data-i18n="btn_copy"></button>
+            </div>
+            <label class="sum-label" for="fawSummary" data-i18n="summary_label"></label>
+            <textarea id="fawSummary" class="summary" readonly rows="7"></textarea>
+            <p class="copy-msg" id="fawMsg" role="status"></p>
+          </div>
+          <p class="disclaimer" data-i18n="faw_note"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="dates">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-i18n="dates_eyebrow"></p>
+        <h2 data-i18n="dates_h2"></h2>
+      </header>
+      <ol class="tl">
+        <li class="ev" data-date="2025-06-22"><time class="ev-date" datetime="2025-06-22"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev1"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2025-06-30"><time class="ev-date" datetime="2025-06-30"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev2"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2026-06-29" data-flag="overdue"><time class="ev-date" datetime="2026-06-29"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev3"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2026-08-09"><time class="ev-date" datetime="2026-08-09"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev4"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2027-04-01"><time class="ev-date" datetime="2027-04-01"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev5"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2027-10-01"><time class="ev-date" datetime="2027-10-01"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev6"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2028-01-01"><time class="ev-date" datetime="2028-01-01"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev7"></p><span class="chip"></span></div></li>
+        <li class="ev" data-date="2029-06-30"><time class="ev-date" datetime="2029-06-30"></time><span class="ev-dot" aria-hidden="true"></span><div class="ev-body"><p data-i18n="ev8"></p><span class="chip"></span></div></li>
+      </ol>
+      <div class="pen">
+        <h3 data-i18n="pen_h"></h3>
+        <p data-i18n="pen1"></p>
+        <p data-i18n="pen2"></p>
+        <p data-i18n="pen3"></p>
+      </div>
+      <details class="src">
+        <summary data-i18n="src_h"></summary>
+        <ul>
+          <li><a href="https://qanoon.om/p/2025/rd2025056/" target="_blank" rel="noopener">Royal Decree 56/2025, Personal Income Tax Law (Arabic text), qanoon.om</a></li>
+          <li><a href="https://tms.taxoman.gov.om/portal/w/issuance-of-personal-income-tax-pit-law" target="_blank" rel="noopener">Tax Authority: Issuance of the Personal Income Tax Law</a></li>
+          <li><a href="https://tms.taxoman.gov.om/portal/news" target="_blank" rel="noopener">Tax Authority: news page (no executive regulations and no new Fawtara decision as of 6 November 2026)</a></li>
+          <li><a href="https://kpmg.com/om/en/home/insights/2025/07/oman-publishes-the-personal-income-tax-law.html" target="_blank" rel="noopener">KPMG: Oman publishes the Personal Income Tax Law</a></li>
+          <li><a href="https://www.ey.com/en_gl/technical/tax-alerts/oman-to-introduce-personal-income-tax-from-january-2028" target="_blank" rel="noopener">EY: Oman to introduce personal income tax from January 2028</a></li>
+          <li><a href="https://gulfnews.com/business/tax-news/oman-16-income-sources-exempted-from-new-individual-income-tax-1.500183224" target="_blank" rel="noopener">Gulf News: the 16 exemptions in Article 25</a></li>
+          <li><a href="https://blog.decree.om/2026/the-personal-income-tax-law-what-you-need-to-know" target="_blank" rel="noopener">Decree.om: The Personal Income Tax Law, what you need to know (13 October 2026)</a></li>
+          <li><a href="https://www.e-invoice.app/blog/oman-decision-189-2026-e-invoicing-dates" target="_blank" rel="noopener">e-invoice.app: Decision 189/2026 puts the e-invoicing dates in law</a></li>
+          <li><a href="https://www.flick.network/en-om/oman-e-invoicing-mandate" target="_blank" rel="noopener">Flick Network: Oman e-invoicing mandate, April and October 2027</a></li>
+          <li><a href="https://cms.law/en/omn/legal-updates/the-introduction-of-vat-in-the-sultanate-of-oman-a-brief-legal-guide" target="_blank" rel="noopener">CMS: VAT in Oman, registration thresholds</a></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow" data-i18n="contact_eyebrow"></p>
+        <h2 class="contact-h" data-i18n="contact_h2"></h2>
+        <p class="sec-lead" data-i18n="contact_p"></p>
+        <p class="proto" data-i18n="proto"></p>
+      </div>
+      <div class="sheet c-rows">
+        <div class="c-row"><span class="c-label" data-i18n="c_linkedin"></span><a class="c-val" href="https://www.linkedin.com/company/awab1" target="_blank" rel="noopener">linkedin.com/company/awab1</a><span></span></div>
+        <div class="c-row"><span class="c-label" data-i18n="c_email"></span><span class="c-val" id="cEm"></span><button type="button" class="btn-text" id="cEmCopy" data-i18n="c_copy"></button></div>
+        <div class="c-row"><span class="c-label" data-i18n="c_office"></span><span class="c-val pending" data-i18n="c_office_v"></span><span></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><p data-i18n="foot"></p></div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Launch setting: add the business email address here and republish. */
+  /* email: business mailbox once the domain exists; wait: a Google Form link for the waiting list (works for every visitor, unlike mailto); tool: the Awab Tax page */
+  var CONTACT = { email: '', wait: '', tool: '' };
+
+  var THRESHOLD = 42000, RATE = 0.05, NEAR_FROM = 36000;
+  var DEADLINES = [['2027-10-01', 'cd_faw2'], ['2028-01-01', 'cd_pit']];
+
+  var T = {
+    en: {
+      nav_label: 'Sections', skip: 'Skip to the income tax check',
+      nav_fawtara: 'Fawtara', nav_check: 'Income tax', nav_services: 'Services', nav_dates: 'Key dates', nav_contact: 'Contact',
+      lang_btn: 'العربية', lang_aria: 'عرض الصفحة بالعربية',
+      hero_eyebrow: 'Fawtara by 1 October 2027 · Income tax from 1 January 2028',
+      hero_h1: 'Every return, on time.',
+      hero_lead: 'Oman has two tax changes with dates attached: Fawtara e-invoicing in 2027 and personal income tax from 1 January 2028. Awab does the practical work around both: readiness for Fawtara now, and the payroll paperwork the income tax brings employers. In Arabic and English, in plain language.',
+      hero_cta1: 'Find your Fawtara date', hero_cta2: 'Check your income tax',
+      cd_faw2: '{w} until Fawtara starts for every VAT-registered business',
+      cd_pit: '{w} until the first income tax year begins',
+      cd_done: 'E-invoicing and personal income tax are both in force.',
+      hero_regs: 'Businesses must use a provider the Tax Authority approves (Decision 189/2026)',
+      sheet_title: 'Three dates, in order', ref_dates: 'Decision 189/2026 · RD 56/2025',
+      fig1_d: '1 Apr', fig2_d: '1 Oct', fig3_d: '1 Jan',
+      fig1: 'Fawtara becomes compulsory for VAT-registered businesses with annual supplies above OMR 5 million.',
+      fig2: 'Fawtara becomes compulsory for every other VAT-registered business.',
+      fig3: 'Personal income tax starts: 5% on income above OMR 42,000 a year.',
+      faw_eyebrow: 'Fawtara · e-invoicing',
+      faw_h2: 'When must your business switch to e-invoicing?',
+      faw_intro: 'Decision 189/2026 put the dates into law. VAT-registered businesses with annual supplies above OMR 5 million start on 1 April 2027. All other VAT-registered businesses start on 1 October 2027.',
+      grp_business: 'Your business', q_vat: 'Registered for VAT?', vat_yes: 'Yes', vat_no: 'No',
+      in_supplies: 'Annual taxable supplies',
+      grp_ready: 'What is already in place?',
+      rd1: 'Our system can issue structured e-invoices in the Tax Authority’s format, not just PDFs',
+      rd2: 'We have chosen a provider from the Tax Authority’s approved list',
+      rd3: 'Customer records include VAT numbers and full addresses',
+      rd4: 'Every product and service is mapped to its VAT treatment',
+      rd5: 'We know how we will handle credit notes and reverse-charge imports',
+      rd6: 'One person owns the project and testing is booked',
+      gap1: 'Ask your accounting or ERP vendor for its Fawtara release date and test plan.',
+      gap2: 'Shortlist providers from the Tax Authority’s approved list and compare their fees per invoice.',
+      gap3: 'Clean your customer records. E-invoices are checked field by field.',
+      gap4: 'Map each item to standard-rated, zero-rated or exempt before testing starts.',
+      gap5: 'Agree how credit notes and reverse-charge imports will work in the new format.',
+      gap6: 'Name one owner and book testing at least eight weeks before your go-live date.',
+      faw_res_title: 'Your go-live date', mini_golive: 'Go-live',
+      fp_mandated: 'Compulsory', fp_must: 'Register for VAT first', fp_vol: 'Optional', fp_below: 'Not yet',
+      wave1: 'First wave: annual supplies above OMR 5 million', wave2: 'Second wave: all other VAT-registered businesses',
+      days_left: '{n} left', in_force: 'In force since {d}',
+      fs_mandated: 'E-invoicing becomes compulsory for you on this date.',
+      fs_must: 'Above OMR 38,500 a year you must register for VAT. Once registered, e-invoicing applies to you from this date.',
+      fs_vol: 'Between OMR 19,250 and 38,500 you may register for VAT voluntarily. If you do, e-invoicing applies to you from this date.',
+      fs_below: 'Below OMR 19,250 in supplies, voluntary VAT registration is open only if your expenses exceed that figure. Until you register, Fawtara does not apply.',
+      ready_of: '{k} of 6 in place', lvl1: 'early stage', lvl2: 'partly ready', lvl3: 'nearly ready', lvl4: 'ready to test',
+      gaps_title: 'Close these gaps first',
+      no_gaps: 'Everything on this list is in place. Book end-to-end testing with your provider.',
+      cta_faw_h: 'Free readiness conversation',
+      cta_faw_p: 'Thirty minutes with Awab on how you invoice today, then a one-page note on what to fix first. No obligation and no sales pitch. Message the Awab page on LinkedIn, or copy your results and send them to us.',
+      faw_note: 'Awab is not an accredited service provider. We prepare your business and work alongside the provider you pick.',
+      sum_faw_title: 'Awab · Fawtara readiness check', sum_vat: 'VAT-registered', sum_supplies: 'Annual supplies',
+      sum_golive: 'Go-live date', sum_ready: 'In place', sum_ask_faw: 'I would like a Fawtara readiness review.',
+      chk_eyebrow: 'Self-check · income tax from 2028',
+      chk_h2: 'Does the 2028 income tax apply to you?',
+      chk_intro: 'Enter a typical year. The check is free and runs in your browser. Nothing is sent anywhere unless you choose to share your results.',
+      chk_example: 'Example figures are filled in. Replace them with your own.',
+      btn_clear: 'Clear all', btn_example: 'Load example',
+      grp_you: 'About you', q_nat: 'Nationality', nat_om: 'Omani', nat_ex: 'Other',
+      q_days: 'Time in Oman during the year', days_over: 'More than 183 days', days_under: '183 days or fewer', days_unsure: 'Not sure',
+      grp_income: 'Income in a year',
+      in_salOm: 'Salary, allowances and bonuses for work in Oman',
+      in_salAbroad: 'Salary for work done outside Oman',
+      in_rental: 'Rent received',
+      in_invest: 'Dividends, interest, and gains on shares or sukuk',
+      in_biz: 'Freelance or business income not on the commercial register',
+      in_other: 'Pensions, end-of-service, board fees, royalties, prizes',
+      in_foreign: 'Part of the rent, investment, freelance and other income that comes from outside Oman',
+      hint_income: 'Leave out returns on Omani government bonds, sukuk and investment certificates, and inheritance or gifts between spouses and close family. These are exempt.',
+      grp_exempt: 'Exemptions and credits in a year',
+      ex_don: 'Zakat and donations to approved bodies',
+      ex_edu: 'Education costs for you, your spouse, parents and children',
+      ex_health: 'Healthcare costs for the same family members',
+      ex_pension: 'Pension and end-of-service scheme contributions',
+      ex_home: 'Interest or financing cost on your main home loan',
+      ex_ftax: 'Tax already paid abroad on income counted here',
+      see_breakdown: 'See breakdown',
+      res_title: 'Your indicative position', res_tax_label: 'Indicative tax for the year',
+      st_out: 'Below the threshold', st_near: 'Close to the threshold', st_file: 'Return needed, no tax due', st_due: 'In scope: tax due',
+      sd_out: 'No return is needed at this income.',
+      sd_near: 'You are {x} below the threshold. A bonus or new income could bring you into scope.',
+      sd_file: 'Your gross income is above OMR 42,000, so you must file a return. Exemptions bring the tax to zero.',
+      sd_due: 'You must file a return and pay tax.',
+      res_resident: 'Tax resident: income from Oman and abroad counts.',
+      res_nonres: 'Not resident: only income from Oman counts.',
+      res_unsure: 'We assume you are resident until you confirm your days. That is the cautious reading.',
+      col_item: 'Item', cur: 'OMR',
+      r_gross: 'Gross income counted', r_threshold: 'Less threshold',
+      r_costs: 'Less 15% cost allowance on rent and freelance income', r_exempt: 'Less exemptions',
+      r_taxable: 'Taxable income', r_tax5: 'Tax at 5%', r_credit: 'Less foreign tax credit', r_total: 'Indicative tax',
+      r_eff: '{p} of gross income',
+      n_limits: 'Education, healthcare, pension and home-loan amounts are applied in full. The executive regulations will set limits, and they have not been issued.',
+      n_foreign_out: 'Income from outside Oman is left out because you are not resident.',
+      n_file_exempt: 'Filing turns on gross income above OMR 42,000 (Article 33), even when exemptions bring the tax to zero. The regulations may clarify how exempt income counts.',
+      todo_title: 'What to do before 2028',
+      t_first: 'Your first return covers 2028 and is due online by 30 June 2029, six months after the year ends (Article 33).',
+      t_records: 'Start a 2028 file now: payslips, bank and broker statements, leases, and receipts for every exemption you claim.',
+      t_days: 'Count your days in Oman. More than 183 in a calendar year, in one stretch or several, makes you resident (Article 1). The Tax Authority issues residence certificates on request (Article 3).',
+      t_nonres: 'Only income from Oman counts while you are not resident. Watch your days: going over 183 brings in your income from abroad.',
+      t_employer: 'If one employer’s salary is your only income, your employer must file your return when you ask (Article 33).',
+      t_withhold: 'Expect tax to be withheld from your salary from 2028 (Article 43). The regulations will set how.',
+      t_rent: 'For rent and freelance income you can deduct a flat 15% or your actual costs. Keep leases and receipts so you can compare.',
+      t_fsal_om: 'Salary for work done outside Oman is exempt for Omani tax residents (Article 25). Keep contracts and travel records that show where you worked.',
+      t_fsal_ex: 'The exemption for salary earned abroad covers Omani tax residents only. As a resident expatriate, that salary counts. Tax paid on it abroad can be credited.',
+      t_credit: 'Keep proof of tax paid abroad. It can be deducted from your Omani tax, up to the Omani tax due.',
+      t_don_cap: 'Only {x} of your zakat and donations counts. The exemption is capped at 5% of gross income (Article 25).',
+      t_don: 'Keep receipts for zakat and donations. Only bodies approved by the Tax Authority qualify.',
+      t_home: 'Selling your home after 2028? The gain on a primary residence is exempt if you sell at least two years after notifying the Tax Authority that it is your primary residence.',
+      t_out: 'Nothing to do now. Run the check again if your income rises.',
+      t_near: 'Keep records from January 2028 anyway. If you cross the threshold, you will need them for your return.',
+      cta_review_h: 'What happens next',
+      cta_review_p: 'Send us your results and we reply with the document checklist for 2028. Employers with staff above the threshold can ask about the employer pack. Nothing here is tax advice; for that, speak to a licensed tax adviser.',
+      btn_li: 'Message us on LinkedIn', btn_wa: 'Email my results', btn_wait: 'Join the waiting list', btn_tool: 'Open the full Awab Tax tool', btn_tool_short: 'Try the first version', btn_copy: 'Copy my results', wait_subject: 'Awab Tax waiting list', wait_body: 'Please add me to the Awab Tax waiting list.\n\nName:\nEmployer (optional):\nI expect to be above the OMR 42,000 threshold in 2028: yes / no / not sure',
+      copied: 'Copied. Paste it into an email to us.',
+      copy_fallback: 'Copying is blocked here. The text is selected, so copy it with your keyboard.',
+      summary_label: 'Text that will be shared',
+      disclaimer: 'General information based on Royal Decree 56/2025 as published, not tax advice. Final rules depend on the executive regulations.',
+      sum_pit_title: 'Awab · income tax self-check',
+      sum_nat: 'Nationality', sum_days: 'Time in Oman', sum_gross: 'Gross income counted', sum_taxable: 'Taxable income',
+      sum_tax: 'Indicative tax', sum_status: 'Status', sum_ask_review: 'I would like a licensed adviser to review my position.',
+      svc_eyebrow: 'Services', svc_h2: 'Practical work around two new obligations',
+      svc_lead: 'Three Fawtara services now, and the employer pack from 2028. Every price is fixed and quoted in writing before work starts; Awab SPC is being registered, and paid work begins when the registration is complete.',
+      who_awab: 'Delivered by Awab', who_partner: 'With a licensed tax adviser',
+      svc1_h: 'Readiness review',
+      svc1_p: 'We check your customer and item data and your billing system, shortlist approved providers, and give you a dated plan. The fee is credited against go-live.',
+      svc1_price: 'Fixed price, quoted in writing',
+      svc2_h: 'Go-live',
+      svc2_p: 'Provider sign-up, data clean-up and mapping, test invoices, staff training, and support on your first live day. Priced by systems and invoice volume.',
+      svc2_price: 'Fixed price, quoted in writing',
+      svc3_h: 'Awab Care',
+      svc3_p: 'After go-live we fix rejected invoices, keep customer and item records clean, and send you a monthly e-invoice log.',
+      svc3_price: 'Fixed monthly price, quoted in writing',
+      svc5_h: 'Employer pack',
+      svc5_p: 'From 2028 your payroll withholds the tax and your staff may ask you to file for them. Awab briefs HR, prepares the letters and forms, collects the documents and enters the data. You stay the filer.',
+      svc5_price: 'Fixed price, quoted in writing · from 2028',
+      limits_h: 'Where our work stops',
+      lim1: 'Tax advice comes only from a licensed tax adviser. Awab processes, prepares and builds software, and does not advise on tax. Employers file their own returns; the tool is used by its owner.',
+      lim2: 'We are not an approved Fawtara provider and give no investment advice. We work alongside the provider you choose, and we tell you if a provider pays us a referral fee.',
+      lim3: 'We are independent. We are not part of the Tax Authority and are not endorsed by it.',
+      dates_eyebrow: 'Key dates', dates_h2: 'From decree to first return',
+      ev1: 'Royal Decree 56/2025 issues the Personal Income Tax Law.',
+      ev2: 'The law is published in the Official Gazette, issue 1602.',
+      ev3: 'Deadline for the executive regulations. Still not issued on 6 November 2026.',
+      ev4: 'Decision 189/2026 sets the Fawtara e-invoicing dates in law.',
+      ev5: 'Fawtara starts for VAT-registered businesses with supplies above OMR 5 million.',
+      ev6: 'Fawtara starts for all other VAT-registered businesses.',
+      ev7: 'The personal income tax takes effect. The first tax year begins.',
+      ev8: 'First annual returns are due, for tax year 2028.',
+      chip_past: 'Passed', chip_overdue: 'Overdue', chip_in: 'In {n}', chip_today: 'Today',
+      pen_h: 'Penalties in the income tax law',
+      pen1: 'Late payment: additional tax of 1% a month on unpaid amounts (Article 45).',
+      pen2: 'Failing to file a return or keep records: fines of up to OMR 5,000 (Article 65).',
+      pen3: 'False returns or forged documents: one to three years’ imprisonment and fines of up to OMR 20,000 (Article 66).',
+      src_h: 'Sources, checked 6 November 2026',
+      contact_eyebrow: 'Contact', contact_h2: 'Talk to Awab',
+      contact_p: 'Fawtara readiness for VAT-registered businesses now, and income-tax paperwork for employers from 2028, across Oman, in Arabic and English. Message the Awab page on LinkedIn with your self-check results and we reply within one working day.', c_linkedin: 'LinkedIn', c_email: 'Email', c_office: 'Office', c_office_v: 'Muscat, Sultanate of Oman',
+      c_pending: 'Added at launch', c_copy: 'Copy',
+      proto: 'Awab SPC is being registered in Muscat. Until then we hold free readiness conversations; paid work starts when the registration is complete.',
+      foot: '© 2026 Awab SPC (in formation). Independent income tax processing and e-invoicing readiness services, not affiliated with the Tax Authority or any provider. Tax advice comes only from a licensed adviser. General information, not tax advice.'
+    },
+    ar: {
+      nav_label: 'أقسام الصفحة', skip: 'انتقل إلى فحص ضريبة الدخل',
+      nav_fawtara: 'فوترة', nav_check: 'ضريبة الدخل', nav_services: 'الخدمات', nav_dates: 'مواعيد رئيسية', nav_contact: 'تواصل',
+      lang_btn: 'English', lang_aria: 'View this page in English',
+      hero_eyebrow: 'فوترة بحلول 1 أكتوبر 2027 · ضريبة الدخل من 1 يناير 2028',
+      hero_h1: 'كل إقرار في موعده.',
+      hero_lead: 'أمام عُمان تغييران ضريبيان بمواعيد محددة: الفوترة الإلكترونية «فوترة» في 2027، وضريبة الدخل على الأفراد من 1 يناير 2028. تتولى أوّاب العمل العملي حولهما: الاستعداد لفوترة الآن، ومعاملات الرواتب التي تجلبها ضريبة الدخل لأصحاب العمل. بالعربية والإنجليزية، وبلغة واضحة.',
+      hero_cta1: 'اعرف موعد فوترة لمنشأتك', hero_cta2: 'افحص ضريبة دخلك',
+      cd_faw2: '{w} على بدء فوترة لجميع المنشآت المسجلة',
+      cd_pit: '{w} على بدء أول سنة لضريبة الدخل',
+      cd_done: 'الفوترة الإلكترونية وضريبة الدخل على الأفراد ساريتان الآن.',
+      hero_regs: 'يُلزم القرار 189/2026 المنشآت باستخدام مزوّد خدمة يعتمده جهاز الضرائب',
+      sheet_title: 'ثلاثة مواعيد بالترتيب', ref_dates: 'قرار 189/2026 · م.س 56/2025',
+      fig1_d: '1 أبريل', fig2_d: '1 أكتوبر', fig3_d: '1 يناير',
+      fig1: 'تصبح فوترة إلزامية للمنشآت المسجلة التي تتجاوز توريداتها السنوية 5 ملايين ريال عُماني.',
+      fig2: 'تصبح فوترة إلزامية لبقية المنشآت المسجلة في ضريبة القيمة المضافة.',
+      fig3: 'تبدأ ضريبة الدخل على الأفراد: 5% على الدخل الذي يزيد على 42,000 ريال عُماني سنويًا.',
+      faw_eyebrow: 'فوترة · الفوترة الإلكترونية',
+      faw_h2: 'متى يجب أن تنتقل منشأتك إلى الفوترة الإلكترونية؟',
+      faw_intro: 'حدّد القرار 189/2026 المواعيد بنص ملزم: تبدأ المنشآت المسجلة في ضريبة القيمة المضافة التي تتجاوز توريداتها السنوية 5 ملايين ريال عُماني في 1 أبريل 2027، وتبدأ بقية المنشآت المسجلة في 1 أكتوبر 2027.',
+      grp_business: 'منشأتك', q_vat: 'مسجّل في ضريبة القيمة المضافة؟', vat_yes: 'نعم', vat_no: 'لا',
+      in_supplies: 'التوريدات الخاضعة للضريبة سنويًا',
+      grp_ready: 'ما الجاهز لديكم؟',
+      rd1: 'نظامنا يُصدر فواتير إلكترونية منظّمة بصيغة جهاز الضرائب، لا ملفات PDF فقط',
+      rd2: 'اخترنا مزوّد خدمة من قائمة جهاز الضرائب المعتمدة',
+      rd3: 'سجلات عملائنا تتضمن أرقام التسجيل الضريبي والعناوين كاملة',
+      rd4: 'كل منتج وخدمة مربوط بمعاملته في ضريبة القيمة المضافة',
+      rd5: 'نعرف كيف سنتعامل مع الإشعارات الدائنة والواردات الخاضعة للاحتساب العكسي',
+      rd6: 'لدينا مسؤول واحد عن المشروع وموعد محدد للاختبار',
+      gap1: 'اطلب من مزوّد نظامك المحاسبي موعد الإصدار المتوافق مع فوترة وخطة اختباره.',
+      gap2: 'ضع قائمة مختصرة بمزوّدي الخدمة المعتمدين من جهاز الضرائب، وقارن رسومهم لكل فاتورة.',
+      gap3: 'نقِّ سجلات عملائك، فالفواتير الإلكترونية تُدقَّق حقلًا حقلًا.',
+      gap4: 'اربط كل صنف بمعاملته: خاضع بالنسبة الأساسية أو بنسبة الصفر أو معفى، قبل بدء الاختبار.',
+      gap5: 'اتفق على آلية الإشعارات الدائنة والواردات الخاضعة للاحتساب العكسي في الصيغة الجديدة.',
+      gap6: 'عيّن مسؤولًا واحدًا، واحجز الاختبار قبل ثمانية أسابيع على الأقل من موعد التطبيق.',
+      faw_res_title: 'موعد التطبيق عليك', mini_golive: 'موعد التطبيق',
+      fp_mandated: 'إلزامي', fp_must: 'سجّل في الضريبة أولًا', fp_vol: 'اختياري', fp_below: 'لا ينطبق حاليًا',
+      wave1: 'المرحلة الأولى: توريدات سنوية تتجاوز 5 ملايين ريال عُماني', wave2: 'المرحلة الثانية: بقية المنشآت المسجلة في ضريبة القيمة المضافة',
+      days_left: 'يتبقى {n}', in_force: 'سارية منذ {d}',
+      fs_mandated: 'تصبح الفوترة الإلكترونية إلزامية عليك في هذا التاريخ.',
+      fs_must: 'إذا تجاوزت توريداتك 38,500 ريال عُماني سنويًا فيلزمك التسجيل في ضريبة القيمة المضافة، وتنطبق عليك الفوترة الإلكترونية من هذا التاريخ بعد التسجيل.',
+      fs_vol: 'بين 19,250 و38,500 ريال عُماني يحق لك التسجيل الاختياري، وعندها تنطبق عليك الفوترة الإلكترونية من هذا التاريخ.',
+      fs_below: 'دون 19,250 ريالًا عُمانيًا من التوريدات، لا يتاح التسجيل الاختياري إلا إذا تجاوزت نفقاتك هذا المبلغ، ولا تنطبق عليك فوترة ما لم تسجّل.',
+      ready_of: '{k} من 6 جاهزة', lvl1: 'مرحلة مبكرة', lvl2: 'جاهزية جزئية', lvl3: 'شبه جاهز', lvl4: 'جاهز للاختبار',
+      gaps_title: 'ابدأ بسدّ هذه الفجوات',
+      no_gaps: 'كل بنود القائمة جاهزة. احجز اختبارًا شاملًا مع مزوّد الخدمة.',
+      cta_faw_h: 'محادثة جاهزية مجانية',
+      cta_faw_p: 'ثلاثون دقيقة مع أوّاب حول طريقة إصدار فواتيرك اليوم، ثم ملاحظة مكتوبة في صفحة واحدة بأهم ما يلزم تجهيزه. من دون التزام ومن دون عرض بيع. راسل صفحة أوّاب على لينكدإن، أو انسخ نتائجك وأرسلها إلينا.',
+      faw_note: 'أوّاب ليست مزوّد خدمة معتمدًا؛ نحن نُجهّز منشأتك ونعمل إلى جانب المزوّد الذي تختاره.',
+      sum_faw_title: 'أوّاب · فحص الجاهزية لفوترة', sum_vat: 'مسجّل في ضريبة القيمة المضافة', sum_supplies: 'التوريدات السنوية',
+      sum_golive: 'موعد التطبيق', sum_ready: 'الجاهز', sum_ask_faw: 'أرغب في مراجعة للجاهزية لفوترة.',
+      chk_eyebrow: 'فحص ذاتي · ضريبة الدخل من 2028',
+      chk_h2: 'هل تنطبق عليك ضريبة الدخل في 2028؟',
+      chk_intro: 'أدخل أرقام سنة معتادة. الفحص مجاني ويعمل داخل متصفحك، ولا يُرسَل شيء إلا إذا اخترت مشاركة نتائجك.',
+      chk_example: 'الأرقام المعروضة مثال توضيحي، فاستبدلها بأرقامك.',
+      btn_clear: 'مسح الكل', btn_example: 'عرض المثال',
+      grp_you: 'بياناتك', q_nat: 'الجنسية', nat_om: 'عُماني', nat_ex: 'جنسية أخرى',
+      q_days: 'مدة وجودك في عُمان خلال السنة', days_over: 'أكثر من 183 يومًا', days_under: '183 يومًا أو أقل', days_unsure: 'لست متأكدًا',
+      grp_income: 'الدخل خلال السنة',
+      in_salOm: 'الراتب والبدلات والمكافآت عن العمل في عُمان',
+      in_salAbroad: 'الراتب عن العمل خارج عُمان',
+      in_rental: 'الإيجارات المحصّلة',
+      in_invest: 'أرباح الأسهم والفوائد وعوائد التصرف في الأسهم أو الصكوك',
+      in_biz: 'دخل العمل الحر غير المقيّد في السجل التجاري',
+      in_other: 'المعاشات ومكافآت نهاية الخدمة ومكافآت العضوية والإتاوات والجوائز',
+      in_foreign: 'الجزء المتحقق من خارج عُمان من الإيجارات والاستثمار والعمل الحر والدخل الآخر',
+      hint_income: 'لا تُدخل عوائد السندات والصكوك وشهادات الاستثمار الحكومية العُمانية، ولا الميراث أو الهبات بين الزوجين والأقارب من الدرجة الأولى، فهي معفاة.',
+      grp_exempt: 'الإعفاءات والخصومات خلال السنة',
+      ex_don: 'الزكاة والتبرعات للجهات المعتمدة',
+      ex_edu: 'نفقات التعليم لك ولزوجك ووالديك وأبنائك',
+      ex_health: 'نفقات الرعاية الصحية لأفراد الأسرة أنفسهم',
+      ex_pension: 'الاشتراكات في أنظمة التقاعد وما بعد الخدمة',
+      ex_home: 'فوائد أو تكلفة تمويل قرض مسكنك الرئيسي',
+      ex_ftax: 'الضريبة المدفوعة في الخارج عن دخل محسوب هنا',
+      see_breakdown: 'عرض التفاصيل',
+      res_title: 'وضعك التقديري', res_tax_label: 'الضريبة التقديرية للسنة',
+      st_out: 'دون حد الإعفاء', st_near: 'قريب من حد الإعفاء', st_file: 'يلزم إقرار ولا ضريبة', st_due: 'ضمن النطاق: ضريبة مستحقة',
+      sd_out: 'لا يلزمك تقديم إقرار عند هذا الدخل.',
+      sd_near: 'يفصلك {x} عن حد الإعفاء، وقد تُدخلك مكافأة أو دخل جديد في نطاق الضريبة.',
+      sd_file: 'دخلك الإجمالي يتجاوز 42,000 ريال عُماني فيلزمك تقديم إقرار، لكن الإعفاءات تجعل الضريبة صفرًا.',
+      sd_due: 'يلزمك تقديم إقرار وسداد الضريبة.',
+      res_resident: 'مقيم ضريبي: يُحتسب دخلك من عُمان ومن الخارج.',
+      res_nonres: 'غير مقيم: يُحتسب دخلك من عُمان فقط.',
+      res_unsure: 'نفترض أنك مقيم إلى أن تتأكد من عدد أيامك، وهو الافتراض الأحوط.',
+      col_item: 'البند', cur: 'ر.ع.',
+      r_gross: 'الدخل الإجمالي المحتسب', r_threshold: 'يُخصم حد الإعفاء',
+      r_costs: 'يُخصم 15% تكاليف عن الإيجار والعمل الحر', r_exempt: 'تُخصم الإعفاءات',
+      r_taxable: 'الدخل الخاضع للضريبة', r_tax5: 'الضريبة بنسبة 5%', r_credit: 'تُخصم الضريبة المدفوعة في الخارج', r_total: 'الضريبة التقديرية',
+      r_eff: '{p} من الدخل الإجمالي',
+      n_limits: 'طُبّقت مبالغ التعليم والرعاية الصحية والتقاعد وقرض المسكن كاملةً، وستحدد اللائحة التنفيذية سقوفها ولم تصدر بعد.',
+      n_foreign_out: 'استُبعد الدخل المتحقق من خارج عُمان لأنك غير مقيم.',
+      n_file_exempt: 'يرتبط واجب تقديم الإقرار بتجاوز الدخل الإجمالي 42,000 ريال عُماني (المادة 33) حتى لو جعلت الإعفاءات الضريبة صفرًا، وقد توضح اللائحة كيفية احتساب الدخل المعفى.',
+      todo_title: 'ما الذي تفعله قبل 2028',
+      t_first: 'يغطي إقرارك الأول سنة 2028، ويُقدَّم إلكترونيًا في موعد أقصاه 30 يونيو 2029، أي خلال ستة أشهر من نهاية السنة (المادة 33).',
+      t_records: 'ابدأ ملف 2028 من الآن: كشوف الرواتب، وكشوف الحسابات المصرفية والوساطة، وعقود الإيجار، وإيصالات كل إعفاء تطالب به.',
+      t_days: 'احسب أيامك في عُمان: تجاوز 183 يومًا في السنة الميلادية، متصلة أو متفرقة، يجعلك مقيمًا ضريبيًا (المادة 1). ويُصدر جهاز الضرائب شهادة الإقامة الضريبية عند الطلب (المادة 3).',
+      t_nonres: 'يُحتسب دخلك من عُمان فقط ما دمت غير مقيم. انتبه لعدد أيامك، فتجاوز 183 يومًا يُدخل دخلك من الخارج في الحساب.',
+      t_employer: 'إذا كان راتبك من جهة عمل واحدة هو دخلك الوحيد، فعلى جهة العمل تقديم إقرارك نيابة عنك عند طلبك (المادة 33).',
+      t_withhold: 'توقّع أن تُستقطع الضريبة من راتبك اعتبارًا من 2028 (المادة 43)، وستحدد اللائحة التنفيذية آلية ذلك.',
+      t_rent: 'يمكنك خصم 15% بشكل ثابت أو تكاليفك الفعلية من دخل الإيجار والعمل الحر. احتفظ بعقود الإيجار والإيصالات لتقارن بينهما.',
+      t_fsal_om: 'راتب العمل خارج عُمان معفى للمقيم الضريبي العُماني (المادة 25). احتفظ بالعقود وسجلات السفر التي تثبت مكان عملك.',
+      t_fsal_ex: 'إعفاء راتب العمل في الخارج يقتصر على المقيم الضريبي العُماني، لذا يُحتسب هذا الراتب للوافد المقيم، ويمكن خصم الضريبة المدفوعة عنه في الخارج.',
+      t_credit: 'احتفظ بما يثبت الضريبة المدفوعة في الخارج، إذ يمكن خصمها من ضريبتك في عُمان في حدود الضريبة العُمانية المستحقة.',
+      t_don_cap: 'يُحتسب {x} فقط من الزكاة والتبرعات، لأن الإعفاء محدود بنسبة 5% من الدخل الإجمالي (المادة 25).',
+      t_don: 'احتفظ بإيصالات الزكاة والتبرعات، فالإعفاء يقتصر على الجهات التي يعتمدها جهاز الضرائب.',
+      t_home: 'تنوي بيع مسكنك بعد 2028؟ تُعفى أرباح بيع المسكن الرئيسي إذا تم البيع بعد عامين على الأقل من إخطار جهاز الضرائب بأنه مسكنك الرئيسي.',
+      t_out: 'لا شيء مطلوب منك الآن. أعد الفحص إذا ارتفع دخلك.',
+      t_near: 'احتفظ بسجلاتك من يناير 2028 على أي حال، فستحتاج إليها في إقرارك إن تجاوزت الحد.',
+      cta_review_h: 'ماذا بعد؟',
+      cta_review_p: 'أرسل إلينا نتائجك ونرد عليك بقائمة مستندات عام 2028. ويمكن لأصحاب العمل الذين لديهم موظفون فوق حد الإعفاء السؤال عن حزمة صاحب العمل. لا شيء هنا استشارة ضريبية؛ فلذلك مستشار ضريبي مرخّص.',
+      btn_li: 'راسلنا على لينكدإن', btn_wa: 'أرسل نتائجي بالبريد الإلكتروني', btn_wait: 'انضم إلى قائمة الانتظار', btn_tool: 'افتح أداة أوّاب للضريبة الكاملة', btn_tool_short: 'جرّب النسخة الأولى', btn_copy: 'انسخ نتائجي', wait_subject: 'قائمة انتظار أداة أوّاب للضريبة', wait_body: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة.\n\nالاسم:\nجهة العمل (اختياري):\nأتوقع أن يتجاوز دخلي 42,000 ريال في 2028: نعم / لا / غير متأكد',
+      copied: 'تم النسخ. الصقه في رسالة بريد إلكتروني إلينا.',
+      copy_fallback: 'النسخ غير متاح هنا. حدّدنا النص لك، فانسخه من لوحة المفاتيح.',
+      summary_label: 'النص الذي ستتم مشاركته',
+      disclaimer: 'معلومات عامة مبنية على المرسوم السلطاني 56/2025 كما نُشر، وليست استشارة ضريبية. تتوقف القواعد النهائية على اللائحة التنفيذية.',
+      sum_pit_title: 'أوّاب · فحص ذاتي لضريبة الدخل',
+      sum_nat: 'الجنسية', sum_days: 'مدة الوجود في عُمان', sum_gross: 'الدخل الإجمالي المحتسب', sum_taxable: 'الدخل الخاضع للضريبة',
+      sum_tax: 'الضريبة التقديرية', sum_status: 'الحالة', sum_ask_review: 'أرغب في أن يراجع مستشار مرخّص وضعي الضريبي.',
+      svc_eyebrow: 'الخدمات', svc_h2: 'عمل عملي حول التزامين جديدين',
+      svc_lead: 'ثلاث خدمات لفوترة الآن، وحزمة صاحب العمل من 2028. كل سعر ثابت ويُحدَّد كتابةً قبل بدء العمل؛ أوّاب شركة شخص واحد قيد التسجيل، ويبدأ العمل المدفوع عند اكتمال التسجيل.',
+      who_awab: 'تقدّمها أوّاب', who_partner: 'مع مستشار ضريبي مرخّص',
+      svc1_h: 'مراجعة الجاهزية',
+      svc1_p: 'نفحص بيانات العملاء والأصناف ونظام الفوترة لديك، ونرشّح مزوّدي خدمة معتمدين، ونسلّمك خطة مؤرّخة. تُخصم الرسوم من باقة الانطلاق.',
+      svc1_price: 'سعر ثابت يُحدَّد كتابةً',
+      svc2_h: 'الانطلاق',
+      svc2_p: 'التسجيل لدى مزوّد الخدمة، وتنقية البيانات وربطها، وفواتير الاختبار، وتدريب الموظفين، والدعم في يوم التشغيل الأول. يُحدَّد السعر حسب الأنظمة وعدد الفواتير.',
+      svc2_price: 'سعر ثابت يُحدَّد كتابةً',
+      svc3_h: 'رعاية أوّاب',
+      svc3_p: 'بعد الانطلاق نعالج الفواتير المرفوضة، ونحافظ على دقة سجلات العملاء والأصناف، ونرسل إليك سجلًا شهريًا بالفواتير الإلكترونية.',
+      svc3_price: 'سعر شهري ثابت يُحدَّد كتابةً',
+      svc5_h: 'حزمة صاحب العمل',
+      svc5_p: 'من 2028 تخصم رواتبكم الضريبة، وقد يطلب موظفوكم أن تقدّموا الإقرار عنهم. تُحيط أوّاب الموارد البشرية، وتُعِدّ الرسائل والنماذج، وتجمع المستندات، وتُدخل البيانات. وتبقون أنتم مقدّمي الإقرار.',
+      svc5_price: 'سعر ثابت يُحدَّد كتابةً · من 2028',
+      limits_h: 'حدود عملنا',
+      lim1: 'تأتي المشورة الضريبية من مستشار ضريبي مرخّص فقط. تتولى أوّاب المعالجة والإعداد وبناء البرمجيات دون تقديم مشورة ضريبية؛ صاحب العمل يقدّم إقراراته بنفسه، والأداة يستخدمها صاحبها.',
+      lim2: 'لسنا مزوّد خدمة معتمدًا لفوترة، ولا نقدّم مشورة استثمارية. نعمل إلى جانب المزوّد الذي تختاره، ونُعلمك إن كان أي مزوّد يدفع لنا عمولة إحالة.',
+      lim3: 'نحن جهة مستقلة، ولسنا جزءًا من جهاز الضرائب ولا معتمدين منه.',
+      dates_eyebrow: 'مواعيد رئيسية', dates_h2: 'من المرسوم إلى الإقرار الأول',
+      ev1: 'صدور المرسوم السلطاني رقم 56/2025 بإصدار قانون الضريبة على دخل الأفراد.',
+      ev2: 'نشر القانون في الجريدة الرسمية، العدد 1602.',
+      ev3: 'الموعد المحدد لإصدار اللائحة التنفيذية، ولم تصدر حتى 6 نوفمبر 2026.',
+      ev4: 'القرار 189/2026 يحدد مواعيد الفوترة الإلكترونية (فوترة) بنص ملزم.',
+      ev5: 'بدء فوترة للمنشآت المسجلة التي تتجاوز توريداتها 5 ملايين ريال عُماني.',
+      ev6: 'بدء فوترة لبقية المنشآت المسجلة في ضريبة القيمة المضافة.',
+      ev7: 'سريان ضريبة الدخل على الأفراد وبدء أول سنة ضريبية.',
+      ev8: 'آخر موعد لتقديم الإقرارات الأولى عن سنة 2028.',
+      chip_past: 'مضى', chip_overdue: 'متأخرة', chip_in: 'بعد {n}', chip_today: 'اليوم',
+      pen_h: 'العقوبات في قانون ضريبة الدخل',
+      pen1: 'التأخر في السداد: ضريبة إضافية بنسبة 1% شهريًا على المبالغ غير المسددة (المادة 45).',
+      pen2: 'عدم تقديم الإقرار أو عدم الاحتفاظ بالسجلات: غرامة تصل إلى 5,000 ريال عُماني (المادة 65).',
+      pen3: 'الإقرارات غير الصحيحة أو المستندات المزوّرة: السجن من سنة إلى ثلاث سنوات وغرامة تصل إلى 20,000 ريال عُماني (المادة 66).',
+      src_h: 'المصادر، آخر تحقق في 6 نوفمبر 2026',
+      contact_eyebrow: 'تواصل', contact_h2: 'تحدّث مع أوّاب',
+      contact_p: 'التهيئة لفوترة للمنشآت المسجلة في ضريبة القيمة المضافة الآن، ومعاملات ضريبة الدخل لأصحاب العمل من 2028، في أنحاء عُمان، بالعربية والإنجليزية. راسل صفحة أوّاب على لينكدإن بنتائج فحصك الذاتي ونرد خلال يوم عمل واحد.', c_linkedin: 'لينكدإن', c_email: 'البريد الإلكتروني', c_office: 'المكتب', c_office_v: 'مسقط، سلطنة عُمان',
+      c_pending: 'تُضاف عند الإطلاق', c_copy: 'نسخ',
+      proto: 'أوّاب شركة شخص واحد قيد التسجيل في مسقط. وحتى ذلك الحين نجري محادثات جاهزية مجانية، ويبدأ العمل المدفوع عند اكتمال التسجيل.',
+      foot: '© 2026 أوّاب، شركة شخص واحد قيد التأسيس. خدمات مستقلة لمعالجة ضريبة الدخل والجاهزية للفوترة الإلكترونية، غير تابعة لجهاز الضرائب ولا لأي مزوّد خدمة. تأتي المشورة الضريبية من مستشار مرخّص فقط. المعلومات الواردة هنا عامة وليست استشارة ضريبية.'
+    }
+  };
+
+  var MONTHS = {
+    en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    ar: ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر']
+  };
+
+  var lang = 'en';
+  function $(s) { return document.querySelector(s); }
+  function $$(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); }
+  function t(k, vars) {
+    var s = T[lang][k];
+    if (s == null) s = T.en[k];
+    if (s == null) return '';
+    if (vars) s = s.replace(/\{(\w+)\}/g, function (m, p) { return vars[p] != null ? vars[p] : m; });
+    return s;
+  }
+
+  /* Numbers: Latin digits in both languages, so what people type matches what they read. */
+  function loc() { return lang === 'ar' ? 'ar-OM-u-nu-latn' : 'en-GB'; }
+  function num(n, dp) { dp = dp || 0; return new Intl.NumberFormat(loc(), { minimumFractionDigits: dp, maximumFractionDigits: dp }).format(n); }
+  function money(n, dp) { var s = num(n, dp); return lang === 'ar' ? s + ' ر.ع.' : 'OMR ' + s; }
+  function neg(n, dp) { return n > 0 ? '(' + num(n, dp) + ')' : num(0, dp); }
+  function pct(x) { return new Intl.NumberFormat(loc(), { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x); }
+  function round3(x) { return Math.round(x * 1000) / 1000; }
+  function fmtInput(n) { return new Intl.NumberFormat('en-GB', { maximumFractionDigits: 3 }).format(n); }
+  function parseAmt(s) {
+    if (s == null) return 0;
+    s = String(s)
+      .replace(/[٠-٩]/g, function (c) { return String(c.charCodeAt(0) - 0x660); })
+      .replace(/[۰-۹]/g, function (c) { return String(c.charCodeAt(0) - 0x6F0); })
+      .replace(/٫/g, '.')
+      .replace(/[^0-9.]/g, '');
+    var n = parseFloat(s);
+    return isFinite(n) && n > 0 ? Math.min(n, 1e10) : 0;
+  }
+
+  /* Dates */
+  function todayUTC() { var d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function daysUntil(iso) { var p = iso.split('-').map(Number); return Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - todayUTC()) / 86400000); }
+  function fmtDate(iso) { var p = iso.split('-').map(Number); return p[2] + ' ' + MONTHS[lang][p[1] - 1] + ' ' + p[0]; }
+  function dayWord(n) {
+    if (lang === 'ar') { if (n === 1) return 'يوم'; if (n === 2) return 'يومان'; if (n >= 3 && n <= 10) return 'أيام'; return 'يومًا'; }
+    return n === 1 ? 'day' : 'days';
+  }
+  function daysPhrase(n) {
+    if (lang === 'ar') { if (n === 1) return 'يوم واحد'; if (n === 2) return 'يومان'; return num(n) + ' ' + dayWord(n); }
+    return num(n) + ' ' + dayWord(n);
+  }
+
+  /* ---------- Personal income tax: Royal Decree 56/2025 ----------
+     Tax resident: more than 183 days in Oman in the tax year (Art. 1). Residents count worldwide income; others Oman income only.
+     Net income = gross income above OMR 42,000 (Art. 1). Taxable = net income less exemptions, costs and losses. Tax = 5% (Art. 8).
+     Return required when gross income exceeds OMR 42,000 (Art. 33). */
+  function computePIT(v) {
+    var resident = v.days !== 'under';
+    var omani = v.nat === 'om';
+    var otherTotal = v.rental + v.invest + v.biz + v.other;
+    var foreign = Math.min(v.foreign, otherTotal);
+    var otherCounted = resident ? otherTotal : otherTotal - foreign;
+    var share = otherTotal > 0 ? otherCounted / otherTotal : 0;
+    var gross = v.salOm + (resident ? v.salAbroad : 0) + otherCounted;
+    var costs = 0.15 * (v.rental + v.biz) * share;
+    var salAbroadExempt = (resident && omani) ? v.salAbroad : 0;
+    var donCap = 0.05 * gross;
+    var donAllowed = Math.min(v.don, donCap);
+    var exemptions = salAbroadExempt + donAllowed + v.edu + v.health + v.pension + v.home;
+    var thresholdApplied = Math.min(gross, THRESHOLD);
+    var afterThreshold = gross - thresholdApplied;
+    var costsApplied = Math.min(costs, afterThreshold);
+    var afterCosts = afterThreshold - costsApplied;
+    var exemptApplied = Math.min(exemptions, afterCosts);
+    var taxable = afterCosts - exemptApplied;
+    var taxBefore = round3(taxable * RATE);
+    var credit = resident ? round3(Math.min(v.ftax, taxBefore)) : 0;
+    var tax = round3(taxBefore - credit);
+    var mustFile = gross > THRESHOLD;
+    var status = mustFile ? (tax > 0 ? 'due' : 'file') : (gross >= NEAR_FROM ? 'near' : 'out');
+    return {
+      resident: resident, omani: omani, gross: gross, foreign: foreign, otherTotal: otherTotal,
+      thresholdApplied: thresholdApplied, costsApplied: costsApplied, exemptApplied: exemptApplied,
+      taxable: taxable, taxBefore: taxBefore, credit: credit, tax: tax, mustFile: mustFile, status: status,
+      donCap: donCap, donCapped: v.don > donCap, eff: gross > 0 ? tax / gross : 0
+    };
+  }
+
+  var PIT_FIELDS = ['salOm', 'salAbroad', 'rental', 'invest', 'biz', 'other', 'foreign', 'don', 'edu', 'health', 'pension', 'home', 'ftax'];
+  var EX_PIT = { nat: 'om', days: 'over', salOm: 48000, rental: 9000, invest: 2500, don: 1200, edu: 1500 };
+
+  function readPIT() {
+    var v = {};
+    PIT_FIELDS.forEach(function (id) { v[id] = parseAmt($('#' + id).value); });
+    v.nat = $('input[name="nat"]:checked').value;
+    v.days = $('input[name="days"]:checked').value;
+    return v;
+  }
+
+  function li(text) { var el = document.createElement('li'); el.textContent = text; return el; }
+
+  function renderPIT() {
+    var v = readPIT(), r = computePIT(v);
+    var stCls = 'pill st-' + r.status;
+    $('#pitStatus').className = stCls; $('#pitStatus').textContent = t('st_' + r.status);
+    $('#pitMiniStatus').className = stCls; $('#pitMiniStatus').textContent = t('st_' + r.status);
+    $('#pitDetail').textContent = t('sd_' + r.status, { x: money(Math.max(0, THRESHOLD - r.gross)) });
+    $('#pitRes').textContent = v.days === 'unsure' ? t('res_unsure') : (r.resident ? t('res_resident') : t('res_nonres'));
+    $('#pitTax').textContent = money(r.tax, 3);
+    $('#pitMiniTax').textContent = money(r.tax, 3);
+    $('#pitEff').textContent = t('r_eff', { p: pct(r.eff) });
+    $('#schedCur').textContent = t('cur');
+
+    var rows = [[t('r_gross'), num(r.gross), ''], [t('r_threshold'), neg(r.thresholdApplied), '']];
+    if (r.costsApplied > 0) rows.push([t('r_costs'), neg(r.costsApplied), '']);
+    if (r.exemptApplied > 0) rows.push([t('r_exempt'), neg(r.exemptApplied), '']);
+    rows.push([t('r_taxable'), num(r.taxable), 'sub']);
+    rows.push([t('r_tax5'), num(r.taxBefore, 3), '']);
+    if (r.credit > 0) rows.push([t('r_credit'), neg(r.credit, 3), '']);
+    rows.push([t('r_total'), num(r.tax, 3), 'total']);
+    var tb = $('#pitSched'); tb.textContent = '';
+    rows.forEach(function (row) {
+      var tr = document.createElement('tr'); if (row[2]) tr.className = row[2];
+      var a = document.createElement('td'); a.textContent = row[0];
+      var b = document.createElement('td'); b.className = 'v';
+      var bd = document.createElement('bdi'); bd.textContent = row[1]; b.appendChild(bd);
+      tr.appendChild(a); tr.appendChild(b); tb.appendChild(tr);
+    });
+
+    var notes = $('#pitNotes'); notes.textContent = '';
+    if (r.status === 'file') notes.appendChild(li(t('n_file_exempt')));
+    if (v.edu + v.health + v.pension + v.home > 0) notes.appendChild(li(t('n_limits')));
+    if (!r.resident && (v.salAbroad > 0 || r.foreign > 0)) notes.appendChild(li(t('n_foreign_out')));
+
+    var todo = [];
+    var inScope = r.status === 'due' || r.status === 'file';
+    if (inScope) todo.push(t('t_first'));
+    if (v.days === 'unsure') todo.push(t('t_days'));
+    if (!r.resident) todo.push(t('t_nonres'));
+    if (r.resident && v.salAbroad > 0) todo.push(t(r.omani ? 't_fsal_om' : 't_fsal_ex'));
+    if (r.resident && (r.foreign > 0 || (v.salAbroad > 0 && !r.omani))) todo.push(t('t_credit'));
+    if (inScope && v.salOm > 0 && v.salAbroad + r.otherTotal === 0) todo.push(t('t_employer'));
+    if (inScope && v.salOm > 0) todo.push(t('t_withhold'));
+    if (inScope && v.rental + v.biz > 0) todo.push(t('t_rent'));
+    if (r.donCapped) todo.push(t('t_don_cap', { x: money(r.donCap) }));
+    else if (v.don > 0 && inScope) todo.push(t('t_don'));
+    if (inScope) todo.push(t('t_records'));
+    if (inScope) todo.push(t('t_home'));
+    if (r.status === 'near') todo.push(t('t_near'));
+    if (r.status === 'out' && v.days !== 'unsure' && r.resident) todo.push(t('t_out'));
+    var ul = $('#pitTodo'); ul.textContent = '';
+    todo.slice(0, 7).forEach(function (s) { ul.appendChild(li(s)); });
+
+    var natTxt = t(v.nat === 'om' ? 'nat_om' : 'nat_ex');
+    var lines = [
+      t('sum_pit_title'),
+      t('sum_nat') + ': ' + natTxt,
+      t('sum_days') + ': ' + t('days_' + v.days),
+      t('sum_gross') + ': ' + money(r.gross),
+      t('sum_taxable') + ': ' + money(r.taxable),
+      t('sum_tax') + ': ' + money(r.tax, 3),
+      t('sum_status') + ': ' + t('st_' + r.status),
+      '',
+      t('sum_ask_review')
+    ];
+    setShare('pit', lines.join('\n'));
+  }
+
+  function loadPIT(ex) {
+    PIT_FIELDS.forEach(function (id) { var val = ex && ex[id] ? ex[id] : 0; $('#' + id).value = val ? fmtInput(val) : ''; });
+    $(ex && ex.nat === 'ex' ? '#natEx' : '#natOm').checked = true;
+    $(ex ? (ex.days === 'under' ? '#dUnder' : ex.days === 'unsure' ? '#dUnsure' : '#dOver') : '#dOver').checked = true;
+    $('#pitExNote').hidden = !ex;
+    $('#pitMsg').textContent = '';
+    renderPIT();
+  }
+
+  /* ---------- Fawtara: Decision 189/2026 (VAT Executive Regulations) ---------- */
+  var EX_FAW = { vat: 'yes', supplies: 1200000, items: [true, false, true, false, false, false] };
+
+  function readFaw() {
+    return {
+      vat: $('input[name="vat"]:checked').value,
+      supplies: parseAmt($('#supplies').value),
+      items: [1, 2, 3, 4, 5, 6].map(function (i) { return $('#rd' + i).checked; })
+    };
+  }
+  function computeFaw(v) {
+    var big = v.supplies > 5000000;
+    var date = big ? '2027-04-01' : '2027-10-01';
+    var state = v.vat === 'yes' ? 'mandated' : v.supplies > 38500 ? 'must' : v.supplies > 19250 ? 'vol' : 'below';
+    var ready = v.items.filter(Boolean).length;
+    return { big: big, date: date, days: daysUntil(date), state: state, ready: ready };
+  }
+  function renderFaw() {
+    var v = readFaw(), r = computeFaw(v);
+    var pillCls = { mandated: 'st-due', must: 'st-near', vol: 'st-file', below: 'st-out' }[r.state];
+    $('#fawPill').className = 'pill ' + pillCls; $('#fawPill').textContent = t('fp_' + r.state);
+    $('#fawDate').textContent = fmtDate(r.date);
+    $('#fawMiniDate').textContent = fmtDate(r.date);
+    $('#fawWave').textContent = t(r.big ? 'wave1' : 'wave2');
+    $('#fawDays').textContent = r.days > 0 ? t('days_left', { n: daysPhrase(r.days) }) : t('in_force', { d: fmtDate(r.date) });
+    $('#fawState').textContent = t('fs_' + r.state);
+    $('#fawDateBlock').classList.toggle('muted', r.state === 'below');
+    $$('#fawMeter i').forEach(function (el, i) { el.classList.toggle('on', i < r.ready); });
+    var lvl = r.ready <= 2 ? 'lvl1' : r.ready <= 4 ? 'lvl2' : r.ready === 5 ? 'lvl3' : 'lvl4';
+    var readyTxt = t('ready_of', { k: num(r.ready) });
+    $('#fawReady').textContent = readyTxt + ' · ' + t(lvl);
+    $('#fawMiniReady').textContent = readyTxt;
+    var ul = $('#fawGaps'); ul.textContent = '';
+    v.items.forEach(function (ok, i) { if (!ok) ul.appendChild(li(t('gap' + (i + 1)))); });
+    if (r.ready === 6) ul.appendChild(li(t('no_gaps')));
+    var lines = [
+      t('sum_faw_title'),
+      t('sum_vat') + ': ' + t(v.vat === 'yes' ? 'vat_yes' : 'vat_no'),
+      t('sum_supplies') + ': ' + money(v.supplies),
+      t('sum_golive') + ': ' + fmtDate(r.date) + (r.state === 'mandated' ? '' : ' (' + t('fp_' + r.state) + ')'),
+      t('sum_ready') + ': ' + readyTxt,
+      '',
+      t('sum_ask_faw')
+    ];
+    setShare('faw', lines.join('\n'));
+  }
+  function loadFaw(ex) {
+    $(ex && ex.vat === 'no' ? '#vatN' : '#vatY').checked = true;
+    $('#supplies').value = ex ? fmtInput(ex.supplies) : '';
+    [1, 2, 3, 4, 5, 6].forEach(function (i) { $('#rd' + i).checked = !!(ex && ex.items[i - 1]); });
+    $('#fawExNote').hidden = !ex;
+    $('#fawMsg').textContent = '';
+    renderFaw();
+  }
+
+  /* ---------- Sharing ---------- */
+  function setShare(kind, text) {
+    $('#' + kind + 'Summary').value = text;
+    var mail = $('#' + kind + 'Wa');
+    if (CONTACT.email) {
+      var subject = text.split('\n')[0];
+      mail.href = 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+      mail.hidden = false;
+    } else { mail.hidden = true; mail.removeAttribute('href'); }
+    var wait = $('#pitWait');
+    if (wait) {
+      if (CONTACT.wait) { wait.href = CONTACT.wait; wait.target = '_blank'; wait.rel = 'noopener'; wait.hidden = false; }
+      else if (CONTACT.email) { wait.href = 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent(t('wait_subject')) + '&body=' + encodeURIComponent(t('wait_body')); wait.removeAttribute('target'); wait.hidden = false; }
+      else { wait.hidden = true; wait.removeAttribute('href'); }
+    }
+    renderTool();
+  }
+  function renderTool() {
+    ['#pitTool', '#svc6Link'].forEach(function (sel) {
+      var a = $(sel); if (!a) return;
+      if (CONTACT.tool) { a.href = CONTACT.tool; a.hidden = false; } else { a.hidden = true; a.removeAttribute('href'); }
+    });
+  }
+  function copyText(text, msgEl, selectEl) {
+    function ok() { if (msgEl) msgEl.textContent = t('copied'); }
+    function fail() { if (selectEl) { selectEl.focus(); selectEl.select(); } if (msgEl) msgEl.textContent = t('copy_fallback'); }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fail);
+      else fail();
+    } catch (e) { fail(); }
+  }
+
+  /* ---------- Static parts ---------- */
+  function renderCountdown() {
+    var next = null;
+    for (var i = 0; i < DEADLINES.length; i++) {
+      var n = daysUntil(DEADLINES[i][0]);
+      if (n > 0) { next = { n: n, key: DEADLINES[i][1] }; break; }
+    }
+    if (next) { $('#cdNum').textContent = num(next.n); $('#cdText').textContent = t(next.key, { w: dayWord(next.n) }); }
+    else { $('#cdNum').textContent = ''; $('#cdText').textContent = t('cd_done'); }
+  }
+  function renderTimeline() {
+    $$('.ev').forEach(function (el) {
+      var iso = el.getAttribute('data-date'), n = daysUntil(iso), chip = el.querySelector('.chip');
+      el.querySelector('.ev-date').textContent = fmtDate(iso);
+      el.classList.toggle('past', n < 0 && el.getAttribute('data-flag') !== 'overdue');
+      el.classList.toggle('overdue', el.getAttribute('data-flag') === 'overdue');
+      if (el.getAttribute('data-flag') === 'overdue') { chip.className = 'chip overdue'; chip.textContent = t('chip_overdue'); }
+      else if (n < 0) { chip.className = 'chip past'; chip.textContent = t('chip_past'); }
+      else if (n === 0) { chip.className = 'chip soon'; chip.textContent = t('chip_today'); }
+      else { chip.className = 'chip soon'; chip.textContent = t('chip_in', { n: daysPhrase(n) }); }
+    });
+  }
+  function renderContact() {
+    var em = $('#cEm');
+    if (CONTACT.email) { em.textContent = CONTACT.email; em.className = 'c-val'; $('#cEmCopy').hidden = false; }
+    else { em.textContent = t('c_pending'); em.className = 'c-val pending'; $('#cEmCopy').hidden = true; }
+  }
+
+  function setLang(l, save) {
+    lang = l === 'ar' ? 'ar' : 'en';
+    var root = document.documentElement;
+    root.lang = lang; root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    $$('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
+    $$('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
+    var btn = $('#langBtn');
+    btn.textContent = t('lang_btn'); btn.setAttribute('lang', lang === 'ar' ? 'en' : 'ar'); btn.setAttribute('aria-label', t('lang_aria'));
+    if (save) { try { localStorage.setItem('awab-lang', lang); } catch (e) { /* storage unavailable */ } }
+    renderCountdown(); renderTimeline(); renderContact(); renderPIT(); renderFaw();
+  }
+
+  /* ---------- Wiring ---------- */
+  $('#pitForm').addEventListener('submit', function (e) { e.preventDefault(); });
+  $('#fawForm').addEventListener('submit', function (e) { e.preventDefault(); });
+  $('#pitForm').addEventListener('input', function (e) { if (e.isTrusted) $('#pitExNote').hidden = true; $('#pitMsg').textContent = ''; renderPIT(); });
+  $('#pitForm').addEventListener('change', function () { renderPIT(); });
+  $('#fawForm').addEventListener('input', function (e) { if (e.isTrusted) $('#fawExNote').hidden = true; $('#fawMsg').textContent = ''; renderFaw(); });
+  $('#fawForm').addEventListener('change', function () { renderFaw(); });
+  $$('.amt input').forEach(function (inp) {
+    inp.addEventListener('blur', function () { var n = parseAmt(inp.value); inp.value = n > 0 ? fmtInput(n) : ''; });
+  });
+  $('#pitClear').addEventListener('click', function () { loadPIT(null); });
+  $('#pitLoad').addEventListener('click', function () { loadPIT(EX_PIT); });
+  $('#fawClear').addEventListener('click', function () { loadFaw(null); });
+  $('#fawLoad').addEventListener('click', function () { loadFaw(EX_FAW); });
+  $('#pitCopy').addEventListener('click', function () { copyText($('#pitSummary').value, $('#pitMsg'), $('#pitSummary')); });
+  $('#fawCopy').addEventListener('click', function () { copyText($('#fawSummary').value, $('#fawMsg'), $('#fawSummary')); });
+  $('#cEmCopy').addEventListener('click', function () { copyText(CONTACT.email, null, null); });
+  $('#langBtn').addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar', true); });
+
+  var initial = null;
+  try { initial = localStorage.getItem('awab-lang'); } catch (e) { initial = null; }
+  if (location.hash === '#ar' || location.hash === '#en') initial = location.hash.slice(1);
+  if (!initial) initial = (navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en';
+
+  loadPIT(EX_PIT);
+  loadFaw(EX_FAW);
+  setLang(initial, false);
+})();
+</script>
+
+</body></html>
