@@ -2,252 +2,252 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Awab · Every return, on time</title>
-<meta name="description" content="Awab (أوّاب), Muscat: Fawtara e-invoicing readiness for VAT-registered businesses in Oman, and income-tax paperwork for employers from 2028. In Arabic and English. General information, not tax advice.">
-<meta property="og:title" content="Awab · Every return, on time">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Awab — Every return, on time</title>
+<meta name="description" content="Awab gets businesses in Oman ready for Fawtara e-invoicing and handles the income-tax paperwork for employers. Free readiness check. Arabic and English.">
+<link rel="canonical" href="https://awaboman.com/">
+<meta property="og:title" content="Awab — Every return, on time">
 <meta property="og:description" content="Fawtara e-invoicing readiness and income-tax paperwork for businesses in Oman. Free readiness conversations now.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://awaboman.com/">
-<link rel="canonical" href="https://awaboman.com/">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="ar_OM">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Ccircle cx='15' cy='15' r='12.4' fill='%23FFFFFF' stroke='%2314212A' stroke-width='1.6'/%3E%3Cpath d='M21.5 15A6.5 6.5 0 1 1 15 8.5' fill='none' stroke='%230C6A55' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M13.03 7.12L15 8.5L13.03 9.88' fill='none' stroke='%23C9463D' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a ledger sheet with a return-arrow mark. Figures sit on ruled paper with a double red margin line, computations
-   use green-bar banding, and totals carry the accountant's rules: a single rule above a subtotal, a double rule under the total. */
+/* Awab Design System tokens — keep in step with the Awab Design System artifact (tokens.json). */
 :root{
-  --paper:#F2F5F2; --sheet:#FFFFFF; --band:#E9F1EC; --ink:#14212A; --ink-2:#46565E; --ink-3:#6B7B82;
-  --rule:#D5DFD9; --rule-strong:#A8B8AF;
-  --green:#0C6A55; --green-ink:#FFFFFF; --green-soft:#DDEFE7;
-  --margin:#C9463D;
-  --amber:#8F5300; --amber-soft:#FBEED6; --red:#B0372E; --red-soft:#F9E2DF; --blue:#1E5785; --blue-soft:#E0EBF5;
-  --shadow:0 1px 0 rgba(20,33,42,.04),0 12px 30px -20px rgba(20,33,42,.30);
-  --f-display:"Reem Kufi","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
-  --f-body:"IBM Plex Sans Arabic","Segoe UI","Noto Sans Arabic",system-ui,-apple-system,sans-serif;
-  --f-fig:"IBM Plex Mono","IBM Plex Sans Arabic",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --r:4px; --m:46px;
+  --surface:#ffffff; --surface-mist:#eaf2ef; --surface-pine:#0f3d37; --surface-deep:#0a2b27;
+  --ink:#0f3d37; --ink-muted:#4a605a; --ink-on-pine:#ffffff; --ink-on-pine-soft:#d7e6e1; --ink-on-pine-muted:#bfd3cd;
+  --saffron:#f4a632; --on-saffron:#0f3d37;
+  --line:#d5e2de; --line-strong:#4a605a; --line-on-pine:rgba(255,255,255,.14); --line-on-pine-strong:rgba(255,255,255,.32);
+  --focus:#0f3d37; --focus-on-pine:#f4a632;
+  --signal-due:#b0372e; --signal-due-soft:#f9e2df; --signal-near:#8f5300; --signal-near-soft:#fbeed6; --signal-file:#1e5785; --signal-file-soft:#e0ebf5;
+  --font-latin:"Outfit","Segoe UI",system-ui,sans-serif;
+  --font-arabic:"IBM Plex Sans Arabic","Segoe UI","Noto Sans Arabic",system-ui,sans-serif;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px; --space-6:32px; --space-7:48px; --space-8:72px; --space-9:96px;
+  --radius-sm:4px; --radius-md:6px; --radius-lg:8px; --radius-xl:10px; --radius-pill:999px;
+  --shadow-card:0 28px 56px -36px rgba(15,61,55,.4);
+  --gutter:clamp(20px,5vw,72px); --maxw:1296px;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0C1311; --sheet:#121A17; --band:#16231E; --ink:#E3EBE7; --ink-2:#A2B3AB; --ink-3:#80918A;
-  --rule:#24322D; --rule-strong:#3B4D46; --green:#47C19C; --green-ink:#04231A; --green-soft:#12302A;
-  --margin:#DD6A60; --amber:#E7A947; --amber-soft:#2D2310; --red:#EC7B71; --red-soft:#33191A; --blue:#80B5E4; --blue-soft:#13243A;
-  --shadow:0 1px 0 rgba(0,0,0,.35),0 12px 30px -16px rgba(0,0,0,.7); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0C1311; --sheet:#121A17; --band:#16231E; --ink:#E3EBE7; --ink-2:#A2B3AB; --ink-3:#80918A;
-  --rule:#24322D; --rule-strong:#3B4D46; --green:#47C19C; --green-ink:#04231A; --green-soft:#12302A;
-  --margin:#DD6A60; --amber:#E7A947; --amber-soft:#2D2310; --red:#EC7B71; --red-soft:#33191A; --blue:#80B5E4; --blue-soft:#13243A;
-  --shadow:0 1px 0 rgba(0,0,0,.35),0 12px 30px -16px rgba(0,0,0,.7); color-scheme:dark}
-
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-html[lang="ar"] body{line-height:1.85}
-a{color:var(--green)}
-h1,h2,h3,h4{font-family:var(--f-display);font-weight:600;line-height:1.2;margin:0;text-wrap:balance;color:var(--ink)}
-html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4{line-height:1.55}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font-latin);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html[lang="ar"] body{font-family:var(--font-arabic);line-height:1.85}
+[lang="ar"]{font-family:var(--font-arabic)}
+[lang="en"]{font-family:var(--font-latin)}
+h1,h2,h3,h4{margin:0;color:var(--ink);text-wrap:balance}
 p{margin:0}
-.wrap{max-width:1160px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
-.fig{font-family:var(--f-fig);font-variant-numeric:tabular-nums}
+a{color:var(--ink)}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.eyebrow{font-family:var(--f-fig);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:500}
-html[lang="ar"] .eyebrow{font-family:var(--f-body);letter-spacing:0;font-size:14px;text-transform:none;font-weight:600}
-:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-.skip{position:absolute;inset-inline-start:12px;top:-80px;background:var(--ink);color:var(--paper);padding:8px 12px;border-radius:var(--r);z-index:50;text-decoration:none}
-.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.on-pine :focus-visible{outline-color:var(--focus-on-pine)}
+.skip{position:absolute;inset-inline-start:12px;top:-80px;background:var(--surface-pine);color:var(--ink-on-pine);padding:8px 12px;border-radius:var(--radius-md);z-index:50;text-decoration:none}
+.skip:focus{top:8px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
 /* Header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--rule)}
-.top-in{display:flex;align-items:center;gap:16px;min-height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-inline-end:auto}
-.mark{width:30px;height:30px;flex:none}
-.mark .m-bg{fill:var(--sheet);stroke:var(--ink)}
-.mark .m-ring{fill:none;stroke:var(--margin)}
-.mark .m-ln{stroke:var(--green)}
-.brand-ar{font-family:var(--f-display);font-size:23px;font-weight:700;line-height:1}
-.brand-en{font-family:var(--f-display);font-size:19px;font-weight:600;line-height:1;color:var(--ink-2)}
-.brand-sep{width:1px;height:18px;background:var(--rule-strong)}
-.nav{display:flex;gap:2px}
-.nav a{color:var(--ink-2);text-decoration:none;font-size:15px;padding:8px 10px;border-radius:var(--r)}
-.nav a:hover{color:var(--ink);background:var(--band)}
-.lang{font:600 14px/1 var(--f-body);color:var(--ink);background:var(--sheet);border:1px solid var(--rule-strong);border-radius:var(--r);padding:9px 13px;cursor:pointer}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{position:relative;display:flex;align-items:center;gap:40px;min-height:88px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand svg{width:198px;height:72px;display:block}
+.nav{margin-inline-start:auto;display:flex;align-items:center;gap:32px}
+.nav a{font-weight:500;font-size:16px;line-height:1.25;color:var(--ink);text-decoration:none;padding:4px 0}
+.nav a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--saffron);text-decoration-thickness:2px}
+.tools{display:flex;align-items:center;gap:12px}
+.lang{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--radius-md);background:var(--surface);color:var(--ink);font:600 15px/1 var(--font-latin);cursor:pointer}
+.lang[lang="ar"]{font-family:var(--font-arabic)}
 .lang:hover{border-color:var(--ink)}
-@media (max-width:860px){.nav{display:none}}
+.menu{display:none;width:44px;height:44px;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);cursor:pointer;color:var(--ink)}
+.menu svg{width:22px;height:22px}
+@media (max-width:980px){
+  .top-in{min-height:64px;gap:12px}
+  .brand svg{width:132px;height:48px}
+  .nav{display:none;position:absolute;top:100%;inset-inline:calc(-1 * var(--gutter));flex-direction:column;align-items:stretch;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px var(--gutter) 12px;box-shadow:var(--shadow-card)}
+  .nav.open{display:flex}
+  .nav a{padding:14px 0;border-bottom:1px solid var(--line);min-height:44px}
+  .nav a:last-child{border-bottom:0}
+  .tools{margin-inline-start:auto}
+  .tools .btn{display:none}
+  .menu{display:flex}
+}
 
 /* Buttons */
-[hidden]{display:none!important}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1.25 var(--f-body);padding:12px 18px;border-radius:var(--r);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,filter .15s}
-.btn-primary{background:var(--green);color:var(--green-ink)}
-.btn-primary:hover{filter:brightness(1.08)}
-.btn-ghost{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
-.btn-ghost:hover{border-color:var(--ink)}
-.btn-text{background:none;border:0;color:var(--green);font:500 14px/1.3 var(--f-body);cursor:pointer;padding:6px 2px;text-decoration:underline;text-underline-offset:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:var(--radius-md);font:600 16px/1.25 var(--font-latin);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,border-color .15s}
+html[lang="ar"] .btn{font-family:var(--font-arabic);line-height:1.5}
+.btn-primary{background:var(--surface-pine);color:var(--ink-on-pine)}
+.btn-primary:hover{background:var(--surface-deep)}
+.btn-secondary{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.btn-secondary:hover{background:var(--surface-mist)}
+.btn-sm{min-height:44px;padding:0 18px;font-size:15px}
+.btn-text{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;background:none;border:0;font:500 15px/1.3 var(--font-latin);color:var(--ink);cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line-strong)}
+html[lang="ar"] .btn-text{font-family:var(--font-arabic)}
+.btn-text:hover{text-decoration-color:var(--saffron)}
+.arrow{width:18px;height:18px;flex:none}
+[dir="rtl"] .arrow{transform:scaleX(-1)}
 
-/* Sheets: paper with a double red margin line */
-.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);box-shadow:var(--shadow)}
-.paper{position:relative}
-.paper::after{content:"";position:absolute;inset-block:0;inset-inline-start:calc(var(--m) - 5px);width:5px;border-inline:1px solid var(--margin);opacity:.75;pointer-events:none}
-@media (max-width:560px){:root{--m:24px}}
+/* Chips */
+.chip{display:inline-flex;align-items:center;font:600 13px/1.2 var(--font-latin);padding:6px 10px;border-radius:var(--radius-pill);white-space:nowrap;background:var(--surface-mist);color:var(--ink)}
+html[lang="ar"] .chip{font-family:var(--font-arabic);line-height:1.5}
+.chip-due{background:var(--signal-due-soft);color:var(--signal-due)}
+.chip-near{background:var(--signal-near-soft);color:var(--signal-near)}
+.chip-file{background:var(--signal-file-soft);color:var(--signal-file)}
+.chip-past{background:var(--surface-mist);color:var(--ink-muted)}
 
 /* Hero */
-.hero{padding-block:clamp(40px,7vw,88px) clamp(52px,7vw,96px)}
-.hero-in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
-@media (max-width:920px){.hero-in{grid-template-columns:1fr}}
-.hero h1{font-size:clamp(36px,5.4vw,64px);margin-block:14px 18px;letter-spacing:-.015em;line-height:1.08}
-html[lang="ar"] .hero h1{letter-spacing:0;font-size:clamp(34px,5vw,58px);line-height:1.4}
-.lead{font-size:clamp(17px,1.6vw,19px);color:var(--ink-2);max-width:58ch}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.countdown{margin-top:28px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;color:var(--ink-2)}
-.countdown .fig{font-size:30px;font-weight:600;color:var(--ink);line-height:1}
-.regs{margin-top:10px;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-3)}
-.regs .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);flex:none}
-.ledger-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 20px 12px calc(var(--m) + 16px);border-bottom:1.5px solid var(--rule-strong);font-size:13.5px;color:var(--ink-2)}
-[dir="rtl"] .ledger-head{padding:16px calc(var(--m) + 16px) 12px 20px}
-.ledger-head .ref{font-family:var(--f-fig);font-size:12px;color:var(--ink-3);white-space:nowrap}
-html[lang="ar"] .ledger-head .ref{font-family:var(--f-body)}
-.figs{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:18px}
-.figs>div{grid-column:1/-1;display:grid;grid-template-columns:9rem minmax(0,1fr);grid-template-columns:subgrid;align-items:center;gap:6px 18px;padding-block:18px;padding-inline:calc(var(--m) + 16px) 20px;border-bottom:1px solid var(--rule)}
-.figs>div:last-child{border-bottom:0}
-.figs>div:nth-child(odd){background:var(--band)}
-.figs dt{font-family:var(--f-fig);font-size:clamp(28px,3vw,36px);font-weight:600;line-height:1;color:var(--ink);white-space:nowrap}
-.figs dt small{display:block;font-size:.42em;font-weight:500;margin-top:6px;color:var(--ink-2)}
-html[lang="ar"] .figs dt{font-family:var(--f-body);font-weight:700}
-.figs dd{margin:0;color:var(--ink-2);font-size:15px;line-height:1.45}
-@media (max-width:480px){.figs{grid-template-columns:minmax(0,1fr)}.figs>div{grid-template-columns:minmax(0,1fr)}}
+.hero{padding-block:clamp(40px,6vw,72px) clamp(28px,4vw,44px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.rule{width:56px;height:6px;background:var(--saffron);display:block;flex:none}
+@media (max-width:620px){.rule{width:44px;height:5px}}
+.eyebrow{font-weight:500;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted);line-height:1.5}
+html[lang="ar"] .eyebrow{letter-spacing:0;text-transform:none;font-size:14px;line-height:1.7}
+.hero h1{font-weight:600;font-size:clamp(46px,5.3vw,76px);line-height:1.02;letter-spacing:-.02em}
+html[lang="ar"] .hero h1{font-weight:700;font-size:clamp(38px,4.3vw,62px);line-height:1.4;letter-spacing:0}
+.translation{font-weight:500;font-size:22px;line-height:1.5;color:var(--ink-muted)}
+.lead{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--ink-muted);max-width:760px}
+html[lang="ar"] .lead{font-size:19px;line-height:1.9}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:10px}
+@media (max-width:620px){.cta-row{flex-direction:column;align-self:stretch}.cta-row .btn{width:100%}}
+
+/* Dates panel */
+.panel{background:var(--surface-mist);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px 36px 22px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:620px){.panel{padding:18px 18px 14px}}
+.panel-cap{display:flex;justify-content:space-between;align-items:center;gap:10px 16px;flex-wrap:wrap}
+.panel-title{font-weight:600;font-size:17px}
+.panel-src{font-weight:500;font-size:13px;color:var(--ink-muted)}
+#cdChip{white-space:normal;text-align:center;line-height:1.4}
+@media (max-width:760px){.panel-cap{flex-direction:column;align-items:flex-start}#cdChip{text-align:start}}
+.drow{display:grid;grid-template-columns:170px minmax(0,1.3fr) minmax(0,1fr);gap:2px 32px;align-items:baseline;padding:4px 0 14px;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.6}
+html[lang="ar"] .drow{line-height:1.8}
+.drow:last-child{border-bottom:0;padding-bottom:4px}
+.drow.head{padding:0 0 10px;border-bottom:1.5px solid var(--line-strong);font-weight:600;font-size:13px;color:var(--ink-muted);line-height:1.5}
+.ddate{font-weight:700;font-size:18px;white-space:nowrap}
+.dscope{color:var(--ink-muted)}
+@media (max-width:760px){.drow{grid-template-columns:1fr}.drow.head{display:none}}
 
 /* Sections */
-.sec{padding-block:clamp(56px,8vw,104px);border-top:1px solid var(--rule)}
-.sec-head{max-width:780px}
-.sec-head h2{font-size:clamp(27px,3.3vw,40px);margin-block:10px 14px}
-.sec-lead{color:var(--ink-2);font-size:17px;max-width:64ch}
+.sec{padding-block:clamp(56px,7vw,96px);border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;max-width:820px;margin-inline:auto}
+.sec-head h2{font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-.01em}
+html[lang="ar"] .sec-head h2{font-weight:700;line-height:1.45;letter-spacing:0}
+.sec-lead{color:var(--ink-muted);font-size:17px;line-height:1.6}
+html[lang="ar"] .sec-lead{line-height:1.85}
+
+/* Services */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:40px}
+@media (max-width:980px){.svc{grid-template-columns:1fr;gap:16px}}
+.card{display:flex;flex-direction:column;gap:8px;padding:24px 26px;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface)}
+.tag{font-family:var(--font-latin);font-weight:500;font-size:12px;line-height:1.3;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted)}
+html[lang="ar"] .tag{text-align:end}
+.card h3{font-weight:600;font-size:21px;line-height:1.35}
+html[lang="ar"] .card h3{line-height:1.5}
+.card p{font-size:15px;line-height:1.55;color:var(--ink-muted);flex:1}
+html[lang="ar"] .card p{line-height:1.85}
+.limits{margin-top:32px;padding:24px 26px;border:1px solid var(--line);border-radius:var(--radius-lg);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 32px}
+.limits h3{grid-column:1/-1;font-size:18px;font-weight:600}
+.limits p{font-size:14.5px;line-height:1.55;color:var(--ink-muted)}
+html[lang="ar"] .limits p{line-height:1.85}
+@media (max-width:860px){.limits{grid-template-columns:1fr}}
 
 /* Tools */
-.tool{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start;margin-top:32px}
+.tool{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start;margin-top:40px}
 @media (max-width:980px){.tool{grid-template-columns:1fr}}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg)}
 .form{padding:20px clamp(16px,3vw,28px) 0;display:flex;flex-direction:column;gap:24px}
-.form-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
-.ex-note{font-size:14px;color:var(--amber);display:flex;align-items:center;gap:8px}
-.ex-note::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--amber);flex:none}
-.form-actions{display:flex;gap:14px;margin-inline-start:auto}
+.form-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ex-note{font-size:14px;color:var(--signal-near);display:flex;align-items:center;gap:8px}
+.ex-note::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--saffron);flex:none}
+.form-actions{display:flex;gap:16px;margin-inline-start:auto}
 fieldset{border:0;margin:0;padding:0;min-width:0}
-legend{font-family:var(--f-display);font-size:18px;font-weight:600;padding:0;margin-bottom:4px;color:var(--ink)}
+legend{font-size:18px;font-weight:600;padding:0;margin-bottom:4px;color:var(--ink)}
 .q{display:flex;flex-direction:column;gap:8px;padding-block:10px}
-.q-label{font-size:15px;color:var(--ink-2)}
+.q-label{font-size:15px;color:var(--ink-muted)}
 .seg{display:flex;flex-wrap:wrap;gap:8px;position:relative}
 .seg input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
-.seg label{padding:8px 14px;border:1px solid var(--rule-strong);border-radius:var(--r);cursor:pointer;font-size:15px;background:var(--sheet);color:var(--ink);transition:background .15s,border-color .15s,color .15s;user-select:none}
+.seg label{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--line-strong);border-radius:var(--radius-md);cursor:pointer;font-size:15px;background:var(--surface);color:var(--ink);transition:background .15s,border-color .15s,color .15s;user-select:none}
 .seg label:hover{border-color:var(--ink)}
-.seg input:checked+label{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.seg input:focus-visible+label{outline:2px solid var(--green);outline-offset:2px}
-.line{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,11.5rem);align-items:end;gap:6px 16px;padding-block:11px;border-bottom:1px solid var(--rule)}
+.seg input:checked+label{background:var(--surface-pine);border-color:var(--surface-pine);color:var(--ink-on-pine)}
+.seg input:focus-visible+label{outline:2px solid var(--focus);outline-offset:2px}
+.line{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,11.5rem);align-items:end;gap:6px 16px;padding-block:11px;border-bottom:1px solid var(--line)}
 .line label{font-size:15px;line-height:1.45;color:var(--ink)}
-.amt{display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--rule-strong);transition:border-color .15s}
-.amt:focus-within{border-color:var(--green)}
-.cur{font-family:var(--f-fig);font-size:12px;color:var(--ink-3);flex:none}
-html[lang="ar"] .cur{font-family:var(--f-body);font-size:13px}
-.amt input{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--ink);font:500 17px/1.3 var(--f-fig);font-variant-numeric:tabular-nums;text-align:end;padding:6px 0;outline:none}
-.amt input::placeholder{color:var(--ink-3);opacity:.55}
+.amt{display:flex;align-items:baseline;gap:8px;border-bottom:1.5px solid var(--line-strong);transition:border-color .15s}
+.amt:focus-within{border-color:var(--ink);border-bottom-width:2px}
+.cur{font-size:12px;font-weight:500;color:var(--ink-muted);flex:none}
+.amt input{flex:1;min-width:0;width:100%;border:0;background:transparent;color:var(--ink);font:500 17px/1.3 var(--font-latin);font-variant-numeric:tabular-nums;text-align:end;padding:6px 0;outline:none}
+.amt input::placeholder{color:var(--ink-muted);opacity:.55}
 @media (max-width:520px){.line{grid-template-columns:1fr}}
-.hint{font-size:13.5px;color:var(--ink-3);margin-top:10px;line-height:1.55}
+.hint{font-size:13.5px;color:var(--ink-muted);margin-top:10px;line-height:1.55}
 .checks{display:flex;flex-direction:column}
-.check{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding-block:11px;border-bottom:1px solid var(--rule);cursor:pointer;font-size:15px;line-height:1.45}
-.check input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--green);cursor:pointer}
-.mini{position:sticky;bottom:0;margin-inline:calc(-1 * clamp(16px,3vw,28px));padding:12px clamp(16px,3vw,28px) calc(12px + env(safe-area-inset-bottom,0px));background:var(--sheet);border-top:1.5px solid var(--rule-strong);display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;border-radius:0 0 var(--r) var(--r);z-index:2}
-.mini-label{font-size:13.5px;color:var(--ink-2)}
-.mini-val{font-family:var(--f-fig);font-weight:600;font-size:17px;color:var(--ink)}
-html[lang="ar"] .mini-val.txt{font-family:var(--f-body)}
+.check{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;padding-block:11px;border-bottom:1px solid var(--line);cursor:pointer;font-size:15px;line-height:1.5}
+.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--surface-pine);cursor:pointer}
+.mini{position:sticky;bottom:0;margin-inline:calc(-1 * clamp(16px,3vw,28px));padding:12px clamp(16px,3vw,28px) calc(12px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1.5px solid var(--line-strong);display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;border-radius:0 0 var(--radius-lg) var(--radius-lg);z-index:2}
+.mini-label{font-size:13.5px;color:var(--ink-muted)}
+.mini-val{font-weight:600;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
 .mini a{margin-inline-start:auto;font-size:14px}
 
 /* Results */
-.result{padding:20px clamp(16px,3vw,28px) 24px calc(var(--m) + 18px)}
-[dir="rtl"] .result{padding:20px calc(var(--m) + 18px) 24px clamp(16px,3vw,28px)}
+.result{padding:20px clamp(16px,3vw,28px) 24px}
 .res-head{display:flex;align-items:center;justify-content:space-between;gap:10px 12px;flex-wrap:wrap}
-.res-head h3{font-size:20px}
-.pill{display:inline-flex;align-items:center;font:600 13px/1.2 var(--f-body);padding:6px 10px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
-.st-out{color:var(--ink-2)}
-.st-near{color:var(--amber);background:var(--amber-soft)}
-.st-file{color:var(--blue);background:var(--blue-soft)}
-.st-due{color:var(--red);background:var(--red-soft)}
+.res-head h3{font-size:20px;font-weight:600}
 .res-detail{margin-top:10px;font-size:15.5px}
-.res-res{margin-top:6px;font-size:14px;color:var(--ink-2)}
-.big{margin-top:16px;padding-block:14px;border-block:1px solid var(--rule)}
-.big-label{font-size:13.5px;color:var(--ink-2)}
-.big-num{display:block;font-family:var(--f-fig);font-size:clamp(28px,3.4vw,38px);font-weight:600;line-height:1.2;color:var(--ink);margin-top:2px;font-variant-numeric:tabular-nums}
-html[lang="ar"] .big-num.txt{font-family:var(--f-display)}
-.big-eff{font-size:13.5px;color:var(--ink-3);margin-top:4px}
+.res-res{margin-top:6px;font-size:14px;color:var(--ink-muted)}
+.big{margin-top:16px;padding-block:14px;border-block:1px solid var(--line)}
+.big-label{font-size:13.5px;color:var(--ink-muted)}
+.big-num{display:block;font-size:clamp(28px,3.4vw,38px);font-weight:600;line-height:1.2;color:var(--ink);margin-top:2px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.big-eff{font-size:13.5px;color:var(--ink-muted);margin-top:4px}
 .tscroll{overflow-x:auto;margin-top:12px}
 .sched{width:100%;border-collapse:collapse;font-size:14.5px}
-.sched th{font:500 12px/1.2 var(--f-fig);color:var(--ink-3);text-align:start;padding:0 8px 6px}
-html[lang="ar"] .sched th{font-family:var(--f-body)}
+.sched th{font:500 12px/1.2 var(--font-latin);letter-spacing:.06em;color:var(--ink-muted);text-align:start;padding:0 8px 6px}
+html[lang="ar"] .sched th{font-family:var(--font-arabic);letter-spacing:0}
 .sched th.v{text-align:end}
-.sched td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:baseline}
-.sched tbody tr:nth-child(odd) td{background:var(--band)}
-.sched td.v{text-align:end;font-family:var(--f-fig);font-variant-numeric:tabular-nums;white-space:nowrap;padding-inline-start:14px}
+.sched td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:baseline}
+.sched td.v{text-align:end;font-variant-numeric:tabular-nums;white-space:nowrap;padding-inline-start:14px}
 .sched tr.sub td{border-top:1.5px solid var(--ink);font-weight:600}
 .sched tr.total td{font-weight:700;border-bottom:4px double var(--ink)}
-.notes{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-3);line-height:1.5}
+.notes{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-muted);line-height:1.5}
 .notes li{position:relative;padding-inline-start:16px}
-.notes li::before{content:"*";position:absolute;inset-inline-start:2px;top:0;color:var(--margin);font-family:var(--f-fig)}
-.todo-h{margin-top:22px;font-size:17px}
+.notes li::before{content:"*";position:absolute;inset-inline-start:2px;top:0;color:var(--saffron);font-weight:700}
+.todo-h{margin-top:22px;font-size:17px;font-weight:600}
 .todo{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column}
-.todo li{position:relative;padding-block:9px;padding-inline-start:28px;border-bottom:1px dashed var(--rule);font-size:14.5px;line-height:1.55}
-.todo li::before{content:"";position:absolute;inset-inline-start:2px;top:14px;width:13px;height:13px;border:1.5px solid var(--green);border-radius:2px}
+.todo li{position:relative;padding-block:9px;padding-inline-start:28px;border-bottom:1px dashed var(--line);font-size:14.5px;line-height:1.55}
+html[lang="ar"] .todo li{line-height:1.8}
+.todo li::before{content:"";position:absolute;inset-inline-start:2px;top:14px;width:13px;height:13px;border:1.5px solid var(--ink);border-radius:var(--radius-sm)}
 html[lang="ar"] .todo li::before{top:16px}
-.cta-box{margin-top:22px;padding:18px;background:var(--green-soft);border-radius:var(--r);display:flex;flex-direction:column;gap:10px}
-.cta-box h4{font-size:18px}
+.cta-box{margin-top:22px;padding:18px;background:var(--surface-mist);border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:10px}
+.cta-box h4{font-size:18px;font-weight:600}
 .cta-box p{font-size:14.5px}
 .cta-actions{display:flex;flex-wrap:wrap;gap:10px}
-.sum-label{font-size:12.5px;color:var(--ink-2);margin-top:4px}
-.summary{width:100%;font:13px/1.55 var(--f-fig);color:var(--ink-2);background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:10px;resize:vertical;min-height:132px}
-html[lang="ar"] .summary{font-family:var(--f-body)}
-.copy-msg{font-size:13px;color:var(--green);min-height:1.3em}
-.disclaimer{margin-top:14px;font-size:12.5px;color:var(--ink-3);line-height:1.55}
-.date-block{margin-top:14px;padding-block:14px;border-block:1px solid var(--rule)}
-.date-block.muted .big-num{color:var(--ink-3)}
-.wave{font-size:14px;color:var(--ink-2);margin-top:2px}
-.days{display:inline-block;margin-top:10px;font:600 13px/1.2 var(--f-body);color:var(--green);background:var(--green-soft);padding:6px 10px;border-radius:999px}
+.cta-actions .btn{min-height:46px;padding:0 18px;font-size:15px}
+.sum-label{font-size:12.5px;color:var(--ink-muted);margin-top:4px}
+.summary{width:100%;font:13px/1.55 var(--font-latin);color:var(--ink-muted);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:10px;resize:vertical;min-height:132px}
+html[lang="ar"] .summary{font-family:var(--font-arabic)}
+.copy-msg{font-size:13px;color:var(--ink);min-height:1.3em}
+.disclaimer{margin-top:14px;font-size:12.5px;color:var(--ink-muted);line-height:1.55}
+.date-block{margin-top:14px;padding-block:14px;border-block:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.date-block.muted .big-num{color:var(--ink-muted)}
+.wave{font-size:14px;color:var(--ink-muted)}
 .fs{margin-top:12px;font-size:15px}
 .meter{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin-top:18px}
-.meter i{height:10px;border-radius:2px;background:var(--rule)}
-.meter i.on{background:var(--green)}
-.meter-txt{margin-top:8px;font-size:14px;color:var(--ink-2)}
-
-/* Services */
-.svc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}
-@media (max-width:620px){.svc{grid-template-columns:1fr}}
-.card{padding:22px;display:flex;flex-direction:column;gap:10px}
-.card h3{font-size:20px}
-.card p{font-size:15px;color:var(--ink-2);flex:1}
-.who{font-size:13px;font-weight:600;color:var(--green)}
-.who.partner{color:var(--blue)}
-.price{padding-top:12px;border-top:1px solid var(--rule);font:500 14px/1.45 var(--f-fig);color:var(--ink);min-height:calc(2.9em + 13px)}
-@media (max-width:620px){.price{min-height:0}}
-html[lang="ar"] .price{font-family:var(--f-body);font-weight:600}
-.limits{margin-top:16px;padding:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;box-shadow:none;background:transparent;border-style:dashed;border-color:var(--rule-strong)}
-.limits h3{grid-column:1/-1;font-size:18px}
-.limits p{font-size:14.5px;color:var(--ink-2)}
-@media (max-width:860px){.limits{grid-template-columns:1fr}}
+.meter i{height:8px;border-radius:var(--radius-sm);background:var(--line)}
+.meter i.on{background:var(--saffron)}
+.meter-txt{margin-top:8px;font-size:14px;color:var(--ink-muted)}
 
 /* Key dates */
-.tl{list-style:none;padding:0;margin:32px 0 0;position:relative;max-width:900px}
-.tl::before{content:"";position:absolute;inset-block:14px;inset-inline-start:calc(10rem + 25px);width:1px;background:var(--rule-strong)}
+.tl{list-style:none;padding:0;margin:40px auto 0;position:relative;max-width:900px}
+.tl::before{content:"";position:absolute;inset-block:14px;inset-inline-start:calc(10rem + 25px);width:1px;background:var(--line-strong)}
 .ev{display:grid;grid-template-columns:10rem 14px minmax(0,1fr);gap:0 18px;align-items:baseline;padding-block:11px}
-.ev-date{font-family:var(--f-fig);font-size:14px;color:var(--ink);text-align:end;white-space:nowrap}
-html[lang="ar"] .ev-date{font-family:var(--f-body);font-size:15px}
-.ev-dot{width:12px;height:12px;border-radius:50%;background:var(--sheet);border:2px solid var(--green);justify-self:center;position:relative;top:1px;z-index:1}
-.ev.past .ev-dot{border-color:var(--rule-strong);background:var(--rule-strong)}
-.ev.overdue .ev-dot{border-color:var(--red);background:var(--red)}
+.ev-date{font-size:14px;font-weight:600;color:var(--ink);text-align:end;white-space:nowrap;font-variant-numeric:tabular-nums}
+html[lang="ar"] .ev-date{font-size:15px}
+.ev-dot{width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--surface-pine);justify-self:center;position:relative;top:1px;z-index:1}
+.ev.past .ev-dot{border-color:var(--line-strong);background:var(--line-strong)}
+.ev.overdue .ev-dot{border-color:var(--signal-due);background:var(--signal-due)}
 .ev-body{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;min-width:0}
 .ev-body p{font-size:15.5px}
-.ev.past .ev-body p{color:var(--ink-2)}
-.chip{font:600 12px/1.2 var(--f-body);padding:5px 8px;border-radius:999px;white-space:nowrap}
-.chip.past{color:var(--ink-3);background:var(--band)}
-.chip.overdue{color:var(--red);background:var(--red-soft)}
-.chip.soon{color:var(--green);background:var(--green-soft)}
+.ev.past .ev-body p{color:var(--ink-muted)}
+.ev .chip{font-size:12px;padding:5px 8px}
 @media (max-width:620px){
   .tl::before{inset-inline-start:6px}
   .ev{grid-template-columns:14px minmax(0,1fr);gap:2px 14px}
@@ -255,11 +255,12 @@ html[lang="ar"] .ev-date{font-family:var(--f-body);font-size:15px}
   .ev-date{grid-column:2;grid-row:1;text-align:start}
   .ev-body{grid-column:2;grid-row:2}
 }
-.pen{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 20px;max-width:1000px}
-.pen h3{grid-column:1/-1;font-size:19px}
-.pen p{font-size:14.5px;color:var(--ink-2);padding-top:12px;border-top:1px solid var(--rule)}
+.pen{margin:40px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 32px;max-width:1000px}
+.pen h3{grid-column:1/-1;font-size:19px;font-weight:600}
+.pen p{font-size:14.5px;line-height:1.55;color:var(--ink-muted);padding-top:12px;border-top:1px solid var(--line)}
+html[lang="ar"] .pen p{line-height:1.85}
 @media (max-width:860px){.pen{grid-template-columns:1fr}}
-details.src{margin-top:36px;border-top:1px solid var(--rule);padding-top:16px;max-width:1000px}
+details.src{margin:36px auto 0;border-top:1px solid var(--line);padding-top:16px;max-width:1000px}
 details.src summary{cursor:pointer;font-weight:600;font-size:15px}
 details.src ul{margin:12px 0 0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px;font-size:14px}
 details.src a{word-break:break-word}
@@ -267,74 +268,184 @@ details.src a{word-break:break-word}
 /* Contact */
 .contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:start}
 @media (max-width:860px){.contact{grid-template-columns:1fr}}
-.contact-h{font-size:clamp(27px,3.3vw,40px);margin-block:10px 14px}
-.c-rows{padding:6px 22px}
-.c-row{display:grid;grid-template-columns:7.5rem minmax(0,1fr) auto;align-items:center;gap:12px;padding-block:14px;border-bottom:1px solid var(--rule)}
+.contact .sec-head{align-items:flex-start;text-align:start;margin-inline:0}
+.c-rows{padding:6px 24px;align-self:start}
+.c-row{display:grid;grid-template-columns:7.5rem minmax(0,1fr) auto;align-items:center;gap:12px;padding-block:14px;border-bottom:1px solid var(--line)}
 .c-row:last-child{border-bottom:0}
-.c-label{font-size:14px;color:var(--ink-2)}
-.c-val{font-family:var(--f-fig);font-size:16px;overflow-wrap:anywhere}
-.c-val.pending{font-family:var(--f-body);color:var(--ink-3);font-style:italic}
-.proto{margin-top:18px;font-size:13.5px;color:var(--amber);display:flex;gap:8px;align-items:baseline}
-.proto::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--amber);flex:none;position:relative;top:-1px}
+.c-label{font-size:14px;color:var(--ink-muted)}
+.c-val{font-size:16px;overflow-wrap:anywhere}
+.c-val a{font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--saffron)}
 @media (max-width:480px){.c-row{grid-template-columns:minmax(0,1fr) auto}.c-label{grid-column:1/-1}}
 
-.foot{padding-block:28px 44px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3)}
-.foot p{max-width:90ch}
+/* Footer */
+.foot{background:var(--surface-pine);color:var(--ink-on-pine);padding:48px 0 32px}
+.foot a{color:var(--ink-on-pine)}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 32px;flex-wrap:wrap}
+.foot-logo svg{width:139px;height:60px;display:block}
+.foot-line{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:end}
+.foot-line .l1{font-weight:600;font-size:21px;line-height:1.35}
+.foot-line .l2{font-weight:500;font-size:19px;line-height:1.5;color:var(--ink-on-pine-muted)}
+.foot-nav{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px}
+.foot-nav a{font-weight:500;font-size:15px;text-decoration:none;color:var(--ink-on-pine-soft)}
+.foot-nav a:hover{color:var(--ink-on-pine);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--saffron)}
+.foot-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-top:16px;margin-top:24px;border-top:1px solid var(--line-on-pine);font-size:13px;line-height:1.6;color:var(--ink-on-pine-muted)}
+.foot-bottom p{max-width:90ch}
 </style>
 </head>
 <body>
 
-<a class="skip" href="#check" data-i18n="skip"></a>
+<a class="skip" href="#main" data-i18n="skip"></a>
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="brand" href="#top">
-      <svg class="mark" viewBox="0 0 30 30" aria-hidden="true">
-        <circle class="m-bg" cx="15" cy="15" r="12.4" stroke-width="1.6"/>
-        <path class="m-ln" d="M21.5 15A6.5 6.5 0 1 1 15 8.5" fill="none" stroke-width="1.8" stroke-linecap="round"/>
-        <path class="m-ring" d="M13.03 7.12L15 8.5L13.03 9.88" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span class="brand-ar" lang="ar">أوّاب</span><span class="brand-sep" aria-hidden="true"></span><span class="brand-en" lang="en">Awab</span>
-    </a>
-    <nav class="nav" data-i18n-aria="nav_label">
-      <a href="#check" data-i18n="nav_check"></a>
-      <a href="#services" data-i18n="nav_services"></a>
+    <a class="brand" href="#top" aria-label="Awab — أوّاب"><svg role="img" aria-label="أوّاب AWAB" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-14.25 -68.4 578.71 210.4"><path fill="#F4A632" d="M181.43 60 L181.43 73.5 L117.94 73.5 L117.94 60 Z"></path><path fill="#0F3D37" fill-rule="evenodd" d="M94.43 100 L110.93 100 L132.43 36.76 L153.93 100 L170.43 100 L136.43 0 L128.43 0 L102.68 75.74 L85.09 24 L77.09 24 L59.5 75.74 L33.75 0 L25.75 0 L-8.25 100 L8.25 100 L17.26 73.5 L42.24 73.5 L51.25 100 L67.75 100 L81.09 60.76 Z M29.75 36.76 L37.65 60 L21.85 60 Z M179.43 52.5 L179.43 100 L196.43 100 L207.43 100 L208.21 99.99 L208.99 99.96 L209.77 99.92 L210.54 99.85 L211.32 99.77 L212.09 99.67 L212.86 99.55 L213.62 99.42 L214.39 99.26 L215.14 99.09 L215.9 98.9 L216.65 98.7 L217.39 98.47 L218.13 98.23 L218.86 97.97 L219.58 97.7 L220.3 97.4 L221 97.1 L221.71 96.77 L222.4 96.43 L223.08 96.07 L223.75 95.7 L224.42 95.31 L225.07 94.9 L225.71 94.48 L226.34 94.05 L226.96 93.6 L227.57 93.13 L228.17 92.66 L228.75 92.16 L229.32 91.66 L229.88 91.14 L230.42 90.61 L230.96 90.06 L231.47 89.51 L231.97 88.94 L232.46 88.36 L232.93 87.77 L233.39 87.17 L233.83 86.56 L234.25 85.93 L234.66 85.3 L235.06 84.66 L235.43 84.01 L235.79 83.35 L236.13 82.68 L236.46 82.01 L236.76 81.33 L237.05 80.64 L237.32 79.94 L237.58 79.24 L237.81 78.53 L238.03 77.82 L238.23 77.1 L238.41 76.38 L238.57 75.65 L238.71 74.92 L238.84 74.19 L238.94 73.45 L239.03 72.72 L239.09 71.98 L239.14 71.23 L239.17 70.49 L239.18 69.75 L239.17 69.01 L239.14 68.27 L239.09 67.52 L239.03 66.78 L238.94 66.05 L238.84 65.31 L238.71 64.58 L238.57 63.85 L238.41 63.12 L238.23 62.4 L238.03 61.68 L237.81 60.97 L237.58 60.26 L237.32 59.56 L237.05 58.86 L236.76 58.17 L236.46 57.49 L236.13 56.82 L235.79 56.15 L235.43 55.49 L235.06 54.84 L234.66 54.2 L234.25 53.57 L233.83 52.94 L233.39 52.33 L232.93 51.73 L232.46 51.14 L231.97 50.56 L231.47 49.99 L230.96 49.44 L230.42 48.89 L229.88 48.36 L229.32 47.84 L228.75 47.34 L228.17 46.84 L227.57 46.37 L226.96 45.9 L226.34 45.45 L225.71 45.02 L225.07 44.6 L224.42 44.19 L223.88 43.88 L224.31 43.4 L224.72 42.9 L225.12 42.4 L225.51 41.89 L225.89 41.36 L226.26 40.83 L226.61 40.29 L226.95 39.75 L227.27 39.19 L227.58 38.62 L227.88 38.05 L228.16 37.47 L228.43 36.89 L228.68 36.3 L228.92 35.7 L229.15 35.09 L229.36 34.48 L229.55 33.87 L229.73 33.25 L229.89 32.63 L230.04 32 L230.18 31.37 L230.29 30.74 L230.4 30.1 L230.48 29.46 L230.55 28.82 L230.61 28.18 L230.65 27.54 L230.67 26.89 L230.68 26.25 L230.67 25.61 L230.65 24.96 L230.61 24.32 L230.55 23.68 L230.48 23.04 L230.4 22.4 L230.29 21.76 L230.18 21.13 L230.04 20.5 L229.89 19.87 L229.73 19.25 L229.55 18.63 L229.36 18.02 L229.15 17.41 L228.92 16.8 L228.68 16.2 L228.43 15.61 L228.16 15.03 L227.88 14.45 L227.58 13.88 L227.27 13.31 L226.95 12.75 L226.61 12.21 L226.26 11.67 L225.89 11.14 L225.51 10.61 L225.12 10.1 L224.72 9.6 L224.31 9.1 L223.88 8.62 L223.44 8.15 L222.99 7.69 L222.53 7.24 L222.06 6.8 L221.58 6.37 L221.08 5.96 L220.58 5.56 L220.07 5.17 L219.54 4.79 L219.01 4.42 L218.47 4.07 L217.93 3.73 L217.37 3.41 L216.8 3.1 L216.23 2.8 L215.65 2.52 L215.07 2.25 L214.48 2 L213.88 1.76 L213.27 1.53 L212.66 1.32 L212.05 1.13 L211.43 0.95 L210.81 0.79 L210.18 0.64 L209.55 0.5 L208.92 0.39 L208.28 0.28 L207.64 0.2 L207 0.13 L206.36 0.07 L205.72 0.03 L205.07 0.01 L204.43 0 L196.43 0 L179.43 0 L179.43 39.5 Z M204.43 14 L204.67 14 L204.91 14.02 L205.15 14.03 L205.39 14.06 L205.62 14.1 L205.86 14.14 L206.1 14.19 L206.33 14.24 L206.57 14.31 L206.8 14.38 L207.03 14.46 L207.26 14.55 L207.49 14.64 L207.72 14.75 L207.94 14.85 L208.16 14.97 L208.39 15.09 L208.6 15.22 L208.82 15.36 L209.03 15.51 L209.24 15.66 L209.45 15.81 L209.65 15.98 L209.85 16.15 L210.05 16.33 L210.24 16.51 L210.43 16.7 L210.62 16.89 L210.8 17.1 L210.98 17.3 L211.16 17.52 L211.33 17.73 L211.5 17.96 L211.66 18.19 L211.82 18.42 L211.97 18.66 L212.12 18.91 L212.27 19.15 L212.41 19.41 L212.55 19.67 L212.68 19.93 L212.8 20.2 L212.92 20.47 L213.04 20.74 L213.15 21.02 L213.25 21.3 L213.35 21.58 L213.45 21.87 L213.54 22.16 L213.62 22.45 L213.7 22.75 L213.77 23.05 L213.84 23.35 L213.9 23.65 L213.95 23.96 L214 24.26 L214.05 24.57 L214.08 24.88 L214.12 25.19 L214.14 25.5 L214.16 25.81 L214.18 26.12 L214.19 26.44 L214.19 26.75 L214.19 27.06 L214.18 27.38 L214.16 27.69 L214.14 28 L214.12 28.31 L214.08 28.62 L214.05 28.93 L214 29.24 L213.95 29.54 L213.9 29.85 L213.84 30.15 L213.77 30.45 L213.7 30.75 L213.62 31.05 L213.54 31.34 L213.45 31.63 L213.35 31.92 L213.25 32.2 L213.15 32.48 L213.04 32.76 L212.92 33.03 L212.8 33.3 L212.68 33.57 L212.55 33.83 L212.41 34.09 L212.27 34.35 L212.12 34.59 L211.97 34.84 L211.82 35.08 L211.66 35.31 L211.5 35.54 L211.33 35.77 L211.16 35.98 L210.98 36.2 L210.8 36.4 L210.62 36.61 L210.43 36.8 L210.24 36.99 L210.05 37.17 L209.85 37.35 L209.65 37.52 L209.45 37.69 L209.24 37.84 L209.03 37.99 L208.82 38.14 L208.6 38.28 L208.39 38.41 L208.16 38.53 L207.94 38.65 L207.72 38.75 L207.49 38.86 L207.26 38.95 L207.03 39.04 L206.8 39.12 L206.57 39.19 L206.33 39.26 L206.1 39.31 L205.86 39.36 L205.62 39.4 L205.39 39.44 L205.15 39.47 L204.91 39.48 L204.67 39.5 L204.43 39.5 L196.43 39.5 L196.43 14 L204.43 14 Z M207.8 52.51 L208.18 52.52 L208.55 52.55 L208.93 52.58 L209.3 52.63 L209.67 52.68 L210.04 52.75 L210.41 52.82 L210.77 52.91 L211.14 53 L211.5 53.11 L211.86 53.22 L212.22 53.35 L212.57 53.48 L212.92 53.62 L213.27 53.78 L213.61 53.94 L213.95 54.11 L214.29 54.29 L214.62 54.48 L214.95 54.68 L215.28 54.88 L215.59 55.1 L215.91 55.32 L216.22 55.56 L216.52 55.8 L216.82 56.05 L217.11 56.3 L217.4 56.57 L217.68 56.84 L217.95 57.12 L218.22 57.41 L218.48 57.7 L218.74 58 L218.99 58.31 L219.23 58.62 L219.46 58.94 L219.69 59.27 L219.91 59.61 L220.12 59.94 L220.32 60.29 L220.52 60.64 L220.71 60.99 L220.89 61.35 L221.06 61.72 L221.22 62.09 L221.38 62.46 L221.53 62.84 L221.67 63.22 L221.8 63.61 L221.92 64 L222.03 64.39 L222.14 64.78 L222.23 65.18 L222.32 65.58 L222.4 65.98 L222.47 66.39 L222.52 66.79 L222.58 67.2 L222.62 67.61 L222.65 68.02 L222.67 68.43 L222.69 68.84 L222.69 69.25 L222.69 69.66 L222.67 70.07 L222.65 70.48 L222.62 70.89 L222.58 71.3 L222.52 71.71 L222.47 72.11 L222.4 72.52 L222.32 72.92 L222.23 73.32 L222.14 73.72 L222.03 74.11 L221.92 74.5 L221.8 74.89 L221.67 75.28 L221.53 75.66 L221.38 76.04 L221.22 76.41 L221.06 76.78 L220.89 77.15 L220.71 77.51 L220.52 77.86 L220.32 78.21 L220.12 78.56 L219.91 78.89 L219.69 79.23 L219.46 79.56 L219.23 79.88 L218.99 80.19 L218.74 80.5 L218.48 80.8 L218.22 81.09 L217.95 81.38 L217.68 81.66 L217.4 81.93 L217.11 82.2 L216.82 82.45 L216.52 82.7 L216.22 82.94 L215.91 83.18 L215.59 83.4 L215.28 83.62 L214.95 83.82 L214.62 84.02 L214.29 84.21 L213.95 84.39 L213.61 84.56 L213.27 84.72 L212.92 84.88 L212.57 85.02 L212.22 85.15 L211.86 85.28 L211.5 85.39 L211.14 85.5 L210.77 85.59 L210.41 85.68 L210.04 85.75 L209.67 85.82 L209.3 85.87 L208.93 85.92 L208.55 85.95 L208.18 85.98 L207.8 85.99 L207.43 86 L196.43 86 L196.43 52.5 L207.43 52.5 Z"></path><rect x="269.18" y="-4" width="2" height="108" fill="#C9D6D2"></rect><g transform="translate(301.18 0) scale(1)"><path fill="#F4A632" d="M145 60 L145 73.5 L91.5 73.5 L91.5 60 Z"></path><path fill="#0F3D37" fill-rule="evenodd" d="M257.27 -27 L257.27 -40.2 L246.18 -40.2 L244.52 -40.23 L243.01 -40.34 L241.65 -40.51 L240.43 -40.75 L239.35 -41.06 L238.41 -41.44 L237.62 -41.88 L236.97 -42.4 L236.47 -42.98 L236.11 -43.64 L235.9 -44.36 L235.82 -45.15 L235.84 -45.42 L235.87 -45.69 L235.92 -45.95 L236 -46.2 L236.1 -46.45 L236.22 -46.69 L236.36 -46.92 L236.53 -47.15 L236.71 -47.37 L236.92 -47.59 L237.15 -47.8 L237.4 -48 L237.67 -48.19 L237.95 -48.37 L238.25 -48.53 L238.56 -48.67 L238.88 -48.79 L239.22 -48.9 L239.57 -48.99 L239.93 -49.07 L240.31 -49.12 L240.7 -49.17 L241.11 -49.19 L241.53 -49.2 L242.29 -49.18 L243.05 -49.1 L243.78 -48.98 L244.51 -48.8 L245.22 -48.58 L245.91 -48.3 L246.59 -47.98 L247.26 -47.6 L247.91 -47.18 L248.55 -46.7 L249.17 -46.17 L249.78 -45.6 L256.98 -55.65 L256.47 -56.17 L255.95 -56.66 L255.41 -57.14 L254.86 -57.6 L254.29 -58.04 L253.71 -58.46 L253.12 -58.87 L252.51 -59.25 L251.88 -59.62 L251.25 -59.96 L250.59 -60.29 L249.93 -60.6 L249.25 -60.89 L248.57 -61.15 L247.88 -61.39 L247.19 -61.6 L246.5 -61.79 L245.8 -61.95 L245.1 -62.09 L244.39 -62.2 L243.68 -62.29 L242.97 -62.35 L242.25 -62.39 L241.53 -62.4 L240.34 -62.37 L239.2 -62.29 L238.09 -62.14 L237.02 -61.94 L235.98 -61.68 L234.98 -61.37 L234.02 -61 L233.09 -60.57 L232.2 -60.08 L231.35 -59.54 L230.53 -58.93 L229.75 -58.28 L229.02 -57.57 L228.35 -56.84 L227.75 -56.08 L227.21 -55.28 L226.73 -54.46 L226.32 -53.61 L225.97 -52.72 L225.68 -51.81 L225.46 -50.86 L225.3 -49.89 L225.21 -48.88 L225.18 -47.85 L225.2 -47.08 L225.26 -46.34 L225.36 -45.61 L225.51 -44.9 L225.7 -44.21 L225.93 -43.54 L226.2 -42.88 L226.51 -42.25 L226.86 -41.63 L227.26 -41.04 L227.7 -40.46 L228.18 -39.9 L228.03 -39.15 L221.72 -39.15 L221.72 -27 Z M137 -9.2 L120 -15 L120 100 L137 100 Z M248 -9.2 L231 -15 L231 100 L248 100 Z M0.08 74.06 L0.13 74.74 L0.21 75.43 L0.3 76.11 L0.41 76.79 L0.54 77.46 L0.68 78.13 L0.84 78.8 L1.01 79.47 L1.21 80.13 L1.41 80.78 L1.64 81.43 L1.88 82.08 L2.13 82.72 L2.4 83.35 L2.69 83.97 L2.99 84.59 L3.31 85.2 L3.64 85.8 L3.98 86.39 L4.34 86.98 L4.72 87.56 L5.11 88.12 L5.51 88.68 L5.93 89.23 L6.36 89.76 L6.8 90.29 L7.25 90.8 L7.72 91.31 L8.2 91.8 L8.69 92.28 L9.2 92.75 L9.71 93.2 L10.24 93.64 L10.77 94.07 L11.32 94.49 L11.88 94.89 L12.44 95.28 L13.02 95.66 L13.61 96.02 L14.2 96.36 L14.8 96.69 L15.41 97.01 L16.03 97.31 L16.65 97.6 L17.28 97.87 L17.92 98.12 L18.57 98.36 L19.22 98.59 L19.87 98.79 L20.53 98.99 L21.2 99.16 L21.87 99.32 L22.54 99.46 L23.21 99.59 L23.89 99.7 L24.57 99.79 L25.26 99.87 L25.94 99.92 L26.63 99.97 L27.31 99.99 L28 100 L100 100 L100 72 L100 48 L83 48 L83 75 L83 86 L28 86 L27.73 86 L27.46 85.99 L27.19 85.97 L26.92 85.95 L26.65 85.92 L26.39 85.88 L26.12 85.84 L25.85 85.79 L25.59 85.73 L25.33 85.67 L25.07 85.6 L24.81 85.53 L24.55 85.44 L24.29 85.36 L24.04 85.26 L23.79 85.16 L23.54 85.06 L23.3 84.94 L23.05 84.83 L22.81 84.7 L22.58 84.57 L22.34 84.44 L22.12 84.29 L21.89 84.15 L21.67 83.99 L21.45 83.84 L21.23 83.67 L21.02 83.5 L20.82 83.33 L20.61 83.15 L20.42 82.97 L20.22 82.78 L20.03 82.58 L19.85 82.39 L19.67 82.18 L19.5 81.98 L19.33 81.77 L19.16 81.55 L19.01 81.33 L18.85 81.11 L18.71 80.88 L18.56 80.66 L18.43 80.42 L18.3 80.19 L18.17 79.95 L18.06 79.7 L17.94 79.46 L17.84 79.21 L17.74 78.96 L17.64 78.71 L17.56 78.45 L17.47 78.19 L17.4 77.93 L17.33 77.67 L17.27 77.41 L17.21 77.15 L17.16 76.88 L17.12 76.61 L17.08 76.35 L17.05 76.08 L17.03 75.81 L17.01 75.54 L17 75.27 L17 75 L17 60 L0 60 L0 72 L0.01 72.69 L0.03 73.37 Z M213.8 70.82 L213.72 70.19 L213.62 69.55 L213.5 68.93 L213.37 68.3 L213.22 67.68 L213.06 67.07 L212.88 66.45 L212.69 65.84 L212.48 65.24 L212.26 64.64 L212.02 64.05 L211.77 63.46 L211.5 62.88 L211.22 62.31 L210.93 61.74 L210.62 61.18 L210.3 60.63 L209.97 60.09 L209.62 59.56 L209.26 59.03 L208.88 58.51 L208.5 58 L208.1 57.51 L207.69 57.02 L207.26 56.54 L206.83 56.07 L206.38 55.62 L205.93 55.17 L205.46 54.74 L204.98 54.31 L204.49 53.9 L204 53.5 L203.49 53.12 L202.97 52.74 L202.44 52.38 L201.91 52.03 L201.37 51.7 L200.82 51.38 L200.26 51.07 L199.69 50.78 L199.12 50.5 L198.54 50.23 L197.95 49.98 L197.36 49.74 L196.76 49.52 L196.16 49.31 L195.55 49.12 L194.93 48.94 L194.32 48.78 L193.7 48.63 L193.07 48.5 L192.45 48.38 L191.81 48.28 L191.18 48.2 L190.55 48.13 L189.91 48.07 L189.28 48.03 L188.64 48.01 L188 48 L187.36 48.01 L186.72 48.03 L186.09 48.07 L185.45 48.13 L184.82 48.2 L184.19 48.28 L183.55 48.38 L182.93 48.5 L182.3 48.63 L181.68 48.78 L181.07 48.94 L180.45 49.12 L179.84 49.31 L179.24 49.52 L178.64 49.74 L178.05 49.98 L177.46 50.23 L176.88 50.5 L176.31 50.78 L175.74 51.07 L175.18 51.38 L174.63 51.7 L174.09 52.03 L173.56 52.38 L173.03 52.74 L172.51 53.12 L172 53.5 L171.51 53.9 L171.02 54.31 L170.54 54.74 L170.07 55.17 L169.62 55.62 L169.17 56.07 L168.74 56.54 L168.31 57.02 L167.9 57.51 L167.5 58 L167.12 58.51 L166.74 59.03 L166.38 59.56 L166.03 60.09 L165.7 60.63 L165.38 61.18 L165.07 61.74 L164.78 62.31 L164.5 62.88 L164.23 63.46 L163.98 64.05 L163.74 64.64 L163.52 65.24 L163.31 65.84 L163.12 66.45 L162.94 67.07 L162.78 67.68 L162.63 68.3 L162.5 68.93 L162.38 69.55 L162.28 70.19 L162.2 70.82 L162.13 71.45 L162.07 72.09 L162.03 72.72 L162.01 73.36 L162 74 L162.01 74.64 L162.03 75.28 L162.07 75.91 L162.13 76.55 L162.2 77.18 L162.28 77.81 L162.38 78.45 L162.5 79.07 L162.63 79.7 L162.78 80.32 L162.94 80.93 L163.12 81.55 L163.31 82.16 L163.52 82.76 L163.74 83.36 L163.98 83.95 L164.23 84.54 L164.5 85.12 L164.78 85.69 L165.07 86.26 L165.38 86.82 L165.7 87.37 L166.03 87.91 L166.38 88.44 L166.74 88.97 L167.12 89.49 L167.5 90 L167.9 90.49 L168.31 90.98 L168.74 91.46 L169.17 91.93 L169.62 92.38 L170.07 92.83 L170.54 93.26 L171.02 93.69 L171.51 94.1 L172 94.5 L172.51 94.88 L173.03 95.26 L173.56 95.62 L174.09 95.97 L174.63 96.3 L175.18 96.62 L175.74 96.93 L176.31 97.22 L176.88 97.5 L177.46 97.77 L178.05 98.02 L178.64 98.26 L179.24 98.48 L179.84 98.69 L180.45 98.88 L181.07 99.06 L181.68 99.22 L182.3 99.37 L182.93 99.5 L183.55 99.62 L184.19 99.72 L184.82 99.8 L185.45 99.87 L186.09 99.93 L186.72 99.97 L187.36 99.99 L188 100 L188.64 99.99 L189.28 99.97 L189.91 99.93 L190.55 99.87 L191.18 99.8 L191.81 99.72 L192.45 99.62 L193.07 99.5 L193.7 99.37 L194.32 99.22 L194.93 99.06 L195.55 98.88 L196.16 98.69 L196.76 98.48 L197 98.39 L197 100 L197 100.41 L196.98 100.81 L196.96 101.22 L196.93 101.63 L196.89 102.03 L196.84 102.44 L196.79 102.84 L196.72 103.24 L196.65 103.65 L196.56 104.04 L196.47 104.44 L196.37 104.84 L196.27 105.23 L196.15 105.62 L196.02 106.01 L195.89 106.39 L195.75 106.78 L195.6 107.16 L195.44 107.53 L195.28 107.9 L195.1 108.27 L194.92 108.64 L194.73 109 L194.54 109.36 L194.33 109.71 L194.12 110.06 L193.9 110.4 L193.67 110.74 L193.44 111.07 L193.2 111.4 L192.95 111.72 L192.7 112.04 L192.43 112.36 L192.17 112.66 L191.89 112.96 L191.61 113.26 L191.32 113.55 L191.03 113.83 L190.73 114.11 L190.42 114.38 L190.11 114.64 L189.8 114.9 L189.47 115.14 L189.15 115.39 L188.81 115.62 L188.48 115.85 L188.13 116.07 L187.79 116.29 L187.43 116.49 L187.08 116.69 L186.72 116.88 L186.35 117.06 L185.99 117.24 L185.61 117.41 L185.24 117.57 L184.86 117.72 L184.48 117.86 L184.09 118 L183.71 118.12 L183.32 118.24 L182.92 118.35 L182.53 118.45 L182.13 118.55 L181.73 118.63 L181.33 118.71 L180.93 118.77 L180.53 118.83 L180.12 118.88 L179.72 118.92 L179.31 118.95 L178.9 118.98 L178.5 118.99 L178.09 119 L177.68 119 L177.27 118.99 L176.87 118.97 L176.46 118.94 L176.06 118.9 L175.65 118.85 L175.25 118.8 L174.84 118.74 L174.44 118.66 L174.04 118.58 L173.65 118.49 L173.25 118.4 L172.86 118.29 L172.46 118.18 L172.08 118.05 L171.69 117.92 L171.31 117.78 L170.93 117.63 L170.55 117.48 L170.18 117.31 L169.81 117.14 L169.44 116.96 L169.08 116.78 L161.1 131.79 L161.78 132.14 L162.48 132.48 L163.18 132.81 L163.89 133.12 L164.6 133.41 L165.32 133.69 L166.04 133.96 L166.78 134.21 L167.51 134.44 L168.25 134.66 L169 134.86 L169.75 135.04 L170.5 135.21 L171.26 135.36 L172.02 135.5 L172.78 135.62 L173.55 135.72 L174.32 135.81 L175.08 135.88 L175.85 135.94 L176.63 135.97 L177.4 135.99 L178.17 136 L178.94 135.99 L179.71 135.96 L180.49 135.91 L181.25 135.85 L182.02 135.77 L182.79 135.68 L183.55 135.57 L184.32 135.44 L185.07 135.3 L185.83 135.14 L186.58 134.96 L187.33 134.77 L188.07 134.56 L188.81 134.34 L189.55 134.1 L190.28 133.84 L191 133.57 L191.72 133.28 L192.43 132.98 L193.13 132.67 L193.83 132.33 L194.52 131.99 L195.2 131.62 L195.88 131.25 L196.54 130.86 L197.2 130.45 L197.85 130.03 L198.49 129.6 L199.12 129.16 L199.74 128.7 L200.35 128.22 L200.95 127.74 L201.54 127.24 L202.12 126.73 L202.69 126.2 L203.24 125.67 L203.79 125.12 L204.32 124.56 L204.84 123.99 L205.35 123.41 L205.84 122.82 L206.33 122.22 L206.8 121.6 L207.25 120.98 L207.7 120.35 L208.13 119.71 L208.54 119.05 L208.95 118.4 L209.33 117.73 L209.71 117.05 L210.06 116.37 L210.41 115.68 L210.74 114.98 L211.05 114.27 L211.35 113.56 L211.63 112.84 L211.9 112.12 L212.15 111.39 L212.39 110.65 L212.61 109.91 L212.81 109.17 L213 108.42 L213.17 107.66 L213.33 106.91 L213.47 106.15 L213.59 105.39 L213.7 104.62 L213.79 103.85 L213.87 103.09 L213.93 102.32 L213.97 101.54 L213.99 100.77 L214 100 L214 74 L213.99 73.36 L213.97 72.72 L213.93 72.09 L213.87 71.45 Z M195.95 73.43 L195.93 73.66 L195.9 73.89 L195.86 74.12 L195.82 74.35 L195.77 74.58 L195.72 74.81 L195.66 75.03 L195.59 75.26 L195.52 75.48 L195.44 75.7 L195.36 75.92 L195.28 76.14 L195.18 76.35 L195.09 76.56 L194.99 76.77 L194.88 76.98 L194.77 77.18 L194.65 77.38 L194.53 77.58 L194.4 77.78 L194.27 77.97 L194.13 78.16 L193.99 78.34 L193.84 78.53 L193.69 78.71 L193.54 78.88 L193.38 79.05 L193.22 79.22 L193.05 79.38 L192.88 79.54 L192.71 79.69 L192.53 79.84 L192.34 79.99 L192.16 80.13 L191.97 80.27 L191.78 80.4 L191.58 80.53 L191.38 80.65 L191.18 80.77 L190.98 80.88 L190.77 80.99 L190.56 81.09 L190.35 81.18 L190.14 81.28 L189.92 81.36 L189.7 81.44 L189.48 81.52 L189.26 81.59 L189.03 81.66 L188.81 81.72 L188.58 81.77 L188.35 81.82 L188.12 81.86 L187.89 81.9 L187.66 81.93 L187.43 81.95 L187.2 81.97 L186.97 81.99 L186.73 82 L186.5 82 L186.27 82 L186.03 81.99 L185.8 81.97 L185.57 81.95 L185.34 81.93 L185.11 81.9 L184.88 81.86 L184.65 81.82 L184.42 81.77 L184.19 81.72 L183.97 81.66 L183.74 81.59 L183.52 81.52 L183.3 81.44 L183.08 81.36 L182.86 81.28 L182.65 81.18 L182.44 81.09 L182.23 80.99 L182.02 80.88 L181.82 80.77 L181.62 80.65 L181.42 80.53 L181.22 80.4 L181.03 80.27 L180.84 80.13 L180.66 79.99 L180.47 79.84 L180.29 79.69 L180.12 79.54 L179.95 79.38 L179.78 79.22 L179.62 79.05 L179.46 78.88 L179.31 78.71 L179.16 78.53 L179.01 78.34 L178.87 78.16 L178.73 77.97 L178.6 77.78 L178.47 77.58 L178.35 77.38 L178.23 77.18 L178.12 76.98 L178.01 76.77 L177.91 76.56 L177.82 76.35 L177.72 76.14 L177.64 75.92 L177.56 75.7 L177.48 75.48 L177.41 75.26 L177.34 75.03 L177.28 74.81 L177.23 74.58 L177.18 74.35 L177.14 74.12 L177.1 73.89 L177.07 73.66 L177.05 73.43 L177.03 73.2 L177.01 72.97 L177 72.73 L177 72.5 L177 72.27 L177.01 72.03 L177.03 71.8 L177.05 71.57 L177.07 71.34 L177.1 71.11 L177.14 70.88 L177.18 70.65 L177.23 70.42 L177.28 70.19 L177.34 69.97 L177.41 69.74 L177.48 69.52 L177.56 69.3 L177.64 69.08 L177.72 68.86 L177.82 68.65 L177.91 68.44 L178.01 68.23 L178.12 68.02 L178.23 67.82 L178.35 67.62 L178.47 67.42 L178.6 67.22 L178.73 67.03 L178.87 66.84 L179.01 66.66 L179.16 66.47 L179.31 66.29 L179.46 66.12 L179.62 65.95 L179.78 65.78 L179.95 65.62 L180.12 65.46 L180.29 65.31 L180.47 65.16 L180.66 65.01 L180.84 64.87 L181.03 64.73 L181.22 64.6 L181.42 64.47 L181.62 64.35 L181.82 64.23 L182.02 64.12 L182.23 64.01 L182.44 63.91 L182.65 63.82 L182.86 63.72 L183.08 63.64 L183.3 63.56 L183.52 63.48 L183.74 63.41 L183.97 63.34 L184.19 63.28 L184.42 63.23 L184.65 63.18 L184.88 63.14 L185.11 63.1 L185.34 63.07 L185.57 63.05 L185.8 63.03 L186.03 63.01 L186.27 63 L186.5 63 L186.73 63 L186.97 63.01 L187.2 63.03 L187.43 63.05 L187.66 63.07 L187.89 63.1 L188.12 63.14 L188.35 63.18 L188.58 63.23 L188.81 63.28 L189.03 63.34 L189.26 63.41 L189.48 63.48 L189.7 63.56 L189.92 63.64 L190.14 63.72 L190.35 63.82 L190.56 63.91 L190.77 64.01 L190.98 64.12 L191.18 64.23 L191.38 64.35 L191.58 64.47 L191.78 64.6 L191.97 64.73 L192.16 64.87 L192.34 65.01 L192.53 65.16 L192.71 65.31 L192.88 65.46 L193.05 65.62 L193.22 65.78 L193.38 65.95 L193.54 66.12 L193.69 66.29 L193.84 66.47 L193.99 66.66 L194.13 66.84 L194.27 67.03 L194.4 67.22 L194.53 67.42 L194.65 67.62 L194.77 67.82 L194.88 68.02 L194.99 68.23 L195.09 68.44 L195.18 68.65 L195.28 68.86 L195.36 69.08 L195.44 69.3 L195.52 69.52 L195.59 69.74 L195.66 69.97 L195.72 70.19 L195.77 70.42 L195.82 70.65 L195.86 70.88 L195.9 71.11 L195.93 71.34 L195.95 71.57 L195.97 71.8 L195.99 72.03 L196 72.27 L196 72.5 L196 72.73 L195.99 72.97 L195.97 73.2 Z M55.98 121.34 L55.96 121.12 L55.93 120.9 L55.9 120.68 L55.87 120.46 L55.83 120.24 L55.78 120.03 L55.73 119.81 L55.67 119.6 L55.61 119.39 L55.55 119.18 L55.47 118.97 L55.4 118.76 L55.31 118.56 L55.23 118.35 L55.14 118.15 L55.04 117.95 L54.94 117.76 L54.83 117.56 L54.72 117.37 L54.6 117.19 L54.48 117 L54.36 116.82 L54.23 116.64 L54.1 116.46 L53.96 116.29 L53.81 116.12 L53.67 115.96 L53.52 115.79 L53.36 115.64 L53.21 115.48 L53.04 115.33 L52.88 115.19 L52.71 115.04 L52.54 114.9 L52.36 114.77 L52.18 114.64 L52 114.52 L51.81 114.4 L51.63 114.28 L51.44 114.17 L51.24 114.06 L51.05 113.96 L50.85 113.86 L50.65 113.77 L50.44 113.69 L50.24 113.6 L50.03 113.53 L49.82 113.45 L49.61 113.39 L49.4 113.33 L49.19 113.27 L48.97 113.22 L48.76 113.17 L48.54 113.13 L48.32 113.1 L48.1 113.07 L47.88 113.04 L47.66 113.02 L47.44 113.01 L47.22 113 L47 113 L46.78 113 L46.56 113.01 L46.34 113.02 L46.12 113.04 L45.9 113.07 L45.68 113.1 L45.46 113.13 L45.24 113.17 L45.03 113.22 L44.81 113.27 L44.6 113.33 L44.39 113.39 L44.18 113.45 L43.97 113.53 L43.76 113.6 L43.56 113.69 L43.35 113.77 L43.15 113.86 L42.95 113.96 L42.76 114.06 L42.56 114.17 L42.37 114.28 L42.19 114.4 L42 114.52 L41.82 114.64 L41.64 114.77 L41.46 114.9 L41.29 115.04 L41.12 115.19 L40.96 115.33 L40.79 115.48 L40.64 115.64 L40.48 115.79 L40.33 115.96 L40.19 116.12 L40.04 116.29 L39.9 116.46 L39.77 116.64 L39.64 116.82 L39.52 117 L39.4 117.19 L39.28 117.37 L39.17 117.56 L39.06 117.76 L38.96 117.95 L38.86 118.15 L38.77 118.35 L38.69 118.56 L38.6 118.76 L38.53 118.97 L38.45 119.18 L38.39 119.39 L38.33 119.6 L38.27 119.81 L38.22 120.03 L38.17 120.24 L38.13 120.46 L38.1 120.68 L38.07 120.9 L38.04 121.12 L38.02 121.34 L38.01 121.56 L38 121.78 L38 122 L38 122.22 L38.01 122.44 L38.02 122.66 L38.04 122.88 L38.07 123.1 L38.1 123.32 L38.13 123.54 L38.17 123.76 L38.22 123.97 L38.27 124.19 L38.33 124.4 L38.39 124.61 L38.45 124.82 L38.53 125.03 L38.6 125.24 L38.69 125.44 L38.77 125.65 L38.86 125.85 L38.96 126.05 L39.06 126.24 L39.17 126.44 L39.28 126.63 L39.4 126.81 L39.52 127 L39.64 127.18 L39.77 127.36 L39.9 127.54 L40.04 127.71 L40.19 127.88 L40.33 128.04 L40.48 128.21 L40.64 128.36 L40.79 128.52 L40.96 128.67 L41.12 128.81 L41.29 128.96 L41.46 129.1 L41.64 129.23 L41.82 129.36 L42 129.48 L42.19 129.6 L42.37 129.72 L42.56 129.83 L42.76 129.94 L42.95 130.04 L43.15 130.14 L43.35 130.23 L43.56 130.31 L43.76 130.4 L43.97 130.47 L44.18 130.55 L44.39 130.61 L44.6 130.67 L44.81 130.73 L45.03 130.78 L45.24 130.83 L45.46 130.87 L45.68 130.9 L45.9 130.93 L46.12 130.96 L46.34 130.98 L46.56 130.99 L46.78 131 L47 131 L47.22 131 L47.44 130.99 L47.66 130.98 L47.88 130.96 L48.1 130.93 L48.32 130.9 L48.54 130.87 L48.76 130.83 L48.97 130.78 L49.19 130.73 L49.4 130.67 L49.61 130.61 L49.82 130.55 L50.03 130.47 L50.24 130.4 L50.44 130.31 L50.65 130.23 L50.85 130.14 L51.05 130.04 L51.24 129.94 L51.44 129.83 L51.63 129.72 L51.81 129.6 L52 129.48 L52.18 129.36 L52.36 129.23 L52.54 129.1 L52.71 128.96 L52.88 128.81 L53.04 128.67 L53.21 128.52 L53.36 128.36 L53.52 128.21 L53.67 128.04 L53.81 127.88 L53.96 127.71 L54.1 127.54 L54.23 127.36 L54.36 127.18 L54.48 127 L54.6 126.81 L54.72 126.63 L54.83 126.44 L54.94 126.24 L55.04 126.05 L55.14 125.85 L55.23 125.65 L55.31 125.44 L55.4 125.24 L55.47 125.03 L55.55 124.82 L55.61 124.61 L55.67 124.4 L55.73 124.19 L55.78 123.97 L55.83 123.76 L55.87 123.54 L55.9 123.32 L55.93 123.1 L55.96 122.88 L55.98 122.66 L55.99 122.44 L56 122.22 L56 122 L56 121.78 L55.99 121.56 Z"></path></g></svg></a>
+    <nav class="nav" id="nav" data-i18n-aria="nav_label">
       <a href="#fawtara" data-i18n="nav_fawtara"></a>
+      <a href="#income-tax" data-i18n="nav_check"></a>
       <a href="#dates" data-i18n="nav_dates"></a>
       <a href="#contact" data-i18n="nav_contact"></a>
     </nav>
-    <button type="button" class="lang" id="langBtn"></button>
+    <div class="tools">
+      <button type="button" class="lang" id="langBtn"></button>
+      <a class="btn btn-primary btn-sm" href="#contact" data-i18n="head_cta"></a>
+      <button type="button" class="menu" id="menuBtn" aria-expanded="false" aria-controls="nav" data-i18n-aria="menu_label"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></button>
+    </div>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap hero-in">
-      <div>
-        <p class="eyebrow" data-i18n="hero_eyebrow"></p>
-        <h1 data-i18n="hero_h1"></h1>
-        <p class="lead" data-i18n="hero_lead"></p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#fawtara" data-i18n="hero_cta1"></a>
-          <a class="btn btn-ghost" href="#check" data-i18n="hero_cta2"></a>
-        </div>
-        <p class="countdown"><span class="fig" id="cdNum"></span><span id="cdText"></span></p>
-        <p class="regs"><span class="dot" aria-hidden="true"></span><span data-i18n="hero_regs"></span></p>
-      </div>
-      <aside class="sheet paper" data-i18n-aria="sheet_title">
-        <div class="ledger-head"><span data-i18n="sheet_title"></span><span class="ref" data-i18n="ref_dates"></span></div>
-        <dl class="figs">
-          <div><dt><span data-i18n="fig1_d"></span><small>2027</small></dt><dd data-i18n="fig1"></dd></div>
-          <div><dt><span data-i18n="fig2_d"></span><small>2027</small></dt><dd data-i18n="fig2"></dd></div>
-          <div><dt><span data-i18n="fig3_d"></span><small>2028</small></dt><dd data-i18n="fig3"></dd></div>
-        </dl>
-      </aside>
+<main id="main">
+  <section class="wrap hero" id="top">
+    <span class="rule" aria-hidden="true"></span>
+    <p class="eyebrow" data-i18n="hero_eyebrow"></p>
+    <h1 data-i18n="hero_h1"></h1>
+    <p class="translation" id="heroSub"></p>
+    <p class="lead" data-i18n="hero_lead"></p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact" data-i18n="hero_cta1"></a>
+      <a class="btn btn-secondary" href="#income-tax" data-i18n="hero_cta2"></a>
     </div>
   </section>
 
-  <section class="sec" id="check">
+  <section class="wrap">
+    <div class="panel" aria-labelledby="datesTitle">
+      <div class="panel-cap">
+        <span class="panel-title" id="datesTitle" data-i18n="sheet_title"></span>
+        <span class="chip" id="cdChip"></span>
+        <span class="panel-src" data-i18n="ref_dates"></span>
+      </div>
+      <div class="drow head"><span data-i18n="col_date"></span><span data-i18n="col_obl"></span><span data-i18n="col_who"></span></div>
+      <div class="drow"><span class="ddate" data-i18n="d1"></span><span data-i18n="o1"></span><span class="dscope" data-i18n="w1"></span></div>
+      <div class="drow"><span class="ddate" data-i18n="d2"></span><span data-i18n="o2"></span><span class="dscope" data-i18n="w2"></span></div>
+      <div class="drow"><span class="ddate" data-i18n="d3"></span><span data-i18n="o3"></span><span class="dscope" data-i18n="w3"></span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
     <div class="wrap">
       <header class="sec-head">
+        <span class="rule" aria-hidden="true"></span>
+        <p class="eyebrow" data-i18n="svc_eyebrow"></p>
+        <h2 data-i18n="svc_h2"></h2>
+        <p class="sec-lead" data-i18n="svc_lead"></p>
+      </header>
+      <div class="svc">
+        <article class="card"><span class="tag" lang="en" dir="ltr" data-i18n="svc1_tag"></span><h3 data-i18n="svc1_h"></h3><p data-i18n="svc1_p"></p></article>
+        <article class="card"><span class="tag" lang="en" dir="ltr" data-i18n="svc2_tag"></span><h3 data-i18n="svc2_h"></h3><p data-i18n="svc2_p"></p></article>
+        <article class="card"><span class="tag" lang="en" dir="ltr" data-i18n="svc3_tag"></span><h3 data-i18n="svc3_h"></h3><p data-i18n="svc3_p"></p><a class="btn-text" id="svc3Link" hidden target="_blank" rel="noopener"><span data-i18n="btn_tool_short"></span><svg class="arrow" aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11M10 5l5 5-5 5" fill="none" stroke="#f4a632" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></article>
+      </div>
+      <div class="limits">
+        <h3 data-i18n="limits_h"></h3>
+        <p data-i18n="lim1"></p>
+        <p data-i18n="lim2"></p>
+        <p data-i18n="lim3"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="fawtara">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="rule" aria-hidden="true"></span>
+        <p class="eyebrow" data-i18n="faw_eyebrow"></p>
+        <h2 data-i18n="faw_h2"></h2>
+        <p class="sec-lead" data-i18n="faw_intro"></p>
+      </header>
+      <div class="tool">
+        <form class="sheet form" id="fawForm" novalidate>
+          <div class="form-bar">
+            <p class="ex-note" id="fawExNote" data-i18n="chk_example"></p>
+            <div class="form-actions">
+              <button type="button" class="btn-text" id="fawClear" data-i18n="btn_clear"></button>
+              <button type="button" class="btn-text" id="fawLoad" data-i18n="btn_example"></button>
+            </div>
+          </div>
+          <fieldset>
+            <legend data-i18n="grp_business"></legend>
+            <div class="q">
+              <span class="q-label" id="vatL" data-i18n="q_vat"></span>
+              <div class="seg" role="radiogroup" aria-labelledby="vatL">
+                <input type="radio" name="vat" id="vatY" value="yes" checked><label for="vatY" data-i18n="vat_yes"></label>
+                <input type="radio" name="vat" id="vatN" value="no"><label for="vatN" data-i18n="vat_no"></label>
+              </div>
+            </div>
+            <div class="line"><label for="supplies" data-i18n="in_supplies"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="supplies" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="grp_ready"></legend>
+            <div class="checks">
+              <label class="check"><input type="checkbox" id="rd1"><span data-i18n="rd1"></span></label>
+              <label class="check"><input type="checkbox" id="rd2"><span data-i18n="rd2"></span></label>
+              <label class="check"><input type="checkbox" id="rd3"><span data-i18n="rd3"></span></label>
+              <label class="check"><input type="checkbox" id="rd4"><span data-i18n="rd4"></span></label>
+              <label class="check"><input type="checkbox" id="rd5"><span data-i18n="rd5"></span></label>
+              <label class="check"><input type="checkbox" id="rd6"><span data-i18n="rd6"></span></label>
+            </div>
+          </fieldset>
+          <div class="mini">
+            <span class="mini-label" data-i18n="mini_golive"></span>
+            <span class="mini-val" id="fawMiniDate"></span>
+            <span class="chip" id="fawMiniReady"></span>
+            <a href="#fawResult" data-i18n="see_breakdown"></a>
+          </div>
+        </form>
+
+        <div class="sheet result" id="fawResult">
+          <div class="res-head">
+            <h3 data-i18n="faw_res_title"></h3>
+            <span class="chip" id="fawPill" role="status"></span>
+          </div>
+          <div class="date-block" id="fawDateBlock">
+            <span class="big-num" id="fawDate"></span>
+            <p class="wave" id="fawWave"></p>
+            <span class="chip" id="fawDays"></span>
+          </div>
+          <p class="fs" id="fawState"></p>
+          <div class="meter" id="fawMeter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="meter-txt" id="fawReady"></p>
+          <h4 class="todo-h" data-i18n="gaps_title"></h4>
+          <ul class="todo" id="fawGaps"></ul>
+          <div class="cta-box">
+            <h4 data-i18n="cta_faw_h"></h4>
+            <p data-i18n="cta_faw_p"></p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" id="fawWa" hidden data-i18n="btn_wa"></a>
+              <a class="btn btn-primary" id="fawLi" target="_blank" rel="noopener" data-i18n="btn_li"></a>
+              <button type="button" class="btn btn-secondary" id="fawCopy" data-i18n="btn_copy"></button>
+            </div>
+            <label class="sum-label" for="fawSummary" data-i18n="summary_label"></label>
+            <textarea id="fawSummary" class="summary" readonly rows="7"></textarea>
+            <p class="copy-msg" id="fawMsg" role="status"></p>
+          </div>
+          <p class="disclaimer" data-i18n="faw_note"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="income-tax">
+    <div class="wrap">
+      <header class="sec-head">
+        <span class="rule" aria-hidden="true"></span>
         <p class="eyebrow" data-i18n="chk_eyebrow"></p>
         <h2 data-i18n="chk_h2"></h2>
         <p class="sec-lead" data-i18n="chk_intro"></p>
@@ -389,15 +500,15 @@ details.src a{word-break:break-word}
           <div class="mini">
             <span class="mini-label" data-i18n="res_tax_label"></span>
             <span class="mini-val" id="pitMiniTax"></span>
-            <span class="pill" id="pitMiniStatus"></span>
+            <span class="chip" id="pitMiniStatus"></span>
             <a href="#pitResult" data-i18n="see_breakdown"></a>
           </div>
         </form>
 
-        <div class="sheet paper result" id="pitResult">
+        <div class="sheet result" id="pitResult">
           <div class="res-head">
             <h3 data-i18n="res_title"></h3>
-            <span class="pill" id="pitStatus" role="status"></span>
+            <span class="chip" id="pitStatus" role="status"></span>
           </div>
           <p class="res-detail" id="pitDetail"></p>
           <p class="res-res" id="pitRes"></p>
@@ -419,11 +530,11 @@ details.src a{word-break:break-word}
             <h4 data-i18n="cta_review_h"></h4>
             <p data-i18n="cta_review_p"></p>
             <div class="cta-actions">
-              <a class="btn btn-primary" href="https://www.linkedin.com/company/awaboman" target="_blank" rel="noopener" data-i18n="btn_li"></a>
-              <a class="btn btn-ghost" id="pitWa" hidden data-i18n="btn_wa"></a>
-              <a class="btn btn-ghost" id="pitWait" hidden data-i18n="btn_wait"></a>
-              <a class="btn btn-ghost" id="pitTool" hidden target="_blank" rel="noopener" data-i18n="btn_tool"></a>
-              <button type="button" class="btn btn-ghost" id="pitCopy" data-i18n="btn_copy"></button>
+              <a class="btn btn-primary" id="pitWa" hidden data-i18n="btn_wa"></a>
+              <a class="btn btn-primary" id="pitWait" hidden data-i18n="btn_wait"></a>
+              <a class="btn btn-primary" id="pitLi" target="_blank" rel="noopener" data-i18n="btn_li"></a>
+              <a class="btn btn-secondary" id="pitTool" hidden target="_blank" rel="noopener" data-i18n="btn_tool"></a>
+              <button type="button" class="btn btn-secondary" id="pitCopy" data-i18n="btn_copy"></button>
             </div>
             <label class="sum-label" for="pitSummary" data-i18n="summary_label"></label>
             <textarea id="pitSummary" class="summary" readonly rows="8"></textarea>
@@ -435,110 +546,10 @@ details.src a{word-break:break-word}
     </div>
   </section>
 
-  <section class="sec" id="services">
-    <div class="wrap">
-      <header class="sec-head">
-        <p class="eyebrow" data-i18n="svc_eyebrow"></p>
-        <h2 data-i18n="svc_h2"></h2>
-        <p class="sec-lead" data-i18n="svc_lead"></p>
-      </header>
-      <div class="svc">
-        <article class="sheet card"><h3 data-i18n="svc1_h"></h3><p data-i18n="svc1_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc1_price"></div></article>
-        <article class="sheet card"><h3 data-i18n="svc2_h"></h3><p data-i18n="svc2_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc2_price"></div></article>
-        <article class="sheet card"><h3 data-i18n="svc3_h"></h3><p data-i18n="svc3_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc3_price"></div></article>
-        <article class="sheet card"><h3 data-i18n="svc5_h"></h3><p data-i18n="svc5_p"></p><span class="who" data-i18n="who_awab"></span><div class="price" data-i18n="svc5_price"></div></article>
-      </div>
-      <div class="sheet limits">
-        <h3 data-i18n="limits_h"></h3>
-        <p data-i18n="lim1"></p>
-        <p data-i18n="lim2"></p>
-        <p data-i18n="lim3"></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="fawtara">
-    <div class="wrap">
-      <header class="sec-head">
-        <p class="eyebrow" data-i18n="faw_eyebrow"></p>
-        <h2 data-i18n="faw_h2"></h2>
-        <p class="sec-lead" data-i18n="faw_intro"></p>
-      </header>
-      <div class="tool">
-        <form class="sheet form" id="fawForm" novalidate>
-          <div class="form-bar">
-            <p class="ex-note" id="fawExNote" data-i18n="chk_example"></p>
-            <div class="form-actions">
-              <button type="button" class="btn-text" id="fawClear" data-i18n="btn_clear"></button>
-              <button type="button" class="btn-text" id="fawLoad" data-i18n="btn_example"></button>
-            </div>
-          </div>
-          <fieldset>
-            <legend data-i18n="grp_business"></legend>
-            <div class="q">
-              <span class="q-label" id="vatL" data-i18n="q_vat"></span>
-              <div class="seg" role="radiogroup" aria-labelledby="vatL">
-                <input type="radio" name="vat" id="vatY" value="yes" checked><label for="vatY" data-i18n="vat_yes"></label>
-                <input type="radio" name="vat" id="vatN" value="no"><label for="vatN" data-i18n="vat_no"></label>
-              </div>
-            </div>
-            <div class="line"><label for="supplies" data-i18n="in_supplies"></label><span class="amt"><span class="cur" data-i18n="cur"></span><input id="supplies" inputmode="decimal" autocomplete="off" placeholder="0"></span></div>
-          </fieldset>
-          <fieldset>
-            <legend data-i18n="grp_ready"></legend>
-            <div class="checks">
-              <label class="check"><input type="checkbox" id="rd1"><span data-i18n="rd1"></span></label>
-              <label class="check"><input type="checkbox" id="rd2"><span data-i18n="rd2"></span></label>
-              <label class="check"><input type="checkbox" id="rd3"><span data-i18n="rd3"></span></label>
-              <label class="check"><input type="checkbox" id="rd4"><span data-i18n="rd4"></span></label>
-              <label class="check"><input type="checkbox" id="rd5"><span data-i18n="rd5"></span></label>
-              <label class="check"><input type="checkbox" id="rd6"><span data-i18n="rd6"></span></label>
-            </div>
-          </fieldset>
-          <div class="mini">
-            <span class="mini-label" data-i18n="mini_golive"></span>
-            <span class="mini-val txt" id="fawMiniDate"></span>
-            <span class="pill st-out" id="fawMiniReady"></span>
-            <a href="#fawResult" data-i18n="see_breakdown"></a>
-          </div>
-        </form>
-
-        <div class="sheet paper result" id="fawResult">
-          <div class="res-head">
-            <h3 data-i18n="faw_res_title"></h3>
-            <span class="pill" id="fawPill" role="status"></span>
-          </div>
-          <div class="date-block" id="fawDateBlock">
-            <span class="big-num txt" id="fawDate"></span>
-            <p class="wave" id="fawWave"></p>
-            <span class="days" id="fawDays"></span>
-          </div>
-          <p class="fs" id="fawState"></p>
-          <div class="meter" id="fawMeter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <p class="meter-txt" id="fawReady"></p>
-          <h4 class="todo-h" data-i18n="gaps_title"></h4>
-          <ul class="todo" id="fawGaps"></ul>
-          <div class="cta-box">
-            <h4 data-i18n="cta_faw_h"></h4>
-            <p data-i18n="cta_faw_p"></p>
-            <div class="cta-actions">
-              <a class="btn btn-primary" href="https://www.linkedin.com/company/awaboman" target="_blank" rel="noopener" data-i18n="btn_li"></a>
-              <a class="btn btn-ghost" id="fawWa" hidden data-i18n="btn_wa"></a>
-              <button type="button" class="btn btn-ghost" id="fawCopy" data-i18n="btn_copy"></button>
-            </div>
-            <label class="sum-label" for="fawSummary" data-i18n="summary_label"></label>
-            <textarea id="fawSummary" class="summary" readonly rows="7"></textarea>
-            <p class="copy-msg" id="fawMsg" role="status"></p>
-          </div>
-          <p class="disclaimer" data-i18n="faw_note"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="sec" id="dates">
     <div class="wrap">
       <header class="sec-head">
+        <span class="rule" aria-hidden="true"></span>
         <p class="eyebrow" data-i18n="dates_eyebrow"></p>
         <h2 data-i18n="dates_h2"></h2>
       </header>
@@ -563,7 +574,7 @@ details.src a{word-break:break-word}
         <ul>
           <li><a href="https://qanoon.om/p/2025/rd2025056/" target="_blank" rel="noopener">Royal Decree 56/2025, Personal Income Tax Law (Arabic text), qanoon.om</a></li>
           <li><a href="https://tms.taxoman.gov.om/portal/w/issuance-of-personal-income-tax-pit-law" target="_blank" rel="noopener">Tax Authority: Issuance of the Personal Income Tax Law</a></li>
-          <li><a href="https://tms.taxoman.gov.om/portal/news" target="_blank" rel="noopener">Tax Authority: news page (no executive regulations and no new Fawtara decision as of 6 November 2026)</a></li>
+          <li><a href="https://tms.taxoman.gov.om/portal/news" target="_blank" rel="noopener">Tax Authority: news page (no executive regulations and no new Fawtara decision as of 9 November 2026)</a></li>
           <li><a href="https://kpmg.com/om/en/home/insights/2025/07/oman-publishes-the-personal-income-tax-law.html" target="_blank" rel="noopener">KPMG: Oman publishes the Personal Income Tax Law</a></li>
           <li><a href="https://www.ey.com/en_gl/technical/tax-alerts/oman-to-introduce-personal-income-tax-from-january-2028" target="_blank" rel="noopener">EY: Oman to introduce personal income tax from January 2028</a></li>
           <li><a href="https://gulfnews.com/business/tax-news/oman-16-income-sources-exempted-from-new-individual-income-tax-1.500183224" target="_blank" rel="noopener">Gulf News: the 16 exemptions in Article 25</a></li>
@@ -578,54 +589,87 @@ details.src a{word-break:break-word}
 
   <section class="sec" id="contact">
     <div class="wrap contact">
-      <div>
+      <header class="sec-head">
+        <span class="rule" aria-hidden="true"></span>
         <p class="eyebrow" data-i18n="contact_eyebrow"></p>
-        <h2 class="contact-h" data-i18n="contact_h2"></h2>
+        <h2 data-i18n="contact_h2"></h2>
         <p class="sec-lead" data-i18n="contact_p"></p>
-        <p class="proto" data-i18n="proto"></p>
-      </div>
+      </header>
       <div class="sheet c-rows">
-        <div class="c-row"><span class="c-label" data-i18n="c_linkedin"></span><a class="c-val" href="https://www.linkedin.com/company/awaboman" target="_blank" rel="noopener">linkedin.com/company/awaboman</a><span></span></div>
-        <div class="c-row"><span class="c-label" data-i18n="c_email"></span><span class="c-val" id="cEm"></span><button type="button" class="btn-text" id="cEmCopy" data-i18n="c_copy"></button></div>
-        <div class="c-row"><span class="c-label" data-i18n="c_office"></span><span class="c-val pending" data-i18n="c_office_v"></span><span></span></div>
+        <div class="c-row"><span class="c-label" data-i18n="c_linkedin"></span><span class="c-val"><a id="cLi" target="_blank" rel="noopener" data-i18n="c_linkedin_v"></a></span><span></span></div>
+        <div class="c-row" id="cEmRow" hidden><span class="c-label" data-i18n="c_email"></span><span class="c-val" id="cEm"></span><button type="button" class="btn-text" id="cEmCopy" data-i18n="c_copy"></button></div>
+        <div class="c-row"><span class="c-label" data-i18n="c_office"></span><span class="c-val" data-i18n="c_office_v"></span><span></span></div>
+        <div class="c-row"><span class="c-label" data-i18n="c_hours"></span><span class="c-val" data-i18n="c_hours_v"></span><span></span></div>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap"><p data-i18n="foot"></p></div>
+<footer class="foot on-pine">
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="foot-logo"><svg role="img" aria-label="AWAB" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-14.25 -6 259.43 112"><path fill="#F4A632" d="M181.43 60 L181.43 73.5 L117.94 73.5 L117.94 60 Z"></path><path fill="#FFFFFF" fill-rule="evenodd" d="M94.43 100 L110.93 100 L132.43 36.76 L153.93 100 L170.43 100 L136.43 0 L128.43 0 L102.68 75.74 L85.09 24 L77.09 24 L59.5 75.74 L33.75 0 L25.75 0 L-8.25 100 L8.25 100 L17.26 73.5 L42.24 73.5 L51.25 100 L67.75 100 L81.09 60.76 Z M29.75 36.76 L37.65 60 L21.85 60 Z M179.43 52.5 L179.43 100 L196.43 100 L207.43 100 L208.21 99.99 L208.99 99.96 L209.77 99.92 L210.54 99.85 L211.32 99.77 L212.09 99.67 L212.86 99.55 L213.62 99.42 L214.39 99.26 L215.14 99.09 L215.9 98.9 L216.65 98.7 L217.39 98.47 L218.13 98.23 L218.86 97.97 L219.58 97.7 L220.3 97.4 L221 97.1 L221.71 96.77 L222.4 96.43 L223.08 96.07 L223.75 95.7 L224.42 95.31 L225.07 94.9 L225.71 94.48 L226.34 94.05 L226.96 93.6 L227.57 93.13 L228.17 92.66 L228.75 92.16 L229.32 91.66 L229.88 91.14 L230.42 90.61 L230.96 90.06 L231.47 89.51 L231.97 88.94 L232.46 88.36 L232.93 87.77 L233.39 87.17 L233.83 86.56 L234.25 85.93 L234.66 85.3 L235.06 84.66 L235.43 84.01 L235.79 83.35 L236.13 82.68 L236.46 82.01 L236.76 81.33 L237.05 80.64 L237.32 79.94 L237.58 79.24 L237.81 78.53 L238.03 77.82 L238.23 77.1 L238.41 76.38 L238.57 75.65 L238.71 74.92 L238.84 74.19 L238.94 73.45 L239.03 72.72 L239.09 71.98 L239.14 71.23 L239.17 70.49 L239.18 69.75 L239.17 69.01 L239.14 68.27 L239.09 67.52 L239.03 66.78 L238.94 66.05 L238.84 65.31 L238.71 64.58 L238.57 63.85 L238.41 63.12 L238.23 62.4 L238.03 61.68 L237.81 60.97 L237.58 60.26 L237.32 59.56 L237.05 58.86 L236.76 58.17 L236.46 57.49 L236.13 56.82 L235.79 56.15 L235.43 55.49 L235.06 54.84 L234.66 54.2 L234.25 53.57 L233.83 52.94 L233.39 52.33 L232.93 51.73 L232.46 51.14 L231.97 50.56 L231.47 49.99 L230.96 49.44 L230.42 48.89 L229.88 48.36 L229.32 47.84 L228.75 47.34 L228.17 46.84 L227.57 46.37 L226.96 45.9 L226.34 45.45 L225.71 45.02 L225.07 44.6 L224.42 44.19 L223.88 43.88 L224.31 43.4 L224.72 42.9 L225.12 42.4 L225.51 41.89 L225.89 41.36 L226.26 40.83 L226.61 40.29 L226.95 39.75 L227.27 39.19 L227.58 38.62 L227.88 38.05 L228.16 37.47 L228.43 36.89 L228.68 36.3 L228.92 35.7 L229.15 35.09 L229.36 34.48 L229.55 33.87 L229.73 33.25 L229.89 32.63 L230.04 32 L230.18 31.37 L230.29 30.74 L230.4 30.1 L230.48 29.46 L230.55 28.82 L230.61 28.18 L230.65 27.54 L230.67 26.89 L230.68 26.25 L230.67 25.61 L230.65 24.96 L230.61 24.32 L230.55 23.68 L230.48 23.04 L230.4 22.4 L230.29 21.76 L230.18 21.13 L230.04 20.5 L229.89 19.87 L229.73 19.25 L229.55 18.63 L229.36 18.02 L229.15 17.41 L228.92 16.8 L228.68 16.2 L228.43 15.61 L228.16 15.03 L227.88 14.45 L227.58 13.88 L227.27 13.31 L226.95 12.75 L226.61 12.21 L226.26 11.67 L225.89 11.14 L225.51 10.61 L225.12 10.1 L224.72 9.6 L224.31 9.1 L223.88 8.62 L223.44 8.15 L222.99 7.69 L222.53 7.24 L222.06 6.8 L221.58 6.37 L221.08 5.96 L220.58 5.56 L220.07 5.17 L219.54 4.79 L219.01 4.42 L218.47 4.07 L217.93 3.73 L217.37 3.41 L216.8 3.1 L216.23 2.8 L215.65 2.52 L215.07 2.25 L214.48 2 L213.88 1.76 L213.27 1.53 L212.66 1.32 L212.05 1.13 L211.43 0.95 L210.81 0.79 L210.18 0.64 L209.55 0.5 L208.92 0.39 L208.28 0.28 L207.64 0.2 L207 0.13 L206.36 0.07 L205.72 0.03 L205.07 0.01 L204.43 0 L196.43 0 L179.43 0 L179.43 39.5 Z M204.43 14 L204.67 14 L204.91 14.02 L205.15 14.03 L205.39 14.06 L205.62 14.1 L205.86 14.14 L206.1 14.19 L206.33 14.24 L206.57 14.31 L206.8 14.38 L207.03 14.46 L207.26 14.55 L207.49 14.64 L207.72 14.75 L207.94 14.85 L208.16 14.97 L208.39 15.09 L208.6 15.22 L208.82 15.36 L209.03 15.51 L209.24 15.66 L209.45 15.81 L209.65 15.98 L209.85 16.15 L210.05 16.33 L210.24 16.51 L210.43 16.7 L210.62 16.89 L210.8 17.1 L210.98 17.3 L211.16 17.52 L211.33 17.73 L211.5 17.96 L211.66 18.19 L211.82 18.42 L211.97 18.66 L212.12 18.91 L212.27 19.15 L212.41 19.41 L212.55 19.67 L212.68 19.93 L212.8 20.2 L212.92 20.47 L213.04 20.74 L213.15 21.02 L213.25 21.3 L213.35 21.58 L213.45 21.87 L213.54 22.16 L213.62 22.45 L213.7 22.75 L213.77 23.05 L213.84 23.35 L213.9 23.65 L213.95 23.96 L214 24.26 L214.05 24.57 L214.08 24.88 L214.12 25.19 L214.14 25.5 L214.16 25.81 L214.18 26.12 L214.19 26.44 L214.19 26.75 L214.19 27.06 L214.18 27.38 L214.16 27.69 L214.14 28 L214.12 28.31 L214.08 28.62 L214.05 28.93 L214 29.24 L213.95 29.54 L213.9 29.85 L213.84 30.15 L213.77 30.45 L213.7 30.75 L213.62 31.05 L213.54 31.34 L213.45 31.63 L213.35 31.92 L213.25 32.2 L213.15 32.48 L213.04 32.76 L212.92 33.03 L212.8 33.3 L212.68 33.57 L212.55 33.83 L212.41 34.09 L212.27 34.35 L212.12 34.59 L211.97 34.84 L211.82 35.08 L211.66 35.31 L211.5 35.54 L211.33 35.77 L211.16 35.98 L210.98 36.2 L210.8 36.4 L210.62 36.61 L210.43 36.8 L210.24 36.99 L210.05 37.17 L209.85 37.35 L209.65 37.52 L209.45 37.69 L209.24 37.84 L209.03 37.99 L208.82 38.14 L208.6 38.28 L208.39 38.41 L208.16 38.53 L207.94 38.65 L207.72 38.75 L207.49 38.86 L207.26 38.95 L207.03 39.04 L206.8 39.12 L206.57 39.19 L206.33 39.26 L206.1 39.31 L205.86 39.36 L205.62 39.4 L205.39 39.44 L205.15 39.47 L204.91 39.48 L204.67 39.5 L204.43 39.5 L196.43 39.5 L196.43 14 L204.43 14 Z M207.8 52.51 L208.18 52.52 L208.55 52.55 L208.93 52.58 L209.3 52.63 L209.67 52.68 L210.04 52.75 L210.41 52.82 L210.77 52.91 L211.14 53 L211.5 53.11 L211.86 53.22 L212.22 53.35 L212.57 53.48 L212.92 53.62 L213.27 53.78 L213.61 53.94 L213.95 54.11 L214.29 54.29 L214.62 54.48 L214.95 54.68 L215.28 54.88 L215.59 55.1 L215.91 55.32 L216.22 55.56 L216.52 55.8 L216.82 56.05 L217.11 56.3 L217.4 56.57 L217.68 56.84 L217.95 57.12 L218.22 57.41 L218.48 57.7 L218.74 58 L218.99 58.31 L219.23 58.62 L219.46 58.94 L219.69 59.27 L219.91 59.61 L220.12 59.94 L220.32 60.29 L220.52 60.64 L220.71 60.99 L220.89 61.35 L221.06 61.72 L221.22 62.09 L221.38 62.46 L221.53 62.84 L221.67 63.22 L221.8 63.61 L221.92 64 L222.03 64.39 L222.14 64.78 L222.23 65.18 L222.32 65.58 L222.4 65.98 L222.47 66.39 L222.52 66.79 L222.58 67.2 L222.62 67.61 L222.65 68.02 L222.67 68.43 L222.69 68.84 L222.69 69.25 L222.69 69.66 L222.67 70.07 L222.65 70.48 L222.62 70.89 L222.58 71.3 L222.52 71.71 L222.47 72.11 L222.4 72.52 L222.32 72.92 L222.23 73.32 L222.14 73.72 L222.03 74.11 L221.92 74.5 L221.8 74.89 L221.67 75.28 L221.53 75.66 L221.38 76.04 L221.22 76.41 L221.06 76.78 L220.89 77.15 L220.71 77.51 L220.52 77.86 L220.32 78.21 L220.12 78.56 L219.91 78.89 L219.69 79.23 L219.46 79.56 L219.23 79.88 L218.99 80.19 L218.74 80.5 L218.48 80.8 L218.22 81.09 L217.95 81.38 L217.68 81.66 L217.4 81.93 L217.11 82.2 L216.82 82.45 L216.52 82.7 L216.22 82.94 L215.91 83.18 L215.59 83.4 L215.28 83.62 L214.95 83.82 L214.62 84.02 L214.29 84.21 L213.95 84.39 L213.61 84.56 L213.27 84.72 L212.92 84.88 L212.57 85.02 L212.22 85.15 L211.86 85.28 L211.5 85.39 L211.14 85.5 L210.77 85.59 L210.41 85.68 L210.04 85.75 L209.67 85.82 L209.3 85.87 L208.93 85.92 L208.55 85.95 L208.18 85.98 L207.8 85.99 L207.43 86 L196.43 86 L196.43 52.5 L207.43 52.5 Z"></path></svg></span>
+      <div class="foot-line">
+        <span class="l1" lang="en" dir="ltr">Every return, on time.</span>
+        <span class="l2" lang="ar" dir="rtl">كل إقرار في موعده.</span>
+      </div>
+    </div>
+    <nav class="foot-nav" data-i18n-aria="nav_label">
+      <a href="#fawtara" data-i18n="nav_fawtara"></a>
+      <a href="#income-tax" data-i18n="nav_check"></a>
+      <a href="#services" data-i18n="nav_services"></a>
+      <a href="#dates" data-i18n="nav_dates"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+    </nav>
+    <div class="foot-bottom">
+      <p data-i18n="foot"></p>
+      <p data-i18n="foot_co"></p>
+    </div>
+  </div>
 </footer>
 
 <script>
 (function () {
   'use strict';
 
-  /* Launch setting: add the business email address here and republish. */
-  /* email: business mailbox once the domain exists; wait: a Google Form link for the waiting list (works for every visitor, unlike mailto); tool: the Awab Tax page */
-  var CONTACT = { email: 'hello@awaboman.com', wait: '', tool: '' };
+  /* Launch settings. email: the business mailbox once the domain exists; wait: a form link for the waiting list (works for every visitor, unlike mailto);
+     tool: the public address of the Awab Tax tool once it has one (leave empty to hide the links); linkedin: the company page. */
+  var CONTACT = { email: 'hello@awaboman.com', wait: '', tool: '', linkedin: 'https://www.linkedin.com/company/awaboman' };
 
   var THRESHOLD = 42000, RATE = 0.05, NEAR_FROM = 36000;
   var DEADLINES = [['2027-10-01', 'cd_faw2'], ['2028-01-01', 'cd_pit']];
 
   var T = {
     en: {
-      nav_label: 'Sections', skip: 'Skip to the income tax check',
+      nav_label: 'Sections', menu_label: 'Menu', skip: 'Skip to content',
       nav_fawtara: 'Fawtara', nav_check: 'Income tax', nav_services: 'Services', nav_dates: 'Key dates', nav_contact: 'Contact',
       lang_btn: 'العربية', lang_aria: 'عرض الصفحة بالعربية',
-      hero_eyebrow: 'Fawtara by 1 October 2027 · Income tax from 1 January 2028',
+      head_cta: 'Free readiness check',
+      hero_eyebrow: 'Fawtara e-invoicing · Income tax · Muscat, Oman',
       hero_h1: 'Every return, on time.',
-      hero_lead: 'Oman has two tax changes with dates attached: Fawtara e-invoicing in 2027 and personal income tax from 1 January 2028. Awab does the practical work around both: readiness for Fawtara now, and the payroll paperwork the income tax brings employers. In Arabic and English, in plain language.',
-      hero_cta1: 'Find your Fawtara date', hero_cta2: 'Check your income tax',
-      cd_faw2: '{w} until Fawtara starts for every VAT-registered business',
-      cd_pit: '{w} until the first income tax year begins',
+      hero_lead: 'Awab gets businesses in Oman ready for Fawtara e-invoicing and handles the income-tax paperwork for employers — alongside your accountant, never instead of them.',
+      hero_cta1: 'Book a free readiness check', hero_cta2: 'Check your 2028 income tax',
+      cd_faw2: '{d} until Fawtara starts for every VAT-registered business',
+      cd_pit: '{d} until the first income tax year begins',
       cd_done: 'E-invoicing and personal income tax are both in force.',
-      hero_regs: 'Businesses must use a provider the Tax Authority approves (Decision 189/2026)',
-      sheet_title: 'Three dates, in order', ref_dates: 'Decision 189/2026 · RD 56/2025',
-      fig1_d: '1 Apr', fig2_d: '1 Oct', fig3_d: '1 Jan',
-      fig1: 'Fawtara becomes compulsory for VAT-registered businesses with annual supplies above OMR 5 million.',
-      fig2: 'Fawtara becomes compulsory for every other VAT-registered business.',
-      fig3: 'Personal income tax starts: 5% on income above OMR 42,000 a year.',
+      sheet_title: 'Three dates, in order', ref_dates: 'Tax Authority Decision 189/2026 · Royal Decree 56/2025',
+      col_date: 'Date', col_obl: 'Obligation', col_who: 'Who it covers',
+      d1: '1 April 2027', o1: 'Fawtara becomes compulsory — first wave', w1: 'VAT-registered businesses with annual supplies above OMR 5 million',
+      d2: '1 October 2027', o2: 'Fawtara becomes compulsory — second wave', w2: 'Every other VAT-registered business',
+      d3: '1 January 2028', o3: 'Personal income tax starts: 5% on income above OMR 42,000 a year', w3: 'First returns are due by 30 June 2029',
+      svc_eyebrow: 'Services', svc_h2: 'Two obligations, one back office',
+      svc_lead: 'Practical work around Oman’s two new tax obligations, delivered by Awab. We never give tax advice; your accountant or tax adviser stays yours. Fixed fees are agreed in writing before any work starts.',
+      svc1_tag: 'Fawtara readiness', svc1_h: 'Fawtara readiness',
+      svc1_p: 'We review how you invoice today, help you choose and set up an accredited provider, test, train your team, and keep your records in order afterwards.',
+      svc2_tag: 'Income tax for employers', svc2_h: 'Income tax for employers',
+      svc2_p: 'From 2028 your payroll withholds the tax and staff may ask you to file for them. Awab briefs HR and finance, prepares the letters and forms, collects the documents and enters the data. You stay the filer.',
+      svc3_tag: 'Awab Tax · 2029', svc3_h: 'Awab Tax',
+      svc3_p: 'A guided self-preparation tool for the 2029 filing season: your income, your exemptions and the documents to keep, in Arabic and English. First access goes to the waiting list.',
+      btn_tool_short: 'Try the first version',
+      limits_h: 'Where our work stops',
+      lim1: 'Tax advice comes only from a licensed tax adviser. Awab processes, prepares and builds software, and does not advise on tax. Employers file their own returns; the tool is used by its owner.',
+      lim2: 'We are not an accredited Fawtara provider and give no investment advice. We work alongside the provider you choose, and we tell you if a provider pays us a referral fee.',
+      lim3: 'We are independent. We are not part of the Tax Authority and are not endorsed by it.',
       faw_eyebrow: 'Fawtara · e-invoicing',
       faw_h2: 'When must your business switch to e-invoicing?',
       faw_intro: 'Decision 189/2026 put the dates into law. VAT-registered businesses with annual supplies above OMR 5 million start on 1 April 2027. All other VAT-registered businesses start on 1 October 2027.',
@@ -655,11 +699,11 @@ details.src a{word-break:break-word}
       ready_of: '{k} of 6 in place', lvl1: 'early stage', lvl2: 'partly ready', lvl3: 'nearly ready', lvl4: 'ready to test',
       gaps_title: 'Close these gaps first',
       no_gaps: 'Everything on this list is in place. Book end-to-end testing with your provider.',
-      cta_faw_h: 'Free readiness conversation',
-      cta_faw_p: 'Thirty minutes with Awab on how you invoice today, then a one-page note on what to fix first. No obligation and no sales pitch. Message the Awab page on LinkedIn, or copy your results and send them to us.',
+      cta_faw_h: 'Free readiness check: 30 minutes, one page',
+      cta_faw_p: 'Send us this result and we arrange a 30-minute conversation, then a one-page note on what to fix first. No fee, no obligation.',
       faw_note: 'Awab is not an accredited service provider. We prepare your business and work alongside the provider you pick.',
       sum_faw_title: 'Awab · Fawtara readiness check', sum_vat: 'VAT-registered', sum_supplies: 'Annual supplies',
-      sum_golive: 'Go-live date', sum_ready: 'In place', sum_ask_faw: 'I would like a Fawtara readiness review.',
+      sum_golive: 'Go-live date', sum_ready: 'In place', sum_ask_faw: 'I would like a free Fawtara readiness check.',
       chk_eyebrow: 'Self-check · income tax from 2028',
       chk_h2: 'Does the 2028 income tax apply to you?',
       chk_intro: 'Enter a typical year. The check is free and runs in your browser. Nothing is sent anywhere unless you choose to share your results.',
@@ -718,38 +762,20 @@ details.src a{word-break:break-word}
       t_out: 'Nothing to do now. Run the check again if your income rises.',
       t_near: 'Keep records from January 2028 anyway. If you cross the threshold, you will need them for your return.',
       cta_review_h: 'What happens next',
-      cta_review_p: 'Send us your results and we reply with the document checklist for 2028. Employers with staff above the threshold can ask about the employer pack. Nothing here is tax advice; for that, speak to a licensed tax adviser.',
-      btn_li: 'Message us on LinkedIn', btn_wa: 'Email my results', btn_wait: 'Join the waiting list', btn_tool: 'Open the full Awab Tax tool', btn_tool_short: 'Try the first version', btn_copy: 'Copy my results', wait_subject: 'Awab Tax waiting list', wait_body: 'Please add me to the Awab Tax waiting list.\n\nName:\nEmployer (optional):\nI expect to be above the OMR 42,000 threshold in 2028: yes / no / not sure',
-      copied: 'Copied. Paste it into an email to us.',
+      cta_review_p: 'Join the waiting list and we send you the document checklist for 2028 and first access to the Awab Tax tool in the 2029 filing season. Nothing here is tax advice; for your own position, speak to a licensed tax adviser.',
+      btn_wa: 'Email my results', btn_li: 'Message us on LinkedIn', btn_wait: 'Join the waiting list', btn_tool: 'Open the full Awab Tax tool', btn_copy: 'Copy my results',
+      wait_subject: 'Awab Tax waiting list', wait_body: 'Please add me to the Awab Tax waiting list.\n\nName:\nEmployer (optional):\nI expect to be above the OMR 42,000 threshold in 2028: yes / no / not sure',
+      copied: 'Copied. Paste it into a message to us.',
       copy_fallback: 'Copying is blocked here. The text is selected, so copy it with your keyboard.',
       summary_label: 'Text that will be shared',
       disclaimer: 'General information based on Royal Decree 56/2025 as published, not tax advice. Final rules depend on the executive regulations.',
       sum_pit_title: 'Awab · income tax self-check',
       sum_nat: 'Nationality', sum_days: 'Time in Oman', sum_gross: 'Gross income counted', sum_taxable: 'Taxable income',
-      sum_tax: 'Indicative tax', sum_status: 'Status', sum_ask_review: 'I would like a licensed adviser to review my position.',
-      svc_eyebrow: 'Services', svc_h2: 'Practical work around two new obligations',
-      svc_lead: 'Three Fawtara services now, and the employer pack from 2028. Every price is fixed and quoted in writing before work starts; Awab SPC is being registered, and paid work begins when the registration is complete.',
-      who_awab: 'Delivered by Awab', who_partner: 'With a licensed tax adviser',
-      svc1_h: 'Readiness review',
-      svc1_p: 'We check your customer and item data and your billing system, shortlist approved providers, and give you a dated plan. The fee is credited against go-live.',
-      svc1_price: 'Fixed price, quoted in writing',
-      svc2_h: 'Go-live',
-      svc2_p: 'Provider sign-up, data clean-up and mapping, test invoices, staff training, and support on your first live day. Priced by systems and invoice volume.',
-      svc2_price: 'Fixed price, quoted in writing',
-      svc3_h: 'Awab Care',
-      svc3_p: 'After go-live we fix rejected invoices, keep customer and item records clean, and send you a monthly e-invoice log.',
-      svc3_price: 'Fixed monthly price, quoted in writing',
-      svc5_h: 'Employer pack',
-      svc5_p: 'From 2028 your payroll withholds the tax and your staff may ask you to file for them. Awab briefs HR, prepares the letters and forms, collects the documents and enters the data. You stay the filer.',
-      svc5_price: 'Fixed price, quoted in writing · from 2028',
-      limits_h: 'Where our work stops',
-      lim1: 'Tax advice comes only from a licensed tax adviser. Awab processes, prepares and builds software, and does not advise on tax. Employers file their own returns; the tool is used by its owner.',
-      lim2: 'We are not an approved Fawtara provider and give no investment advice. We work alongside the provider you choose, and we tell you if a provider pays us a referral fee.',
-      lim3: 'We are independent. We are not part of the Tax Authority and are not endorsed by it.',
+      sum_tax: 'Indicative tax', sum_status: 'Status', sum_ask_review: 'Please add me to the Awab Tax waiting list and send the 2028 document checklist.',
       dates_eyebrow: 'Key dates', dates_h2: 'From decree to first return',
       ev1: 'Royal Decree 56/2025 issues the Personal Income Tax Law.',
       ev2: 'The law is published in the Official Gazette, issue 1602.',
-      ev3: 'Deadline for the executive regulations. Still not issued on 6 November 2026.',
+      ev3: 'Deadline for the executive regulations. Still not issued on 9 November 2026.',
       ev4: 'Decision 189/2026 sets the Fawtara e-invoicing dates in law.',
       ev5: 'Fawtara starts for VAT-registered businesses with supplies above OMR 5 million.',
       ev6: 'Fawtara starts for all other VAT-registered businesses.',
@@ -760,35 +786,49 @@ details.src a{word-break:break-word}
       pen1: 'Late payment: additional tax of 1% a month on unpaid amounts (Article 45).',
       pen2: 'Failing to file a return or keep records: fines of up to OMR 5,000 (Article 65).',
       pen3: 'False returns or forged documents: one to three years’ imprisonment and fines of up to OMR 20,000 (Article 66).',
-      src_h: 'Sources, checked 6 November 2026',
+      src_h: 'Sources, checked 9 November 2026',
       contact_eyebrow: 'Contact', contact_h2: 'Talk to Awab',
-      contact_p: 'Fawtara readiness for VAT-registered businesses now, and income-tax paperwork for employers from 2028, across Oman, in Arabic and English. Message the Awab page on LinkedIn with your self-check results and we reply within one working day.', c_linkedin: 'LinkedIn', c_email: 'Email', c_office: 'Office', c_office_v: 'Muscat, Sultanate of Oman',
-      c_pending: 'Added at launch', c_copy: 'Copy',
-      proto: 'Awab SPC is being registered in Muscat. Until then we hold free readiness conversations; paid work starts when the registration is complete.',
-      foot: '© 2026 Awab SPC (in formation). Independent income tax processing and e-invoicing readiness services, not affiliated with the Tax Authority or any provider. Tax advice comes only from a licensed adviser. General information, not tax advice.'
+      contact_p: 'Free Fawtara readiness conversations for businesses in Oman: 30 minutes, then a one-page note on what to fix first. Income-tax paperwork for employers from 2028. Arabic and English. Message us on LinkedIn or by email and we reply within one working day.',
+      c_linkedin: 'LinkedIn', c_linkedin_v: 'Awab on LinkedIn', c_email: 'Email', c_copy: 'Copy',
+      c_office: 'Office', c_office_v: 'Muscat, Sultanate of Oman', c_hours: 'Hours', c_hours_v: 'Sunday to Thursday, 8:00–17:00 (GST)',
+      foot: 'General information, not tax advice. Sources: Tax Authority Decision 189/2026 · Royal Decree 56/2025. Awab is independent: not part of the Tax Authority, not endorsed by it, and not an accredited Fawtara provider. Tax advice comes only from a licensed adviser.',
+      foot_co: '© 2026 Awab — Muscat, Oman'
     },
     ar: {
-      nav_label: 'أقسام الصفحة', skip: 'انتقل إلى فحص ضريبة الدخل',
-      nav_fawtara: 'فوترة', nav_check: 'ضريبة الدخل', nav_services: 'الخدمات', nav_dates: 'مواعيد رئيسية', nav_contact: 'تواصل',
+      nav_label: 'أقسام الصفحة', menu_label: 'القائمة', skip: 'انتقل إلى المحتوى',
+      nav_fawtara: 'فوترة', nav_check: 'ضريبة الدخل', nav_services: 'الخدمات', nav_dates: 'المواعيد', nav_contact: 'تواصل معنا',
       lang_btn: 'English', lang_aria: 'View this page in English',
-      hero_eyebrow: 'فوترة بحلول 1 أكتوبر 2027 · ضريبة الدخل من 1 يناير 2028',
+      head_cta: 'فحص جاهزية مجاني',
+      hero_eyebrow: 'الفوترة الإلكترونية (فوترة) · ضريبة الدخل · مسقط، سلطنة عُمان',
       hero_h1: 'كل إقرار في موعده.',
-      hero_lead: 'أمام عُمان تغييران ضريبيان بمواعيد محددة: الفوترة الإلكترونية «فوترة» في 2027، وضريبة الدخل على الأفراد من 1 يناير 2028. تتولى أوّاب العمل العملي حولهما: الاستعداد لفوترة الآن، ومعاملات الرواتب التي تجلبها ضريبة الدخل لأصحاب العمل. بالعربية والإنجليزية، وبلغة واضحة.',
-      hero_cta1: 'اعرف موعد فوترة لمنشأتك', hero_cta2: 'افحص ضريبة دخلك',
-      cd_faw2: '{w} على بدء فوترة لجميع المنشآت المسجلة',
-      cd_pit: '{w} على بدء أول سنة لضريبة الدخل',
+      hero_lead: 'أوّاب تجهّز المنشآت في عُمان للفوترة الإلكترونية (فوترة)، وتتولّى الأعمال الورقية لضريبة الدخل عن أصحاب العمل — إلى جانب محاسبكم، لا بديلاً عنه.',
+      hero_cta1: 'احجز فحص جاهزية فوترة مجانياً', hero_cta2: 'احسب ضريبة الدخل لعام 2028',
+      cd_faw2: '{d} على بدء فوترة لجميع المنشآت المسجّلة',
+      cd_pit: '{d} على بدء أول سنة لضريبة الدخل',
       cd_done: 'الفوترة الإلكترونية وضريبة الدخل على الأفراد ساريتان الآن.',
-      hero_regs: 'يُلزم القرار 189/2026 المنشآت باستخدام مزوّد خدمة يعتمده جهاز الضرائب',
-      sheet_title: 'ثلاثة مواعيد بالترتيب', ref_dates: 'قرار 189/2026 · م.س 56/2025',
-      fig1_d: '1 أبريل', fig2_d: '1 أكتوبر', fig3_d: '1 يناير',
-      fig1: 'تصبح فوترة إلزامية للمنشآت المسجلة التي تتجاوز توريداتها السنوية 5 ملايين ريال عُماني.',
-      fig2: 'تصبح فوترة إلزامية لبقية المنشآت المسجلة في ضريبة القيمة المضافة.',
-      fig3: 'تبدأ ضريبة الدخل على الأفراد: 5% على الدخل الذي يزيد على 42,000 ريال عُماني سنويًا.',
+      sheet_title: 'ثلاثة مواعيد، بالترتيب', ref_dates: 'قرار جهاز الضرائب رقم 189/2026 · المرسوم السلطاني رقم 56/2025',
+      col_date: 'التاريخ', col_obl: 'الالتزام', col_who: 'من يشمله',
+      d1: '1 أبريل 2027', o1: 'تصبح فوترة إلزامية — الموجة الأولى', w1: 'المنشآت المسجّلة في ضريبة القيمة المضافة التي تتجاوز توريداتها السنوية 5 ملايين ريال عُماني',
+      d2: '1 أكتوبر 2027', o2: 'تصبح فوترة إلزامية — الموجة الثانية', w2: 'بقية المنشآت المسجّلة في ضريبة القيمة المضافة',
+      d3: '1 يناير 2028', o3: 'يبدأ تطبيق ضريبة الدخل على الأفراد: 5٪ على ما يزيد عن 42,000 ريال عُماني سنوياً', w3: 'أول إقرار يُقدَّم بحلول 30 يونيو 2029',
+      svc_eyebrow: 'الخدمات', svc_h2: 'التزامان، ومكتب خلفي واحد',
+      svc_lead: 'عمل عملي حول الالتزامين الضريبيين الجديدين في عُمان، تقدّمه أوّاب. لا نقدّم استشارات ضريبية، ويبقى محاسبكم أو مستشاركم الضريبي كما هو. تُتفق الرسوم الثابتة كتابةً قبل بدء أي عمل.',
+      svc1_tag: 'Fawtara readiness', svc1_h: 'جاهزية فوترة',
+      svc1_p: 'نراجع طريقة إصدار فواتيركم اليوم، ونساعدكم في اختيار مزوّد معتمد وتهيئته، ثم الاختبار وتدريب فريقكم، والعناية بسجلاتكم بعد ذلك.',
+      svc2_tag: 'Income tax for employers', svc2_h: 'ضريبة الدخل لأصحاب العمل',
+      svc2_p: 'من 2028 تستقطع رواتبكم الضريبة، وقد يطلب موظفوكم أن تقدّموا الإقرار عنهم. تُحيط أوّاب الموارد البشرية والمالية، وتُعِدّ الخطابات والنماذج، وتجمع المستندات، وتُدخل البيانات. وتبقون أنتم مقدّمي الإقرار.',
+      svc3_tag: 'Awab Tax · 2029', svc3_h: 'أوّاب تاكس',
+      svc3_p: 'أداة موجَّهة لإعداد الإقرار ذاتياً في موسم 2029: دخلك وإعفاءاتك والمستندات التي تحتفظ بها، بالعربية والإنجليزية. أولوية الوصول لقائمة الانتظار.',
+      btn_tool_short: 'جرّب النسخة الأولى',
+      limits_h: 'حدود عملنا',
+      lim1: 'تأتي المشورة الضريبية من مستشار ضريبي مرخّص فقط. تتولى أوّاب المعالجة والإعداد وبناء البرمجيات دون تقديم مشورة ضريبية؛ صاحب العمل يقدّم إقراراته بنفسه، والأداة يستخدمها صاحبها.',
+      lim2: 'لسنا مزوّد خدمة معتمداً لفوترة، ولا نقدّم مشورة استثمارية. نعمل إلى جانب المزوّد الذي تختاره، ونُعلمك إن كان أي مزوّد يدفع لنا عمولة إحالة.',
+      lim3: 'نحن جهة مستقلة، ولسنا جزءاً من جهاز الضرائب ولا معتمدين منه.',
       faw_eyebrow: 'فوترة · الفوترة الإلكترونية',
       faw_h2: 'متى يجب أن تنتقل منشأتك إلى الفوترة الإلكترونية؟',
       faw_intro: 'حدّد القرار 189/2026 المواعيد بنص ملزم: تبدأ المنشآت المسجلة في ضريبة القيمة المضافة التي تتجاوز توريداتها السنوية 5 ملايين ريال عُماني في 1 أبريل 2027، وتبدأ بقية المنشآت المسجلة في 1 أكتوبر 2027.',
       grp_business: 'منشأتك', q_vat: 'مسجّل في ضريبة القيمة المضافة؟', vat_yes: 'نعم', vat_no: 'لا',
-      in_supplies: 'التوريدات الخاضعة للضريبة سنويًا',
+      in_supplies: 'التوريدات الخاضعة للضريبة سنوياً',
       grp_ready: 'ما الجاهز لديكم؟',
       rd1: 'نظامنا يُصدر فواتير إلكترونية منظّمة بصيغة جهاز الضرائب، لا ملفات PDF فقط',
       rd2: 'اخترنا مزوّد خدمة من قائمة جهاز الضرائب المعتمدة',
@@ -798,33 +838,33 @@ details.src a{word-break:break-word}
       rd6: 'لدينا مسؤول واحد عن المشروع وموعد محدد للاختبار',
       gap1: 'اطلب من مزوّد نظامك المحاسبي موعد الإصدار المتوافق مع فوترة وخطة اختباره.',
       gap2: 'ضع قائمة مختصرة بمزوّدي الخدمة المعتمدين من جهاز الضرائب، وقارن رسومهم لكل فاتورة.',
-      gap3: 'نقِّ سجلات عملائك، فالفواتير الإلكترونية تُدقَّق حقلًا حقلًا.',
+      gap3: 'نقِّ سجلات عملائك، فالفواتير الإلكترونية تُدقَّق حقلاً حقلاً.',
       gap4: 'اربط كل صنف بمعاملته: خاضع بالنسبة الأساسية أو بنسبة الصفر أو معفى، قبل بدء الاختبار.',
       gap5: 'اتفق على آلية الإشعارات الدائنة والواردات الخاضعة للاحتساب العكسي في الصيغة الجديدة.',
-      gap6: 'عيّن مسؤولًا واحدًا، واحجز الاختبار قبل ثمانية أسابيع على الأقل من موعد التطبيق.',
+      gap6: 'عيّن مسؤولاً واحداً، واحجز الاختبار قبل ثمانية أسابيع على الأقل من موعد التطبيق.',
       faw_res_title: 'موعد التطبيق عليك', mini_golive: 'موعد التطبيق',
-      fp_mandated: 'إلزامي', fp_must: 'سجّل في الضريبة أولًا', fp_vol: 'اختياري', fp_below: 'لا ينطبق حاليًا',
+      fp_mandated: 'إلزامي', fp_must: 'سجّل في الضريبة أولاً', fp_vol: 'اختياري', fp_below: 'لا ينطبق حالياً',
       wave1: 'المرحلة الأولى: توريدات سنوية تتجاوز 5 ملايين ريال عُماني', wave2: 'المرحلة الثانية: بقية المنشآت المسجلة في ضريبة القيمة المضافة',
       days_left: 'يتبقى {n}', in_force: 'سارية منذ {d}',
       fs_mandated: 'تصبح الفوترة الإلكترونية إلزامية عليك في هذا التاريخ.',
-      fs_must: 'إذا تجاوزت توريداتك 38,500 ريال عُماني سنويًا فيلزمك التسجيل في ضريبة القيمة المضافة، وتنطبق عليك الفوترة الإلكترونية من هذا التاريخ بعد التسجيل.',
+      fs_must: 'إذا تجاوزت توريداتك 38,500 ريال عُماني سنوياً فيلزمك التسجيل في ضريبة القيمة المضافة، وتنطبق عليك الفوترة الإلكترونية من هذا التاريخ بعد التسجيل.',
       fs_vol: 'بين 19,250 و38,500 ريال عُماني يحق لك التسجيل الاختياري، وعندها تنطبق عليك الفوترة الإلكترونية من هذا التاريخ.',
-      fs_below: 'دون 19,250 ريالًا عُمانيًا من التوريدات، لا يتاح التسجيل الاختياري إلا إذا تجاوزت نفقاتك هذا المبلغ، ولا تنطبق عليك فوترة ما لم تسجّل.',
+      fs_below: 'دون 19,250 ريالاً عُمانياً من التوريدات، لا يتاح التسجيل الاختياري إلا إذا تجاوزت نفقاتك هذا المبلغ، ولا تنطبق عليك فوترة ما لم تسجّل.',
       ready_of: '{k} من 6 جاهزة', lvl1: 'مرحلة مبكرة', lvl2: 'جاهزية جزئية', lvl3: 'شبه جاهز', lvl4: 'جاهز للاختبار',
       gaps_title: 'ابدأ بسدّ هذه الفجوات',
-      no_gaps: 'كل بنود القائمة جاهزة. احجز اختبارًا شاملًا مع مزوّد الخدمة.',
-      cta_faw_h: 'محادثة جاهزية مجانية',
-      cta_faw_p: 'ثلاثون دقيقة مع أوّاب حول طريقة إصدار فواتيرك اليوم، ثم ملاحظة مكتوبة في صفحة واحدة بأهم ما يلزم تجهيزه. من دون التزام ومن دون عرض بيع. راسل صفحة أوّاب على لينكدإن، أو انسخ نتائجك وأرسلها إلينا.',
-      faw_note: 'أوّاب ليست مزوّد خدمة معتمدًا؛ نحن نُجهّز منشأتك ونعمل إلى جانب المزوّد الذي تختاره.',
+      no_gaps: 'كل بنود القائمة جاهزة. احجز اختباراً شاملاً مع مزوّد الخدمة.',
+      cta_faw_h: 'فحص جاهزية مجاني: 30 دقيقة وصفحة واحدة',
+      cta_faw_p: 'أرسلوا إلينا هذه النتيجة لنرتّب محادثة من 30 دقيقة، ثم صفحة واحدة بما يجب إصلاحه أولاً. بلا رسوم ولا التزام.',
+      faw_note: 'أوّاب ليست مزوّد خدمة معتمداً؛ نحن نُجهّز منشأتك ونعمل إلى جانب المزوّد الذي تختاره.',
       sum_faw_title: 'أوّاب · فحص الجاهزية لفوترة', sum_vat: 'مسجّل في ضريبة القيمة المضافة', sum_supplies: 'التوريدات السنوية',
-      sum_golive: 'موعد التطبيق', sum_ready: 'الجاهز', sum_ask_faw: 'أرغب في مراجعة للجاهزية لفوترة.',
+      sum_golive: 'موعد التطبيق', sum_ready: 'الجاهز', sum_ask_faw: 'أرغب في فحص جاهزية مجاني لفوترة.',
       chk_eyebrow: 'فحص ذاتي · ضريبة الدخل من 2028',
       chk_h2: 'هل تنطبق عليك ضريبة الدخل في 2028؟',
       chk_intro: 'أدخل أرقام سنة معتادة. الفحص مجاني ويعمل داخل متصفحك، ولا يُرسَل شيء إلا إذا اخترت مشاركة نتائجك.',
       chk_example: 'الأرقام المعروضة مثال توضيحي، فاستبدلها بأرقامك.',
       btn_clear: 'مسح الكل', btn_example: 'عرض المثال',
       grp_you: 'بياناتك', q_nat: 'الجنسية', nat_om: 'عُماني', nat_ex: 'جنسية أخرى',
-      q_days: 'مدة وجودك في عُمان خلال السنة', days_over: 'أكثر من 183 يومًا', days_under: '183 يومًا أو أقل', days_unsure: 'لست متأكدًا',
+      q_days: 'مدة وجودك في عُمان خلال السنة', days_over: 'أكثر من 183 يوماً', days_under: '183 يوماً أو أقل', days_unsure: 'لست متأكداً',
       grp_income: 'الدخل خلال السنة',
       in_salOm: 'الراتب والبدلات والمكافآت عن العمل في عُمان',
       in_salAbroad: 'الراتب عن العمل خارج عُمان',
@@ -846,7 +886,7 @@ details.src a{word-break:break-word}
       st_out: 'دون حد الإعفاء', st_near: 'قريب من حد الإعفاء', st_file: 'يلزم إقرار ولا ضريبة', st_due: 'ضمن النطاق: ضريبة مستحقة',
       sd_out: 'لا يلزمك تقديم إقرار عند هذا الدخل.',
       sd_near: 'يفصلك {x} عن حد الإعفاء، وقد تُدخلك مكافأة أو دخل جديد في نطاق الضريبة.',
-      sd_file: 'دخلك الإجمالي يتجاوز 42,000 ريال عُماني فيلزمك تقديم إقرار، لكن الإعفاءات تجعل الضريبة صفرًا.',
+      sd_file: 'دخلك الإجمالي يتجاوز 42,000 ريال عُماني فيلزمك تقديم إقرار، لكن الإعفاءات تجعل الضريبة صفراً.',
       sd_due: 'يلزمك تقديم إقرار وسداد الضريبة.',
       res_resident: 'مقيم ضريبي: يُحتسب دخلك من عُمان ومن الخارج.',
       res_nonres: 'غير مقيم: يُحتسب دخلك من عُمان فقط.',
@@ -858,14 +898,14 @@ details.src a{word-break:break-word}
       r_eff: '{p} من الدخل الإجمالي',
       n_limits: 'طُبّقت مبالغ التعليم والرعاية الصحية والتقاعد وقرض المسكن كاملةً، وستحدد اللائحة التنفيذية سقوفها ولم تصدر بعد.',
       n_foreign_out: 'استُبعد الدخل المتحقق من خارج عُمان لأنك غير مقيم.',
-      n_file_exempt: 'يرتبط واجب تقديم الإقرار بتجاوز الدخل الإجمالي 42,000 ريال عُماني (المادة 33) حتى لو جعلت الإعفاءات الضريبة صفرًا، وقد توضح اللائحة كيفية احتساب الدخل المعفى.',
+      n_file_exempt: 'يرتبط واجب تقديم الإقرار بتجاوز الدخل الإجمالي 42,000 ريال عُماني (المادة 33) حتى لو جعلت الإعفاءات الضريبة صفراً، وقد توضح اللائحة كيفية احتساب الدخل المعفى.',
       todo_title: 'ما الذي تفعله قبل 2028',
-      t_first: 'يغطي إقرارك الأول سنة 2028، ويُقدَّم إلكترونيًا في موعد أقصاه 30 يونيو 2029، أي خلال ستة أشهر من نهاية السنة (المادة 33).',
+      t_first: 'يغطي إقرارك الأول سنة 2028، ويُقدَّم إلكترونياً في موعد أقصاه 30 يونيو 2029، أي خلال ستة أشهر من نهاية السنة (المادة 33).',
       t_records: 'ابدأ ملف 2028 من الآن: كشوف الرواتب، وكشوف الحسابات المصرفية والوساطة، وعقود الإيجار، وإيصالات كل إعفاء تطالب به.',
-      t_days: 'احسب أيامك في عُمان: تجاوز 183 يومًا في السنة الميلادية، متصلة أو متفرقة، يجعلك مقيمًا ضريبيًا (المادة 1). ويُصدر جهاز الضرائب شهادة الإقامة الضريبية عند الطلب (المادة 3).',
-      t_nonres: 'يُحتسب دخلك من عُمان فقط ما دمت غير مقيم. انتبه لعدد أيامك، فتجاوز 183 يومًا يُدخل دخلك من الخارج في الحساب.',
+      t_days: 'احسب أيامك في عُمان: تجاوز 183 يوماً في السنة الميلادية، متصلة أو متفرقة، يجعلك مقيماً ضريبياً (المادة 1). ويُصدر جهاز الضرائب شهادة الإقامة الضريبية عند الطلب (المادة 3).',
+      t_nonres: 'يُحتسب دخلك من عُمان فقط ما دمت غير مقيم. انتبه لعدد أيامك، فتجاوز 183 يوماً يُدخل دخلك من الخارج في الحساب.',
       t_employer: 'إذا كان راتبك من جهة عمل واحدة هو دخلك الوحيد، فعلى جهة العمل تقديم إقرارك نيابة عنك عند طلبك (المادة 33).',
-      t_withhold: 'توقّع أن تُستقطع الضريبة من راتبك اعتبارًا من 2028 (المادة 43)، وستحدد اللائحة التنفيذية آلية ذلك.',
+      t_withhold: 'توقّع أن تُستقطع الضريبة من راتبك اعتباراً من 2028 (المادة 43)، وستحدد اللائحة التنفيذية آلية ذلك.',
       t_rent: 'يمكنك خصم 15% بشكل ثابت أو تكاليفك الفعلية من دخل الإيجار والعمل الحر. احتفظ بعقود الإيجار والإيصالات لتقارن بينهما.',
       t_fsal_om: 'راتب العمل خارج عُمان معفى للمقيم الضريبي العُماني (المادة 25). احتفظ بالعقود وسجلات السفر التي تثبت مكان عملك.',
       t_fsal_ex: 'إعفاء راتب العمل في الخارج يقتصر على المقيم الضريبي العُماني، لذا يُحتسب هذا الراتب للوافد المقيم، ويمكن خصم الضريبة المدفوعة عنه في الخارج.',
@@ -876,38 +916,20 @@ details.src a{word-break:break-word}
       t_out: 'لا شيء مطلوب منك الآن. أعد الفحص إذا ارتفع دخلك.',
       t_near: 'احتفظ بسجلاتك من يناير 2028 على أي حال، فستحتاج إليها في إقرارك إن تجاوزت الحد.',
       cta_review_h: 'ماذا بعد؟',
-      cta_review_p: 'أرسل إلينا نتائجك ونرد عليك بقائمة مستندات عام 2028. ويمكن لأصحاب العمل الذين لديهم موظفون فوق حد الإعفاء السؤال عن حزمة صاحب العمل. لا شيء هنا استشارة ضريبية؛ فلذلك مستشار ضريبي مرخّص.',
-      btn_li: 'راسلنا على لينكدإن', btn_wa: 'أرسل نتائجي بالبريد الإلكتروني', btn_wait: 'انضم إلى قائمة الانتظار', btn_tool: 'افتح أداة أوّاب للضريبة الكاملة', btn_tool_short: 'جرّب النسخة الأولى', btn_copy: 'انسخ نتائجي', wait_subject: 'قائمة انتظار أداة أوّاب للضريبة', wait_body: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة.\n\nالاسم:\nجهة العمل (اختياري):\nأتوقع أن يتجاوز دخلي 42,000 ريال في 2028: نعم / لا / غير متأكد',
-      copied: 'تم النسخ. الصقه في رسالة بريد إلكتروني إلينا.',
+      cta_review_p: 'انضم إلى قائمة الانتظار لنرسل إليك قائمة المستندات لعام 2028 وأولوية الوصول إلى أداة أوّاب للضريبة في موسم إقرارات 2029. لا شيء هنا استشارة ضريبية؛ ولوضعك الخاص، استشر مستشاراً ضريبياً مرخّصاً.',
+      btn_wa: 'أرسل نتائجي بالبريد الإلكتروني', btn_li: 'راسلنا عبر لينكدإن', btn_wait: 'انضم إلى قائمة الانتظار', btn_tool: 'افتح أداة أوّاب للضريبة الكاملة', btn_copy: 'انسخ نتائجي',
+      wait_subject: 'قائمة انتظار أداة أوّاب للضريبة', wait_body: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة.\n\nالاسم:\nجهة العمل (اختياري):\nأتوقع أن يتجاوز دخلي 42,000 ريال في 2028: نعم / لا / غير متأكد',
+      copied: 'تم النسخ. الصقه في رسالة إلينا.',
       copy_fallback: 'النسخ غير متاح هنا. حدّدنا النص لك، فانسخه من لوحة المفاتيح.',
       summary_label: 'النص الذي ستتم مشاركته',
       disclaimer: 'معلومات عامة مبنية على المرسوم السلطاني 56/2025 كما نُشر، وليست استشارة ضريبية. تتوقف القواعد النهائية على اللائحة التنفيذية.',
       sum_pit_title: 'أوّاب · فحص ذاتي لضريبة الدخل',
       sum_nat: 'الجنسية', sum_days: 'مدة الوجود في عُمان', sum_gross: 'الدخل الإجمالي المحتسب', sum_taxable: 'الدخل الخاضع للضريبة',
-      sum_tax: 'الضريبة التقديرية', sum_status: 'الحالة', sum_ask_review: 'أرغب في أن يراجع مستشار مرخّص وضعي الضريبي.',
-      svc_eyebrow: 'الخدمات', svc_h2: 'عمل عملي حول التزامين جديدين',
-      svc_lead: 'ثلاث خدمات لفوترة الآن، وحزمة صاحب العمل من 2028. كل سعر ثابت ويُحدَّد كتابةً قبل بدء العمل؛ أوّاب شركة شخص واحد قيد التسجيل، ويبدأ العمل المدفوع عند اكتمال التسجيل.',
-      who_awab: 'تقدّمها أوّاب', who_partner: 'مع مستشار ضريبي مرخّص',
-      svc1_h: 'مراجعة الجاهزية',
-      svc1_p: 'نفحص بيانات العملاء والأصناف ونظام الفوترة لديك، ونرشّح مزوّدي خدمة معتمدين، ونسلّمك خطة مؤرّخة. تُخصم الرسوم من باقة الانطلاق.',
-      svc1_price: 'سعر ثابت يُحدَّد كتابةً',
-      svc2_h: 'الانطلاق',
-      svc2_p: 'التسجيل لدى مزوّد الخدمة، وتنقية البيانات وربطها، وفواتير الاختبار، وتدريب الموظفين، والدعم في يوم التشغيل الأول. يُحدَّد السعر حسب الأنظمة وعدد الفواتير.',
-      svc2_price: 'سعر ثابت يُحدَّد كتابةً',
-      svc3_h: 'رعاية أوّاب',
-      svc3_p: 'بعد الانطلاق نعالج الفواتير المرفوضة، ونحافظ على دقة سجلات العملاء والأصناف، ونرسل إليك سجلًا شهريًا بالفواتير الإلكترونية.',
-      svc3_price: 'سعر شهري ثابت يُحدَّد كتابةً',
-      svc5_h: 'حزمة صاحب العمل',
-      svc5_p: 'من 2028 تخصم رواتبكم الضريبة، وقد يطلب موظفوكم أن تقدّموا الإقرار عنهم. تُحيط أوّاب الموارد البشرية، وتُعِدّ الرسائل والنماذج، وتجمع المستندات، وتُدخل البيانات. وتبقون أنتم مقدّمي الإقرار.',
-      svc5_price: 'سعر ثابت يُحدَّد كتابةً · من 2028',
-      limits_h: 'حدود عملنا',
-      lim1: 'تأتي المشورة الضريبية من مستشار ضريبي مرخّص فقط. تتولى أوّاب المعالجة والإعداد وبناء البرمجيات دون تقديم مشورة ضريبية؛ صاحب العمل يقدّم إقراراته بنفسه، والأداة يستخدمها صاحبها.',
-      lim2: 'لسنا مزوّد خدمة معتمدًا لفوترة، ولا نقدّم مشورة استثمارية. نعمل إلى جانب المزوّد الذي تختاره، ونُعلمك إن كان أي مزوّد يدفع لنا عمولة إحالة.',
-      lim3: 'نحن جهة مستقلة، ولسنا جزءًا من جهاز الضرائب ولا معتمدين منه.',
-      dates_eyebrow: 'مواعيد رئيسية', dates_h2: 'من المرسوم إلى الإقرار الأول',
+      sum_tax: 'الضريبة التقديرية', sum_status: 'الحالة', sum_ask_review: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة وإرسال قائمة مستندات 2028.',
+      dates_eyebrow: 'المواعيد الرئيسية', dates_h2: 'من المرسوم إلى الإقرار الأول',
       ev1: 'صدور المرسوم السلطاني رقم 56/2025 بإصدار قانون الضريبة على دخل الأفراد.',
       ev2: 'نشر القانون في الجريدة الرسمية، العدد 1602.',
-      ev3: 'الموعد المحدد لإصدار اللائحة التنفيذية، ولم تصدر حتى 6 نوفمبر 2026.',
+      ev3: 'الموعد المحدد لإصدار اللائحة التنفيذية، ولم تصدر حتى 9 نوفمبر 2026.',
       ev4: 'القرار 189/2026 يحدد مواعيد الفوترة الإلكترونية (فوترة) بنص ملزم.',
       ev5: 'بدء فوترة للمنشآت المسجلة التي تتجاوز توريداتها 5 ملايين ريال عُماني.',
       ev6: 'بدء فوترة لبقية المنشآت المسجلة في ضريبة القيمة المضافة.',
@@ -915,15 +937,16 @@ details.src a{word-break:break-word}
       ev8: 'آخر موعد لتقديم الإقرارات الأولى عن سنة 2028.',
       chip_past: 'مضى', chip_overdue: 'متأخرة', chip_in: 'بعد {n}', chip_today: 'اليوم',
       pen_h: 'العقوبات في قانون ضريبة الدخل',
-      pen1: 'التأخر في السداد: ضريبة إضافية بنسبة 1% شهريًا على المبالغ غير المسددة (المادة 45).',
+      pen1: 'التأخر في السداد: ضريبة إضافية بنسبة 1% شهرياً على المبالغ غير المسددة (المادة 45).',
       pen2: 'عدم تقديم الإقرار أو عدم الاحتفاظ بالسجلات: غرامة تصل إلى 5,000 ريال عُماني (المادة 65).',
       pen3: 'الإقرارات غير الصحيحة أو المستندات المزوّرة: السجن من سنة إلى ثلاث سنوات وغرامة تصل إلى 20,000 ريال عُماني (المادة 66).',
-      src_h: 'المصادر، آخر تحقق في 6 نوفمبر 2026',
-      contact_eyebrow: 'تواصل', contact_h2: 'تحدّث مع أوّاب',
-      contact_p: 'التهيئة لفوترة للمنشآت المسجلة في ضريبة القيمة المضافة الآن، ومعاملات ضريبة الدخل لأصحاب العمل من 2028، في أنحاء عُمان، بالعربية والإنجليزية. راسل صفحة أوّاب على لينكدإن بنتائج فحصك الذاتي ونرد خلال يوم عمل واحد.', c_linkedin: 'لينكدإن', c_email: 'البريد الإلكتروني', c_office: 'المكتب', c_office_v: 'مسقط، سلطنة عُمان',
-      c_pending: 'تُضاف عند الإطلاق', c_copy: 'نسخ',
-      proto: 'أوّاب شركة شخص واحد قيد التسجيل في مسقط. وحتى ذلك الحين نجري محادثات جاهزية مجانية، ويبدأ العمل المدفوع عند اكتمال التسجيل.',
-      foot: '© 2026 أوّاب، شركة شخص واحد قيد التأسيس. خدمات مستقلة لمعالجة ضريبة الدخل والجاهزية للفوترة الإلكترونية، غير تابعة لجهاز الضرائب ولا لأي مزوّد خدمة. تأتي المشورة الضريبية من مستشار مرخّص فقط. المعلومات الواردة هنا عامة وليست استشارة ضريبية.'
+      src_h: 'المصادر، آخر تحقق في 9 نوفمبر 2026',
+      contact_eyebrow: 'تواصل معنا', contact_h2: 'تحدّث مع أوّاب',
+      contact_p: 'محادثات مجانية حول جاهزية فوترة للمنشآت في عُمان: 30 دقيقة، ثم صفحة واحدة بما يجب إصلاحه أولاً. الأعمال الورقية لضريبة الدخل لأصحاب العمل من 2028. بالعربية والإنجليزية. راسلونا عبر لينكدإن أو البريد الإلكتروني، ونرد خلال يوم عمل واحد.',
+      c_linkedin: 'لينكدإن', c_linkedin_v: 'أوّاب على لينكدإن', c_email: 'البريد الإلكتروني', c_copy: 'نسخ',
+      c_office: 'المكتب', c_office_v: 'مسقط، سلطنة عُمان', c_hours: 'ساعات العمل', c_hours_v: 'من الأحد إلى الخميس، 8:00–17:00',
+      foot: 'معلومات عامة وليست استشارة ضريبية. المصادر: قرار جهاز الضرائب رقم 189/2026 · المرسوم السلطاني رقم 56/2025. أوّاب جهة مستقلة: ليست جزءاً من جهاز الضرائب ولا معتمدة منه، وليست مزوّد خدمة معتمداً لفوترة. تأتي المشورة الضريبية من مستشار مرخّص فقط.',
+      foot_co: '© 2026 أوّاب — مسقط، سلطنة عُمان'
     }
   };
 
@@ -943,10 +966,10 @@ details.src a{word-break:break-word}
     return s;
   }
 
-  /* Numbers: Latin digits in both languages, so what people type matches what they read. */
+  /* Numbers: Western digits in both languages, so what people type matches what they read. */
   function loc() { return lang === 'ar' ? 'ar-OM-u-nu-latn' : 'en-GB'; }
   function num(n, dp) { dp = dp || 0; return new Intl.NumberFormat(loc(), { minimumFractionDigits: dp, maximumFractionDigits: dp }).format(n); }
-  function money(n, dp) { var s = num(n, dp); return lang === 'ar' ? s + ' ر.ع.' : 'OMR ' + s; }
+  function money(n, dp) { var s = num(n, dp); return lang === 'ar' ? s + ' ر.ع.' : 'OMR ' + s; }
   function neg(n, dp) { return n > 0 ? '(' + num(n, dp) + ')' : num(0, dp); }
   function pct(x) { return new Intl.NumberFormat(loc(), { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(x); }
   function round3(x) { return Math.round(x * 1000) / 1000; }
@@ -967,7 +990,7 @@ details.src a{word-break:break-word}
   function daysUntil(iso) { var p = iso.split('-').map(Number); return Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - todayUTC()) / 86400000); }
   function fmtDate(iso) { var p = iso.split('-').map(Number); return p[2] + ' ' + MONTHS[lang][p[1] - 1] + ' ' + p[0]; }
   function dayWord(n) {
-    if (lang === 'ar') { if (n === 1) return 'يوم'; if (n === 2) return 'يومان'; if (n >= 3 && n <= 10) return 'أيام'; return 'يومًا'; }
+    if (lang === 'ar') { if (n === 1) return 'يوم'; if (n === 2) return 'يومان'; if (n >= 3 && n <= 10) return 'أيام'; return 'يوماً'; }
     return n === 1 ? 'day' : 'days';
   }
   function daysPhrase(n) {
@@ -1013,6 +1036,7 @@ details.src a{word-break:break-word}
 
   var PIT_FIELDS = ['salOm', 'salAbroad', 'rental', 'invest', 'biz', 'other', 'foreign', 'don', 'edu', 'health', 'pension', 'home', 'ftax'];
   var EX_PIT = { nat: 'om', days: 'over', salOm: 48000, rental: 9000, invest: 2500, don: 1200, edu: 1500 };
+  var CHIP = { due: 'chip chip-due', near: 'chip chip-near', file: 'chip chip-file', out: 'chip' };
 
   function readPIT() {
     var v = {};
@@ -1026,9 +1050,8 @@ details.src a{word-break:break-word}
 
   function renderPIT() {
     var v = readPIT(), r = computePIT(v);
-    var stCls = 'pill st-' + r.status;
-    $('#pitStatus').className = stCls; $('#pitStatus').textContent = t('st_' + r.status);
-    $('#pitMiniStatus').className = stCls; $('#pitMiniStatus').textContent = t('st_' + r.status);
+    $('#pitStatus').className = CHIP[r.status]; $('#pitStatus').textContent = t('st_' + r.status);
+    $('#pitMiniStatus').className = CHIP[r.status]; $('#pitMiniStatus').textContent = t('st_' + r.status);
     $('#pitDetail').textContent = t('sd_' + r.status, { x: money(Math.max(0, THRESHOLD - r.gross)) });
     $('#pitRes').textContent = v.days === 'unsure' ? t('res_unsure') : (r.resident ? t('res_resident') : t('res_nonres'));
     $('#pitTax').textContent = money(r.tax, 3);
@@ -1102,6 +1125,7 @@ details.src a{word-break:break-word}
 
   /* ---------- Fawtara: Decision 189/2026 (VAT Executive Regulations) ---------- */
   var EX_FAW = { vat: 'yes', supplies: 1200000, items: [true, false, true, false, false, false] };
+  var FAW_CHIP = { mandated: 'chip chip-due', must: 'chip chip-near', vol: 'chip chip-file', below: 'chip' };
 
   function readFaw() {
     return {
@@ -1119,8 +1143,7 @@ details.src a{word-break:break-word}
   }
   function renderFaw() {
     var v = readFaw(), r = computeFaw(v);
-    var pillCls = { mandated: 'st-due', must: 'st-near', vol: 'st-file', below: 'st-out' }[r.state];
-    $('#fawPill').className = 'pill ' + pillCls; $('#fawPill').textContent = t('fp_' + r.state);
+    $('#fawPill').className = FAW_CHIP[r.state]; $('#fawPill').textContent = t('fp_' + r.state);
     $('#fawDate').textContent = fmtDate(r.date);
     $('#fawMiniDate').textContent = fmtDate(r.date);
     $('#fawWave').textContent = t(r.big ? 'wave1' : 'wave2');
@@ -1164,6 +1187,8 @@ details.src a{word-break:break-word}
       mail.href = 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
       mail.hidden = false;
     } else { mail.hidden = true; mail.removeAttribute('href'); }
+    var liBtn = $('#' + kind + 'Li');
+    if (liBtn) { if (CONTACT.linkedin) { liBtn.href = CONTACT.linkedin; liBtn.hidden = false; } else { liBtn.hidden = true; liBtn.removeAttribute('href'); } }
     var wait = $('#pitWait');
     if (wait) {
       if (CONTACT.wait) { wait.href = CONTACT.wait; wait.target = '_blank'; wait.rel = 'noopener'; wait.hidden = false; }
@@ -1173,7 +1198,7 @@ details.src a{word-break:break-word}
     renderTool();
   }
   function renderTool() {
-    ['#pitTool', '#svc6Link'].forEach(function (sel) {
+    ['#pitTool', '#svc3Link'].forEach(function (sel) {
       var a = $(sel); if (!a) return;
       if (CONTACT.tool) { a.href = CONTACT.tool; a.hidden = false; } else { a.hidden = true; a.removeAttribute('href'); }
     });
@@ -1194,8 +1219,9 @@ details.src a{word-break:break-word}
       var n = daysUntil(DEADLINES[i][0]);
       if (n > 0) { next = { n: n, key: DEADLINES[i][1] }; break; }
     }
-    if (next) { $('#cdNum').textContent = num(next.n); $('#cdText').textContent = t(next.key, { w: dayWord(next.n) }); }
-    else { $('#cdNum').textContent = ''; $('#cdText').textContent = t('cd_done'); }
+    var chip = $('#cdChip');
+    if (next) { chip.hidden = false; chip.textContent = t(next.key, { d: daysPhrase(next.n) }); }
+    else { chip.hidden = false; chip.textContent = t('cd_done'); }
   }
   function renderTimeline() {
     $$('.ev').forEach(function (el) {
@@ -1203,16 +1229,23 @@ details.src a{word-break:break-word}
       el.querySelector('.ev-date').textContent = fmtDate(iso);
       el.classList.toggle('past', n < 0 && el.getAttribute('data-flag') !== 'overdue');
       el.classList.toggle('overdue', el.getAttribute('data-flag') === 'overdue');
-      if (el.getAttribute('data-flag') === 'overdue') { chip.className = 'chip overdue'; chip.textContent = t('chip_overdue'); }
-      else if (n < 0) { chip.className = 'chip past'; chip.textContent = t('chip_past'); }
-      else if (n === 0) { chip.className = 'chip soon'; chip.textContent = t('chip_today'); }
-      else { chip.className = 'chip soon'; chip.textContent = t('chip_in', { n: daysPhrase(n) }); }
+      if (el.getAttribute('data-flag') === 'overdue') { chip.className = 'chip chip-due'; chip.textContent = t('chip_overdue'); }
+      else if (n < 0) { chip.className = 'chip chip-past'; chip.textContent = t('chip_past'); }
+      else if (n === 0) { chip.className = 'chip'; chip.textContent = t('chip_today'); }
+      else { chip.className = 'chip'; chip.textContent = t('chip_in', { n: daysPhrase(n) }); }
     });
   }
   function renderContact() {
-    var em = $('#cEm');
-    if (CONTACT.email) { em.textContent = CONTACT.email; em.className = 'c-val'; $('#cEmCopy').hidden = false; }
-    else { em.textContent = t('c_pending'); em.className = 'c-val pending'; $('#cEmCopy').hidden = true; }
+    var row = $('#cEmRow'), em = $('#cEm');
+    if (CONTACT.email) { row.hidden = false; em.textContent = CONTACT.email; }
+    else { row.hidden = true; em.textContent = ''; }
+    var liLink = $('#cLi');
+    if (CONTACT.linkedin) { liLink.href = CONTACT.linkedin; } else { liLink.removeAttribute('href'); }
+  }
+  function renderHeroSub() {
+    var el = $('#heroSub');
+    if (lang === 'ar') { el.textContent = T.en.hero_h1; el.setAttribute('lang', 'en'); el.setAttribute('dir', 'ltr'); }
+    else { el.textContent = T.ar.hero_h1; el.setAttribute('lang', 'ar'); el.setAttribute('dir', 'rtl'); }
   }
 
   function setLang(l, save) {
@@ -1222,9 +1255,10 @@ details.src a{word-break:break-word}
     $$('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
     $$('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
     var btn = $('#langBtn');
-    btn.textContent = t('lang_btn'); btn.setAttribute('lang', lang === 'ar' ? 'en' : 'ar'); btn.setAttribute('aria-label', t('lang_aria'));
+    btn.textContent = t('lang_btn'); btn.setAttribute('lang', lang === 'ar' ? 'en' : 'ar'); btn.setAttribute('dir', lang === 'ar' ? 'ltr' : 'rtl'); btn.setAttribute('aria-label', t('lang_aria'));
+    document.title = lang === 'ar' ? 'أوّاب — كل إقرار في موعده' : 'Awab — Every return, on time';
     if (save) { try { localStorage.setItem('awab-lang', lang); } catch (e) { /* storage unavailable */ } }
-    renderCountdown(); renderTimeline(); renderContact(); renderPIT(); renderFaw();
+    renderHeroSub(); renderCountdown(); renderTimeline(); renderContact(); renderPIT(); renderFaw();
   }
 
   /* ---------- Wiring ---------- */
@@ -1246,6 +1280,14 @@ details.src a{word-break:break-word}
   $('#cEmCopy').addEventListener('click', function () { copyText(CONTACT.email, null, null); });
   $('#langBtn').addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar', true); });
 
+  var menuBtn = $('#menuBtn'), nav = $('#nav');
+  menuBtn.addEventListener('click', function () {
+    var open = !nav.classList.contains('open');
+    nav.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  $$('#nav a').forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }); });
+
   var initial = null;
   try { initial = localStorage.getItem('awab-lang'); } catch (e) { initial = null; }
   if (location.hash === '#ar' || location.hash === '#en') initial = location.hash.slice(1);
@@ -1256,5 +1298,5 @@ details.src a{word-break:break-word}
   setLang(initial, false);
 })();
 </script>
-
-</body></html>
+</body>
+</html>
