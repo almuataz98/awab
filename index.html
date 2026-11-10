@@ -221,6 +221,7 @@ html[lang="ar"] .todo li::before{top:16px}
 .cta-box p{font-size:14.5px}
 .cta-actions{display:flex;flex-wrap:wrap;gap:10px}
 .cta-actions .btn{min-height:46px;padding:0 18px;font-size:15px}
+.cta-emp{background:var(--surface);border:1px solid var(--line)}
 .sum-label{font-size:12.5px;color:var(--ink-muted);margin-top:4px}
 .summary{width:100%;font:13px/1.55 var(--font-latin);color:var(--ink-muted);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:10px;resize:vertical;min-height:132px}
 html[lang="ar"] .summary{font-family:var(--font-arabic)}
@@ -425,10 +426,11 @@ details.src a{word-break:break-word}
           <h4 class="todo-h" data-i18n="gaps_title"></h4>
           <ul class="todo" id="fawGaps"></ul>
           <div class="cta-box">
-            <h4 data-i18n="cta_faw_h"></h4>
-            <p data-i18n="cta_faw_p"></p>
+            <h4 id="fawCtaH"></h4>
+            <p id="fawCtaP"></p>
             <div class="cta-actions">
-              <a class="btn btn-primary" id="fawWa" hidden data-i18n="btn_wa"></a>
+              <a class="btn btn-primary" id="fawWa" hidden></a>
+              <a class="btn btn-primary" id="fawWhats" hidden target="_blank" rel="noopener" data-i18n="btn_whats"></a>
               <a class="btn btn-primary" id="fawLi" target="_blank" rel="noopener" data-i18n="btn_li"></a>
               <button type="button" class="btn btn-secondary" id="fawCopy" data-i18n="btn_copy"></button>
             </div>
@@ -527,10 +529,11 @@ details.src a{word-break:break-word}
           <h4 class="todo-h" data-i18n="todo_title"></h4>
           <ul class="todo" id="pitTodo"></ul>
           <div class="cta-box">
-            <h4 data-i18n="cta_review_h"></h4>
-            <p data-i18n="cta_review_p"></p>
+            <h4 id="pitCtaH"></h4>
+            <p id="pitCtaP"></p>
             <div class="cta-actions">
-              <a class="btn btn-primary" id="pitWa" hidden data-i18n="btn_wa"></a>
+              <a class="btn btn-primary" id="pitWa" hidden></a>
+              <a class="btn btn-primary" id="pitWhats" hidden target="_blank" rel="noopener" data-i18n="btn_whats"></a>
               <a class="btn btn-primary" id="pitWait" hidden data-i18n="btn_wait"></a>
               <a class="btn btn-primary" id="pitLi" target="_blank" rel="noopener" data-i18n="btn_li"></a>
               <a class="btn btn-secondary" id="pitTool" hidden target="_blank" rel="noopener" data-i18n="btn_tool"></a>
@@ -539,6 +542,14 @@ details.src a{word-break:break-word}
             <label class="sum-label" for="pitSummary" data-i18n="summary_label"></label>
             <textarea id="pitSummary" class="summary" readonly rows="8"></textarea>
             <p class="copy-msg" id="pitMsg" role="status"></p>
+          </div>
+          <div class="cta-box cta-emp" id="pitEmp">
+            <h4 data-i18n="emp_h"></h4>
+            <p data-i18n="emp_p"></p>
+            <div class="cta-actions">
+              <a class="btn btn-secondary" id="pitEmpMail" hidden data-i18n="btn_emp"></a>
+              <a class="btn btn-secondary" id="pitEmpWhats" hidden target="_blank" rel="noopener" data-i18n="btn_emp_whats"></a>
+            </div>
           </div>
           <p class="disclaimer" data-i18n="disclaimer"></p>
         </div>
@@ -597,6 +608,7 @@ details.src a{word-break:break-word}
       </header>
       <div class="sheet c-rows">
         <div class="c-row"><span class="c-label" data-i18n="c_linkedin"></span><span class="c-val"><a id="cLi" target="_blank" rel="noopener" data-i18n="c_linkedin_v"></a></span><span></span></div>
+        <div class="c-row" id="cWaRow" hidden><span class="c-label" data-i18n="c_whatsapp"></span><span class="c-val"><a id="cWa" target="_blank" rel="noopener" data-i18n="c_whatsapp_v"></a></span><span></span></div>
         <div class="c-row" id="cEmRow" hidden><span class="c-label" data-i18n="c_email"></span><span class="c-val" id="cEm"></span><button type="button" class="btn-text" id="cEmCopy" data-i18n="c_copy"></button></div>
         <div class="c-row"><span class="c-label" data-i18n="c_office"></span><span class="c-val" data-i18n="c_office_v"></span><span></span></div>
         <div class="c-row"><span class="c-label" data-i18n="c_hours"></span><span class="c-val" data-i18n="c_hours_v"></span><span></span></div>
@@ -634,7 +646,10 @@ details.src a{word-break:break-word}
 
   /* Launch settings. email: the business mailbox once the domain exists; wait: a form link for the waiting list (works for every visitor, unlike mailto);
      tool: the public address of the Awab Tax tool once it has one (leave empty to hide the links); linkedin: the company page. */
-  var CONTACT = { email: 'hello@awaboman.com', wait: '', tool: '', linkedin: 'https://www.linkedin.com/company/awaboman' };
+  /* whatsapp: the business WhatsApp number in international format, digits only (e.g. '9689XXXXXXX'); leave empty to hide every WhatsApp button.
+     Every email and WhatsApp message carries a reference in square brackets, e.g. [F-M4]: search Gmail for "[F-" to count Fawtara enquiries,
+     "[P-" income-tax sign-ups, "[E]" employers and "[R]" reminder requests. */
+  var CONTACT = { email: 'hello@awaboman.com', whatsapp: '', wait: '', tool: '', linkedin: 'https://www.linkedin.com/company/awaboman' };
 
   var THRESHOLD = 42000, RATE = 0.05, NEAR_FROM = 36000;
   var DEADLINES = [['2027-10-01', 'cd_faw2'], ['2028-01-01', 'cd_pit']];
@@ -701,6 +716,20 @@ details.src a{word-break:break-word}
       no_gaps: 'Everything on this list is in place. Book end-to-end testing with your provider.',
       cta_faw_h: 'Free readiness check: 30 minutes, one page',
       cta_faw_p: 'Send us this result and we arrange a 30-minute conversation, then a one-page note on what to fix first. No fee, no obligation.',
+      ctaf_gaps_h: '{n} to close before {d}', gap_one: '1 gap', gap_many: '{n} gaps',
+      ctaf_gaps_p: 'Send us this result and we go through each gap with you in a free 30-minute call, then send a one-page note that puts them in order. No fee, no obligation.',
+      ctaf_ready_h: 'All six in place. Worth a second pair of eyes?',
+      ctaf_ready_p: 'Most go-live problems show up in test invoices, not in checklists. In a free 30-minute call we look at your provider choice and test plan before {d}. No fee, no obligation.',
+      ctaf_must_h: 'VAT registration comes first',
+      ctaf_must_p: 'Your supplies are above OMR 38,500, so VAT registration is required, and Fawtara follows from it. A free 30-minute call puts the two steps in order. No fee, no obligation.',
+      ctaf_vol_h: 'Fawtara is optional for you today',
+      ctaf_vol_p: 'Between OMR 19,250 and 38,500 of supplies, VAT registration is voluntary, and Fawtara applies only if you register. Talk it through in a free 30-minute call, or ask us to remind you if your supplies grow.',
+      ctaf_below_h: 'Not in scope yet',
+      ctaf_below_p: 'Below the VAT thresholds, Fawtara does not apply. Ask us to remind you if that changes.',
+      btn_faw_book: 'Email this result and book my free check', btn_remind: 'Email me a reminder',
+      remind_ask: 'Please remind me if Fawtara starts to apply to my business.',
+      mail_fields: '\n\n— Your details, so we can reply —\nName:\nCompany:\nMobile or WhatsApp:\nBest time to call (Sun–Thu):',
+      btn_whats: 'Send on WhatsApp',
       faw_note: 'Awab is not an accredited service provider. We prepare your business and work alongside the provider you pick.',
       sum_faw_title: 'Awab · Fawtara readiness check', sum_vat: 'VAT-registered', sum_supplies: 'Annual supplies',
       sum_golive: 'Go-live date', sum_ready: 'In place', sum_ask_faw: 'I would like a free Fawtara readiness check.',
@@ -763,6 +792,19 @@ details.src a{word-break:break-word}
       t_near: 'Keep records from January 2028 anyway. If you cross the threshold, you will need them for your return.',
       cta_review_h: 'What happens next',
       cta_review_p: 'Join the waiting list and we send you the document checklist for 2028 and first access to the Awab Tax tool in the 2029 filing season. Nothing here is tax advice; for your own position, speak to a licensed tax adviser.',
+      ctap_in_h: 'You are in scope from 1 January 2028',
+      ctap_in_p: 'Join the list and we send you the 2028 document checklist once the executive regulations are out, and first access to the Awab Tax tool for the 2029 season. Nothing here is tax advice; for your own position, speak to a licensed tax adviser.',
+      ctap_near_h: 'You are close to the line',
+      ctap_near_p: 'A raise or a bonus can take you over OMR 42,000. Join the list and we remind you to run this check again before 2028. Nothing here is tax advice.',
+      ctap_out_h: 'Below the line',
+      ctap_out_p: 'On these figures the tax does not apply to you. If you run a business, some of your staff may be above it: see the employer option below.',
+      btn_pit_join: 'Join the list by email',
+      pit_fields: '\n\n— Your details —\nName:\nEmployer (optional):\nMobile or WhatsApp (optional):',
+      emp_h: 'Do you run payroll in Oman?',
+      emp_p: 'From 2028 employers withhold the tax and may file returns for their staff. We are holding free early conversations with employers about the 2028 paperwork.',
+      btn_emp: 'Email us as an employer', btn_emp_whats: 'WhatsApp us as an employer',
+      emp_subject: 'Awab · employer conversation about 2028 payroll',
+      emp_body: 'We are an employer in Oman and would like an early conversation about the 2028 income-tax paperwork.\n\nCompany:\nNumber of employees:\nRoughly how many earn above OMR 42,000 a year (no names):\nName and role:\nMobile or WhatsApp:\nBest time to call (Sun–Thu):',
       btn_wa: 'Email my results', btn_li: 'Message us on LinkedIn', btn_wait: 'Join the waiting list', btn_tool: 'Open the full Awab Tax tool', btn_copy: 'Copy my results',
       wait_subject: 'Awab Tax waiting list', wait_body: 'Please add me to the Awab Tax waiting list.\n\nName:\nEmployer (optional):\nI expect to be above the OMR 42,000 threshold in 2028: yes / no / not sure',
       copied: 'Copied. Paste it into a message to us.',
@@ -771,7 +813,7 @@ details.src a{word-break:break-word}
       disclaimer: 'General information based on Royal Decree 56/2025 as published, not tax advice. Final rules depend on the executive regulations.',
       sum_pit_title: 'Awab · income tax self-check',
       sum_nat: 'Nationality', sum_days: 'Time in Oman', sum_gross: 'Gross income counted', sum_taxable: 'Taxable income',
-      sum_tax: 'Indicative tax', sum_status: 'Status', sum_ask_review: 'Please add me to the Awab Tax waiting list and send the 2028 document checklist.',
+      sum_tax: 'Indicative tax', sum_status: 'Status', sum_ask_review: 'Please add me to the Awab Tax waiting list and send the 2028 document checklist.', sum_ask_out: 'Shared for my own records.',
       dates_eyebrow: 'Key dates', dates_h2: 'From decree to first return',
       ev1: 'Royal Decree 56/2025 issues the Personal Income Tax Law.',
       ev2: 'The law is published in the Official Gazette, issue 1602.',
@@ -789,7 +831,7 @@ details.src a{word-break:break-word}
       src_h: 'Sources, checked 9 November 2026',
       contact_eyebrow: 'Contact', contact_h2: 'Talk to Awab',
       contact_p: 'Free Fawtara readiness conversations for businesses in Oman: 30 minutes, then a one-page note on what to fix first. Income-tax paperwork for employers from 2028. Arabic and English. Message us on LinkedIn or by email and we reply within one working day.',
-      c_linkedin: 'LinkedIn', c_linkedin_v: 'Awab on LinkedIn', c_email: 'Email', c_copy: 'Copy',
+      c_linkedin: 'LinkedIn', c_linkedin_v: 'Awab on LinkedIn', c_email: 'Email', c_copy: 'Copy', c_whatsapp: 'WhatsApp', c_whatsapp_v: 'Message us on WhatsApp', contact_wa_text: 'Hello Awab, I found you on awaboman.com.',
       c_office: 'Office', c_office_v: 'Muscat, Sultanate of Oman', c_hours: 'Hours', c_hours_v: 'Sunday to Thursday, 8:00–17:00 (GST)',
       foot: 'General information, not tax advice. Sources: Tax Authority Decision 189/2026 · Royal Decree 56/2025. Awab is independent: not part of the Tax Authority, not endorsed by it, and not an accredited Fawtara provider. Tax advice comes only from a licensed adviser.',
       foot_co: '© 2026 Awab — Muscat, Oman'
@@ -855,6 +897,20 @@ details.src a{word-break:break-word}
       no_gaps: 'كل بنود القائمة جاهزة. احجز اختباراً شاملاً مع مزوّد الخدمة.',
       cta_faw_h: 'فحص جاهزية مجاني: 30 دقيقة وصفحة واحدة',
       cta_faw_p: 'أرسلوا إلينا هذه النتيجة لنرتّب محادثة من 30 دقيقة، ثم صفحة واحدة بما يجب إصلاحه أولاً. بلا رسوم ولا التزام.',
+      ctaf_gaps_h: '{n} يجب سدّها قبل {d}', gap_one: 'فجوة واحدة', gap_many: '{n} فجوات',
+      ctaf_gaps_p: 'أرسلوا إلينا هذه النتيجة لنراجع معكم كل فجوة في مكالمة مجانية من 30 دقيقة، ثم نرسل صفحة واحدة ترتّبها حسب الأولوية. بلا رسوم ولا التزام.',
+      ctaf_ready_h: 'البنود الستة مكتملة. هل تريدون رأياً ثانياً؟',
+      ctaf_ready_p: 'معظم مشكلات التطبيق تظهر في الفواتير التجريبية لا في قوائم التحقق. في مكالمة مجانية من 30 دقيقة نراجع اختيار المزوّد وخطة الاختبار قبل {d}. بلا رسوم ولا التزام.',
+      ctaf_must_h: 'التسجيل في ضريبة القيمة المضافة أولاً',
+      ctaf_must_p: 'توريداتكم تتجاوز 38,500 ريال، فالتسجيل في ضريبة القيمة المضافة واجب، وتأتي «فوترة» بعده. مكالمة مجانية من 30 دقيقة ترتّب الخطوتين. بلا رسوم ولا التزام.',
+      ctaf_vol_h: '«فوترة» اختيارية لكم حالياً',
+      ctaf_vol_p: 'بين 19,250 و38,500 ريال من التوريدات يكون التسجيل في ضريبة القيمة المضافة طوعياً، ولا تنطبق «فوترة» إلا عند التسجيل. ناقشوا ذلك في مكالمة مجانية من 30 دقيقة، أو اطلبوا منا تذكيركم إذا نمت توريداتكم.',
+      ctaf_below_h: 'لا تنطبق عليكم بعد',
+      ctaf_below_p: 'دون حدود التسجيل في ضريبة القيمة المضافة لا تنطبق «فوترة». اطلبوا منا تذكيركم إذا تغيّر ذلك.',
+      btn_faw_book: 'أرسل النتيجة واحجز الفحص المجاني', btn_remind: 'أرسلوا لي تذكيراً',
+      remind_ask: 'أرجو تذكيري إذا أصبحت «فوترة» تنطبق على منشأتي.',
+      mail_fields: '\n\n— بياناتكم لنتواصل معكم —\nالاسم:\nالمنشأة:\nالجوال أو واتساب:\nأنسب وقت للاتصال (الأحد–الخميس):',
+      btn_whats: 'أرسل عبر واتساب',
       faw_note: 'أوّاب ليست مزوّد خدمة معتمداً؛ نحن نُجهّز منشأتك ونعمل إلى جانب المزوّد الذي تختاره.',
       sum_faw_title: 'أوّاب · فحص الجاهزية لفوترة', sum_vat: 'مسجّل في ضريبة القيمة المضافة', sum_supplies: 'التوريدات السنوية',
       sum_golive: 'موعد التطبيق', sum_ready: 'الجاهز', sum_ask_faw: 'أرغب في فحص جاهزية مجاني لفوترة.',
@@ -917,6 +973,19 @@ details.src a{word-break:break-word}
       t_near: 'احتفظ بسجلاتك من يناير 2028 على أي حال، فستحتاج إليها في إقرارك إن تجاوزت الحد.',
       cta_review_h: 'ماذا بعد؟',
       cta_review_p: 'انضم إلى قائمة الانتظار لنرسل إليك قائمة المستندات لعام 2028 وأولوية الوصول إلى أداة أوّاب للضريبة في موسم إقرارات 2029. لا شيء هنا استشارة ضريبية؛ ولوضعك الخاص، استشر مستشاراً ضريبياً مرخّصاً.',
+      ctap_in_h: 'أنتم ضمن النطاق من 1 يناير 2028',
+      ctap_in_p: 'انضموا إلى القائمة لنرسل إليكم قائمة مستندات 2028 عند صدور اللائحة التنفيذية، وأولوية الوصول إلى أداة أوّاب للضريبة لموسم 2029. لا شيء هنا استشارة ضريبية؛ ولوضعكم الخاص، استشيروا مستشاراً ضريبياً مرخّصاً.',
+      ctap_near_h: 'أنتم قريبون من حد الإعفاء',
+      ctap_near_p: 'زيادة في الراتب أو مكافأة قد تتجاوز بكم 42,000 ريال. انضموا إلى القائمة لنذكّركم بإعادة هذا الفحص قبل 2028. لا شيء هنا استشارة ضريبية.',
+      ctap_out_h: 'دون حد الإعفاء',
+      ctap_out_p: 'وفق هذه الأرقام لا تنطبق الضريبة عليكم. وإن كنتم تديرون منشأة، فقد يكون بعض موظفيكم فوق الحد: انظروا خيار أصحاب العمل أدناه.',
+      btn_pit_join: 'انضم إلى القائمة بالبريد',
+      pit_fields: '\n\n— بياناتكم —\nالاسم:\nجهة العمل (اختياري):\nالجوال أو واتساب (اختياري):',
+      emp_h: 'هل تديرون رواتب في عُمان؟',
+      emp_p: 'من 2028 يستقطع أصحاب العمل الضريبة، وقد يقدّمون الإقرارات عن موظفيهم. نجري الآن محادثات مبكرة مجانية مع أصحاب العمل حول إجراءات 2028.',
+      btn_emp: 'راسلونا بصفتكم صاحب عمل', btn_emp_whats: 'واتساب لأصحاب العمل',
+      emp_subject: 'أوّاب · محادثة صاحب عمل حول رواتب 2028',
+      emp_body: 'نحن صاحب عمل في عُمان ونرغب في محادثة مبكرة حول إجراءات ضريبة الدخل لعام 2028.\n\nالمنشأة:\nعدد الموظفين:\nكم منهم تقريباً يتجاوز دخله 42,000 ريال سنوياً (بلا أسماء):\nالاسم والمنصب:\nالجوال أو واتساب:\nأنسب وقت للاتصال (الأحد–الخميس):',
       btn_wa: 'أرسل نتائجي بالبريد الإلكتروني', btn_li: 'راسلنا عبر لينكدإن', btn_wait: 'انضم إلى قائمة الانتظار', btn_tool: 'افتح أداة أوّاب للضريبة الكاملة', btn_copy: 'انسخ نتائجي',
       wait_subject: 'قائمة انتظار أداة أوّاب للضريبة', wait_body: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة.\n\nالاسم:\nجهة العمل (اختياري):\nأتوقع أن يتجاوز دخلي 42,000 ريال في 2028: نعم / لا / غير متأكد',
       copied: 'تم النسخ. الصقه في رسالة إلينا.',
@@ -925,7 +994,7 @@ details.src a{word-break:break-word}
       disclaimer: 'معلومات عامة مبنية على المرسوم السلطاني 56/2025 كما نُشر، وليست استشارة ضريبية. تتوقف القواعد النهائية على اللائحة التنفيذية.',
       sum_pit_title: 'أوّاب · فحص ذاتي لضريبة الدخل',
       sum_nat: 'الجنسية', sum_days: 'مدة الوجود في عُمان', sum_gross: 'الدخل الإجمالي المحتسب', sum_taxable: 'الدخل الخاضع للضريبة',
-      sum_tax: 'الضريبة التقديرية', sum_status: 'الحالة', sum_ask_review: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة وإرسال قائمة مستندات 2028.',
+      sum_tax: 'الضريبة التقديرية', sum_status: 'الحالة', sum_ask_review: 'أرجو إضافتي إلى قائمة انتظار أداة أوّاب للضريبة وإرسال قائمة مستندات 2028.', sum_ask_out: 'للاحتفاظ بها لنفسي.',
       dates_eyebrow: 'المواعيد الرئيسية', dates_h2: 'من المرسوم إلى الإقرار الأول',
       ev1: 'صدور المرسوم السلطاني رقم 56/2025 بإصدار قانون الضريبة على دخل الأفراد.',
       ev2: 'نشر القانون في الجريدة الرسمية، العدد 1602.',
@@ -943,7 +1012,7 @@ details.src a{word-break:break-word}
       src_h: 'المصادر، آخر تحقق في 9 نوفمبر 2026',
       contact_eyebrow: 'تواصل معنا', contact_h2: 'تحدّث مع أوّاب',
       contact_p: 'محادثات مجانية حول جاهزية فوترة للمنشآت في عُمان: 30 دقيقة، ثم صفحة واحدة بما يجب إصلاحه أولاً. الأعمال الورقية لضريبة الدخل لأصحاب العمل من 2028. بالعربية والإنجليزية. راسلونا عبر لينكدإن أو البريد الإلكتروني، ونرد خلال يوم عمل واحد.',
-      c_linkedin: 'لينكدإن', c_linkedin_v: 'أوّاب على لينكدإن', c_email: 'البريد الإلكتروني', c_copy: 'نسخ',
+      c_linkedin: 'لينكدإن', c_linkedin_v: 'أوّاب على لينكدإن', c_email: 'البريد الإلكتروني', c_copy: 'نسخ', c_whatsapp: 'واتساب', c_whatsapp_v: 'راسلونا عبر واتساب', contact_wa_text: 'مرحباً أوّاب، وجدتكم عبر awaboman.com.',
       c_office: 'المكتب', c_office_v: 'مسقط، سلطنة عُمان', c_hours: 'ساعات العمل', c_hours_v: 'من الأحد إلى الخميس، 8:00–17:00',
       foot: 'معلومات عامة وليست استشارة ضريبية. المصادر: قرار جهاز الضرائب رقم 189/2026 · المرسوم السلطاني رقم 56/2025. أوّاب جهة مستقلة: ليست جزءاً من جهاز الضرائب ولا معتمدة منه، وليست مزوّد خدمة معتمداً لفوترة. تأتي المشورة الضريبية من مستشار مرخّص فقط.',
       foot_co: '© 2026 أوّاب — مسقط، سلطنة عُمان'
@@ -1111,7 +1180,15 @@ details.src a{word-break:break-word}
       '',
       t('sum_ask_review')
     ];
-    setShare('pit', lines.join('\n'));
+    var grp = r.status === 'due' || r.status === 'file' ? 'in' : r.status;
+    $('#pitCtaH').textContent = t('ctap_' + grp + '_h');
+    $('#pitCtaP').textContent = t('ctap_' + grp + '_p');
+    if (grp === 'out') lines[lines.length - 1] = t('sum_ask_out');
+    setShare('pit', lines.join('\n'), {
+      ref: 'P-' + r.status.toUpperCase(),
+      label: grp === 'out' ? '' : t('btn_pit_join'),
+      fields: t('pit_fields')
+    });
   }
 
   function loadPIT(ex) {
@@ -1167,7 +1244,20 @@ details.src a{word-break:break-word}
       '',
       t('sum_ask_faw')
     ];
-    setShare('faw', lines.join('\n'));
+    var gaps = 6 - r.ready, kind;
+    if (r.state === 'below' || r.state === 'vol') kind = r.state;
+    else if (r.state === 'must') kind = 'must';
+    else kind = gaps > 0 ? 'gaps' : 'ready';
+    var dd = fmtDate(r.date);
+    $('#fawCtaH').textContent = t('ctaf_' + kind + '_h', { n: gaps === 1 ? t('gap_one') : t('gap_many', { n: num(gaps) }), d: dd });
+    $('#fawCtaP').textContent = t('ctaf_' + kind + '_p', { d: dd });
+    var remind = kind === 'below';
+    if (remind) lines[lines.length - 1] = t('remind_ask');
+    setShare('faw', lines.join('\n'), {
+      ref: remind ? 'R' : 'F-' + ({ mandated: 'M', must: 'V', vol: 'O' })[r.state] + r.ready,
+      label: remind ? t('btn_remind') : t('btn_faw_book'),
+      fields: t('mail_fields')
+    });
   }
   function loadFaw(ex) {
     $(ex && ex.vat === 'no' ? '#vatN' : '#vatY').checked = true;
@@ -1179,20 +1269,32 @@ details.src a{word-break:break-word}
   }
 
   /* ---------- Sharing ---------- */
-  function setShare(kind, text) {
+  function waLink(text) {
+    var n = String(CONTACT.whatsapp || '').replace(/\D/g, '');
+    return n ? 'https://wa.me/' + n + '?text=' + encodeURIComponent(text) : '';
+  }
+  function mailLink(subject, body) {
+    return 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  }
+  function setLink(el, href) { if (!el) return; if (href) { el.href = href; el.hidden = false; } else { el.hidden = true; el.removeAttribute('href'); } }
+  function setShare(kind, text, o) {
+    o = o || {};
     $('#' + kind + 'Summary').value = text;
+    var tag = o.ref ? ' [' + o.ref + ']' : '';
     var mail = $('#' + kind + 'Wa');
-    if (CONTACT.email) {
-      var subject = text.split('\n')[0];
-      mail.href = 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
-      mail.hidden = false;
-    } else { mail.hidden = true; mail.removeAttribute('href'); }
+    if (o.label) mail.textContent = o.label;
+    setLink(mail, CONTACT.email && o.label ? mailLink(text.split('\n')[0] + tag, text + (o.fields || '')) : '');
+    setLink($('#' + kind + 'Whats'), o.label ? waLink(text + '\n\n' + tag.trim()) : '');
+    if (kind === 'pit') {
+      setLink($('#pitEmpMail'), CONTACT.email ? mailLink(t('emp_subject') + ' [E]', t('emp_body')) : '');
+      setLink($('#pitEmpWhats'), waLink(t('emp_subject') + '\n\n' + t('emp_body') + '\n\n[E]'));
+      $('#pitEmp').hidden = !CONTACT.email && !CONTACT.whatsapp;
+    }
     var liBtn = $('#' + kind + 'Li');
     if (liBtn) { if (CONTACT.linkedin) { liBtn.href = CONTACT.linkedin; liBtn.hidden = false; } else { liBtn.hidden = true; liBtn.removeAttribute('href'); } }
     var wait = $('#pitWait');
     if (wait) {
       if (CONTACT.wait) { wait.href = CONTACT.wait; wait.target = '_blank'; wait.rel = 'noopener'; wait.hidden = false; }
-      else if (CONTACT.email) { wait.href = 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent(t('wait_subject')) + '&body=' + encodeURIComponent(t('wait_body')); wait.removeAttribute('target'); wait.hidden = false; }
       else { wait.hidden = true; wait.removeAttribute('href'); }
     }
     renderTool();
@@ -1239,6 +1341,8 @@ details.src a{word-break:break-word}
     var row = $('#cEmRow'), em = $('#cEm');
     if (CONTACT.email) { row.hidden = false; em.textContent = CONTACT.email; }
     else { row.hidden = true; em.textContent = ''; }
+    var wa = waLink(t('contact_wa_text'));
+    $('#cWaRow').hidden = !wa; setLink($('#cWa'), wa); if (!wa) $('#cWaRow').hidden = true;
     var liLink = $('#cLi');
     if (CONTACT.linkedin) { liLink.href = CONTACT.linkedin; } else { liLink.removeAttribute('href'); }
   }
